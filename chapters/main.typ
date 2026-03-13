@@ -10,6 +10,10 @@
   v(1em)
 }
 
+#show table: it => {
+  block(breakable: false, it)
+}
+
 #show heading.where(level: 1): it => [
   #v(1em)
   #align(center)[

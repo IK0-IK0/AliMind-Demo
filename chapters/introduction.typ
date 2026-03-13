@@ -34,7 +34,7 @@ The Transtheoretical Model (TTM) addresses this gap by conceptualizing behavior 
 
 The integration of TPB and TTM creates a powerful framework. TPB identifies the specific beliefs holding someone back, while TTM determines how to address those beliefs based on readiness. For example, a person in contemplation who believes healthy food is expensive might receive pros-and-cons exploration, while someone in action with the same belief might receive specific budget-friendly recipes. The content of the barrier is the same, but the intervention strategy is completely different based on stage.
 
-This integration addresses both the content of barriers (from TPB) and the process of addressing them (from TTM). Longitudinal research suggests that such integrated approaches may be particularly valuable for supporting difficult stage transitions @wyker2010behavioral. For a conversational AI system, this means it can detect what is wrong and deliver the right type of help at the right time.r than one-time intention measurement. Fourth, attrition is a major challenge in longitudinal health research, meaning the system must actively work to keep users engaged over long periods, something theory-driven personalization could help accomplish.
+This integration addresses both the content of barriers (from TPB) and the process of addressing them (from TTM). Longitudinal research suggests that such integrated approaches may be particularly valuable for supporting difficult stage transitions @wyker2010behavioral. For a conversational AI system, this means it can detect what is wrong and deliver the right type of help at the right time, rather than one-time intention measurement. Attrition being a major challenge in longitudinal health research, means the system must actively work to keep users engaged over long periods, something theory-driven personalization could help accomplish.
 
 #v(10pt)
 
@@ -176,7 +176,6 @@ Table 1 summarizes the landscape of current digital nutrition tools, their capab
 )
 
 As Table 1 illustrates, current tools cluster at opposite ends of a spectrum. At one end are commercially successful apps that prioritize usability and scale but ignore psychological theory. At the other end are research-backed prototypes that incorporate expert knowledge but remain inaccessible to most users. Neither approach has successfully integrated real-time psychological assessment with scalable deployment.
-
 
 Recent evaluations reveal significant technical limitations even in advanced AI tools. A 2025 study comparing five major AI models (ChatGPT-4, ChatGPT-4o, Mistral, Claude, and Llama) found substantial variability in diet plan generation. When asked to create 1500 kcal meal plans, actual energy values ranged from 1357 kcal to 2273 kcal across models, with protein intake varying by up to 65 grams @pires2025ai. Micronutrient content showed similar inconsistencies, with calcium, iron, and vitamin D levels varying widely. These discrepancies suggest limitations not only in the AI tools' capabilities but also in their interpretation of user intent and their underlying food composition databases.
 
