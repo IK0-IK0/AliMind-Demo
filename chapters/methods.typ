@@ -1,13 +1,9 @@
-// Methods and Materials Chapter - Reorganized by Iteration
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
-#v(1em)
+#v(20em)
 = Methods and Materials
 
 == Research Design
-
-=== Design Science Research Approach
-This study will employ a Design Science Research (DSR) approach, applied through iterative development cycles. DSR is particularly suited for this investigation as it focuses on creating and evaluating innovative artifacts. In this case, a theory-driven conversational AI system for nutritional behavior change in order to solve identified problems in behavioral health interventions.
 
 The research will progress through structured development cycles as shown in Figure 2, following a Requirements-Design-Development-Testing-Review paradigm. Each iteration will build upon the previous one, progressively refining the system from initial prototyping through final deployment.
 
@@ -40,7 +36,12 @@ Developed by Icek Ajzen @ajzen1991theory, the Theory of Planned Behavior posits 
 
 Meta-analytic evidence confirms that these constructs reliably predict both intention and behavior. Armitage and Conner's comprehensive review of 185 independent studies found that the TPB accounted for 39% of the variance in intention and 27% of the variance in behavior across a wide range of health-related actions @armitage2001EfficacyOT.
 
-In this study, TPB will be used to *diagnose the specific psychological barriers* holding a user back. By analyzing a user's natural language, the system will infer their scores on Attitude, Subjective Norm, and PBC. The weakest of these determinants will become the primary target for intervention.
+In this study, TPB will be used to diagnose the specific psychological barriers holding a user back. By analyzing a user's natural language, the system will infer their scores on Attitude, Subjective Norm, and PBC. The weakest of these determinants will become the primary target for intervention.
+
+#figure(
+  image("../figures/tpb.png"),
+  caption: [Theory of Planned Behavior],
+)
 
 #table(
   columns: (auto, auto, auto, auto),
@@ -67,7 +68,7 @@ In this study, TPB will be used to *diagnose the specific psychological barriers
 
 === The Transtheoretical Model (TTM)
 
-Developed by Prochaska and DiClemente @prochaska1997ttm, the Transtheoretical Model conceptualizes behavior change not as a discrete event, but as a process that unfolds over time through a series of stages. The model's core premise is that individuals at different stages of change require different types of interventions @prochaska2005transtheoretical. The five stages are:
+Developed by Prochaska and DiClemente @prochaska1997transtheoretical, the Transtheoretical Model conceptualizes behavior change not as a discrete event, but as a process that unfolds over time through a series of stages. The model's core premise is that individuals at different stages of change require different types of interventions @prochaska2005transtheoretical. The five stages are:
 
 1. *Pre-contemplation:* The individual does not intend to take action in the foreseeable future (usually measured as the next six months). They may be unaware that their behavior is problematic or may be demoralized from past failed attempts.
 
@@ -79,7 +80,7 @@ Developed by Prochaska and DiClemente @prochaska1997ttm, the Transtheoretical Mo
 
 5. *Maintenance:* The individual is working to prevent relapse and consolidate the gains attained during action. They are less tempted to regress and increasingly more confident they can sustain the change.
 
-Systematic reviews confirm that stage-matched interventions improve dietary outcomes across diverse populations @spencer2007stage.
+A study confirms that stage-matched interventions improve dietary outcomes across diverse populations @vanduyn1998.
 
 In this study, TTM will be used to determine the user's current readiness for change by analyzing linguistic markers in their conversation. This stage classification will dictate the intervention mode.
 
@@ -174,7 +175,7 @@ This integration is applied in the system's core logic as follows:
 
 - *Early Stages (Pre-contemplation & Contemplation):* The interaction is *TTM-led*. The primary goal is stage progression, not directly attacking a TPB barrier. The system uses TPB scores contextually to understand *why* the user is stuck. For example, if a user is in Contemplation, the system will use the TPB profile to inform a "decisional balance" exercise (a TTM process) @kleis2021ttm. If the user's main barrier is a negative Attitude ("Healthy food is bland"), the system can explore the "pros" of taste versus the "cons" of health, but the goal is still to move them toward Preparation, not to convince them to like broccoli today.
 
-- *Middle Stages (Preparation & Action):* The interaction becomes *TPB-led*. The user is ready to act, so the system uses the TPB profile to identify the "weakest link" (e.g., low PBC due to poor cooking skills). It then selects a specific Behavior Change Technique (BCT), guided by the TTM stage, to target that barrier @teixeira2022health. For instance, for a user in the Action stage with low PBC, the system might use BCT 4.1 ("Instruction on how to perform") and recommend a simple, low-skill recipe.
+- *Middle Stages (Preparation & Action):* The interaction becomes *TPB-led*. The user is ready to act, so the system uses the TPB profile to identify the "weakest link" (e.g., low PBC due to poor cooking skills). It then selects a specific Behavior Change Technique (BCT), guided by the TTM stage, to target that barrier @michie2013behavior. For instance, for a user in the Action stage with low PBC, the system might use BCT 4.1 ("Instruction on how to perform") and recommend a simple, low-skill recipe.
 
 - *Late Stage (Maintenance):* The interaction returns to being *TTM-led*, with a focus on relapse prevention. The TPB scores are monitored longitudinally as an early warning system @bassett-gunterOhBabyMotivation2013. A sudden drop in PBC scores, for example, could signal an increased risk of relapse, prompting the system to intervene with coping strategies before the user backslides.
 
@@ -214,10 +215,9 @@ The proposed system will implement a modular pipeline architecture consisting of
   fletcher.diagram(
     node-stroke: 1pt,
     node-fill: gradient.radial(blue.lighten(80%), blue.lighten(60%), center: (30%, 20%), radius: 80%),
-    spacing: (18mm, 12mm),
+    spacing: (9mm, 9mm),
     edge-stroke: 1pt,
 
-    // Top row: Steps 1-4
     node((0, 3), [Step 1], name: <step1>),
     node((0, 4), [Conversational\ Context Collection], name: <step1-desc>),
 
@@ -253,7 +253,7 @@ The proposed system will implement a modular pipeline architecture consisting of
     edge(<step6>, <step7>, "->", [Recipes]),
 
     // Loop back to start
-    edge(<step7>, <step1>, "->", [Session Context], bend: -40deg),
+    edge(<step7>, <step1>, "->", [Session\ Context], bend: -40deg),
   ),
   caption: [Seven-Step Computational Pipeline Architecture],
 ) <fig:pipeline>
@@ -270,13 +270,11 @@ The seven steps are:
 
 The pipeline will operate as a closed-loop system where each conversation session feeds into longitudinal tracking. Across multiple sessions, the system will implement Ecological Momentary Assessment (EMA) principles by capturing repeated measurements of TPB constructs and TTM stages in the user's natural environment, enabling detection of psychological changes over time and adaptation of intervention strategies based on progress patterns. Detailed EMA implementation is described in Iteration 2 Design.
 
-// NOTE: Detailed technical specifications for each step are described within the iteration sections below
 
 == Data Collection and Preparation
 
 === Target Population
-The study will focus on Filipino young adults and adults aged 18–40 in Davao City. This age range captures the transition from early adulthood through established adulthood, a period where dietary habits are both malleable and consequential for long-term health outcomes.
-
+The study will focus on Filipino young adults and adults aged 18–40 in Davao City. This age range captures the transition from early adulthood through established adulthood, a period where dietary habits are both malleable and consequential for long-term health outcomes. The conversational system will operate in English, consistent with its role as the medium of instruction in Philippine higher education and its widespread use in professional and digital contexts within the target demographic @commission2012english. This also ensures compatibility with available NLP models and training corpora.
 === Preliminary Survey
 
 The preliminary phase will consist of a single hybrid quali-quantitative survey designed to capture both natural language expressions and corresponding quantitative measures for all psychological constructs.
@@ -307,8 +305,6 @@ For each of the three TPB constructs, participants will provide:
 
 *Recipe Database:* The system will utilize the RecipeNLG dataset containing 2.2 million recipes with structured metadata @bien2020recipenlg as the primary source for recipe recommendations. This comprehensive database will be supplemented with Filipino recipe datasets to ensure cultural appropriateness and relevance for the target population. All recipes will be indexed with metadata including preparation time, difficulty level, required equipment, and estimated cost to enable effective constraint-based filtering and recommendation.
 
-// NOTE: Specific data collection procedures and sample sizes are detailed in each iteration below
-
 === Programming and Development Environment
 
 The system will be developed using Python 3.9+ as the primary programming language. For computationally intensive tasks such as model training and fine-tuning, Google Colab (Premium/Pro) will be utilized to leverage cloud-based GPU resources. All code, documentation, and project assets will be managed using Git for version control.
@@ -328,12 +324,12 @@ The first iteration will focus on establishing the core system architecture and 
 
   Following data collection, the next step will be identifying the tools and frameworks required for data processing, model deployment, and system development. The primary tools for development will be identified: LangChain for conversation management and dialogue state tracking, DeBERTa-v3, RoBERTa, and DistilBERT as baseline models for TPB/TTM inference, Llama 3 8B and Mistral 7B for response generation, FAISS for vector search in recipe retrieval, and Unsloth/LoRA for parameter-efficient fine-tuning. These tools will be set up to ensure smooth transition to the next phase.
 
-  // NOTE: At this stage, no human annotators are recruited since Iteration 1 uses only synthetic data
+
 ][*Design*
 
   The design phase will focus on structuring the system's architecture and evaluation pipeline, following both the theoretical and conceptual framework. The seven-step computational pipeline will be designed as a modular architecture where each stage operates as an independent microservice communicating via JSON payloads. This design will allow for modular updates and independent scaling, following a cascading inference design where the output of each stage serves as input to the next, with confidence scores propagating through the pipeline to inform downstream decision-making.
 
-  *Step 1: Conversational Context Collection.* The pipeline will establish an ongoing, naturalistic dialogue with the user to gather rich contextual information about their dietary habits, challenges, social environment, resources, and goals. Rather than administering structured questionnaires, the system will employ a conversational approach that embeds psychologically informed prompts within an organic exchange. This design choice is grounded in evidence that conversational agents elicit more thoughtful, detailed, and authentic responses than traditional surveys @xiao2020tell @aggarwalArtificialIntelligenceBased2023, while reducing assessment burden and improving user engagement @schueller2024digital.
+  *Step 1: Conversational Context Collection.* The pipeline will establish an ongoing, naturalistic dialogue with the user to gather rich contextual information about their dietary habits, challenges, social environment, resources, and goals. Rather than administering structured questionnaires, the system will employ a conversational approach that embeds psychologically informed prompts within an organic exchange. This design choice is grounded in evidence that conversational agents elicit more thoughtful, detailed, and authentic responses than traditional surveys @xiao2020tell @aggarwalArtificialIntelligenceBased2023, while reducing assessment burden and improving user engagement @fueerriegel2025.
 
   *Question Pool and Prompt Selection:* The conversational prompts will be derived from multiple sources to create a comprehensive question pool organized hierarchically by TPB constructs and sub-themes within each construct. During Iteration 1, the system will make use of dialogues from the MHC-Coach synthetic dataset @mantena2025mhccoach, extracting questions that align with TPB and TTM theoretical frameworks.
 
@@ -437,7 +433,7 @@ The first iteration will focus on establishing the core system architecture and 
 
   *Step 4: Intervention Mode Selection.* This step will translate the TTM stage into intervention mode using a deterministic stage-to-mode lookup table: Pre-contemplation → Awareness, Contemplation → Ambivalence-resolution, Preparation → Planning, Action → Coping, Maintenance → Relapse-prevention. Each mode encompasses a family of dialogue strategies and interaction patterns based on TTM clinical guidelines @bridle2009stagematched @kleis2021ttm.
 
-  *Behavior Change Techniques (BCTs) Framework:* Before proceeding to Step 5, it is essential to understand the intervention toolkit employed by the system. Behavior Change Techniques (BCTs) are specific, observable, and replicable components of behavioral interventions designed to alter psychological determinants of behavior @michie2013behavior. The system will utilize the BCT Taxonomy version 1 (BCTTv1), which provides a standardized classification of 93 distinct techniques organized into 16 hierarchical clusters @teixeira2022health. Each BCT targets specific psychological mechanisms. For example, "Action Planning" (BCT 1.4) enhances Perceived Behavioral Control, while "Information about Health Consequences" (BCT 5.1) strengthens attitudes. The systematic application of BCTs will enable the system to deliver evidence-based intervention strategies rather than generic advice.
+  *Behavior Change Techniques (BCTs) Framework:* Before proceeding to Step 5, it is essential to understand the intervention toolkit employed by the system. Behavior Change Techniques (BCTs) are specific, observable, and replicable components of behavioral interventions designed to alter psychological determinants of behavior @michie2013behavior. The system will utilize the BCT Taxonomy version 1 (BCTTv1), which provides a standardized classification of 93 distinct techniques organized into 16 hierarchical clusters @michie2013behavior. Each BCT targets specific psychological mechanisms. For example, "Action Planning" (BCT 1.4) enhances Perceived Behavioral Control, while "Information about Health Consequences" (BCT 5.1) strengthens attitudes. The systematic application of BCTs will enable the system to deliver evidence-based intervention strategies rather than generic advice.
 
   #table(
     columns: 4,
@@ -484,7 +480,7 @@ The first iteration will focus on establishing the core system architecture and 
 
   This mathematical approach will ensure that intervention efforts target the most significant psychological barrier rather than applying generic advice. For example, a user with low Perceived Behavioral Control (PBC = 2.1) but adequate Attitude (A = 5.2) and Subjective Norm (SN = 4.8) would have PBC identified as their primary intervention target.
 
-  The system will then consult a predefined intervention library that maps (TTM Stage, Weakest TPB Determinant) pairs to specific Behavior Change Techniques from the BCTTv1 taxonomy @teixeira2022health. This library contains evidence-based BCT selections derived from systematic reviews of digital health interventions. For instance, a user in the Preparation stage with weak PBC might receive "Action Planning" (BCT 1.4) combined with "Graded Tasks" (BCT 8.7), while someone in Contemplation with weak Attitude might receive "Information about Health Consequences" (BCT 5.1) paired with "Pros and Cons" (BCT 9.2).
+  The system will then consult a predefined intervention library that maps (TTM Stage, Weakest TPB Determinant) pairs to specific Behavior Change Techniques from the BCTTv1 taxonomy @michie2013behavior. This library contains evidence-based BCT selections derived from systematic reviews of digital health interventions. For instance, a user in the Preparation stage with weak PBC might receive "Action Planning" (BCT 1.4) combined with "Graded Tasks" (BCT 8.7), while someone in Contemplation with weak Attitude might receive "Information about Health Consequences" (BCT 5.1) paired with "Pros and Cons" (BCT 9.2).
 
   The balance of TPB versus TTM influence will vary strategically by stage to optimize intervention effectiveness. In early stages (Pre-contemplation and Contemplation), the approach will be TTM-led with TPB providing contextual understanding. The primary goal will be stage progression rather than directly attacking barriers. In middle stages (Preparation and Action), the approach will become TPB-led with TTM support, directly targeting the weakest determinant since users are ready for specific skill-building. In the late stage (Maintenance), the approach will return to TTM-led with TPB monitoring, focusing on relapse prevention while using TPB scores as early warning indicators of declining motivation.
 
@@ -532,7 +528,7 @@ The first iteration will focus on establishing the core system architecture and 
   #v(5pt)
   #align(center)[
     $
-      "FinalScore" = 0.4 dot.op "HealthScore" + 0.3 dot.op (1 - "Difficulty") + 0.2 dot.op "PreferenceMatch" + 0.1 dot.op "NoveltyBonus"
+      "FinalScore" = 0.4 dot.op "HealthScore" + 0.3 dot.op (1 - "Difficulty")\ + 0.2 dot.op "PreferenceMatch" + 0.1 dot.op "NoveltyBonus"
     $ <eq:recipe-score>
   ]
   #v(5pt)
@@ -554,14 +550,11 @@ The first iteration will focus on establishing the core system architecture and 
 
   During the development phase, the seven-step pipeline will be implemented using synthetic datasets. The basic conversation management framework will be implemented using LangChain, providing the foundation for dialogue flow and state tracking. Prototype TPB inference will be developed using off-the-shelf models in zero-shot mode, without fine-tuning at this stage, to establish baseline functionality. The RAG pipeline will be built with FAISS vector search on the RecipeNLG dataset, enabling semantic recipe retrieval based on user context and constraints. Initial versions of all seven pipeline steps will be created with mock confidence propagation to test the flow of information through the system. The dialogue state tracker will be implemented with basic clarification logic to handle ambiguous or incomplete user responses.
 
-  // NOTE: Models are NOT fine-tuned in Iteration 1; using base/pretrained versions only
 ][*Testing*
 
   The testing phase will involve conducting technical validation of component functionality to ensure the system operates as designed. End-to-end connectivity between all seven steps will be verified to confirm that data flows correctly through the pipeline without breaking. Conversation flow will be tested with simulated user interactions using the synthetic dialogues, evaluating whether the system can maintain coherent multi-turn conversations. Response latency will be measured for different LLM backbones, specifically comparing Llama 3 8B and Mistral 7B, to identify performance bottlenecks and inform model selection. The system will validate that confidence scores propagate correctly through the pipeline, ensuring that low-confidence outputs in early steps trigger appropriate clarification mechanisms in later steps. Bottlenecks and failure points in the architecture will be identified and documented for refinement.
 
   Success criteria for Iteration 1 will be assessed through several key questions. Does the pipeline complete all seven steps without breaking? Can the system maintain coherent conversations over multiple turns? Are theoretical constructs being elicited naturally in the conversation? What are the baseline performance metrics for future comparison? These questions will guide the evaluation and inform the refinement phase.
-
-  // NOTE: No human evaluation in Iteration 1; purely technical/functional testing
 
 ][*Review*
 
@@ -631,7 +624,7 @@ The second iteration will incorporate the preliminary survey data collected from
   ]
   #v(5pt)
 
-  The predicted stage is the one with highest probability. When confidence falls below threshold, the system will fall back on rule-based pattern matching using linguistic markers identified in the literature @horwathUsefulBasisInterventions2013 @wykerBehavioralChangeTheories2010.
+  The predicted stage is the one with highest probability. When confidence falls below threshold, the system will fall back on rule-based pattern matching using linguistic markers identified in the literature @horwath2013transtheoretical @wyker2010behavioral.
 
   *Confidence Threshold Calibration.* Confidence thresholds will be defined based on validation performance to optimize the trade-off between precision and coverage. For Step 2, when model confidence for any construct falls below 0.6, or when themes are detected but mapping weights are ambiguous, the system will flag the need for clarification. For Step 3, high confidence ($P_"max" >= 0.7$) accepts classification and proceeds; medium confidence ($0.5 <= P_"max" < 0.7$) accepts but flags for monitoring; low confidence ($P_"max" < 0.5$) triggers a clarification question.
 
@@ -710,7 +703,6 @@ The second iteration will incorporate the preliminary survey data collected from
 
   Initial pilot testing will be conducted with a small user group of 10-15 participants recruited from the target population (Filipino young adults, ages 18-40, Davao City). Each participant will complete 2-3 conversation sessions with the system, allowing observation of multi-session interactions and stage progression. Conversational logs will be collected for analysis, examining conversation flow, construct coverage, and system responses. Qualitative feedback will be gathered on conversation naturalness and relevance, identifying areas where the system feels robotic or where responses miss the mark.
 
-  // NOTE: No formal expert evaluation yet; focus is on technical performance and user experience
 
 ][*Review*
 
@@ -809,18 +801,15 @@ The third iteration will focus on polishing the system based on insights from pi
 
   During the development phase, the enhancements outlined in the design will be systematically implemented across the pipeline. Fallback mechanisms will be created for low-confidence scenarios in Steps 2 and 3, providing alternative pathways when primary models cannot make confident predictions. Rule-based pattern matching for stage classification will be expanded and refined, incorporating additional linguistic markers identified during pilot testing. User experience improvements will be implemented based on Iteration 2 feedback, including refinements to conversation pacing, response length optimization, and more natural handling of topic shifts. Sophisticated clarification strategies will be implemented in Step 1, enabling the system to ask more targeted and natural follow-up questions when user responses are ambiguous. Response generation prompts will be optimized for better tone and empathy in Step 7, fine-tuning the language model to produce more supportive and engaging responses. Session-to-session tracking will be added for TPB construct scores and TTM stage, enabling the system to detect changes over time and adapt its approach accordingly.
 
-  // NOTE: This is the final development iteration before comprehensive evaluation
 ][*Testing*
 
   The testing phase in this final iteration will evaluate the system's overall performance using both automated benchmarks and human assessments, representing the most comprehensive evaluation of the entire development process.
 
   Technical validation will test fallback mechanisms with edge case scenarios, deliberately providing ambiguous or contradictory inputs to verify that the system handles them gracefully. User experience improvements will be validated through usability testing, ensuring that changes made based on Iteration 2 feedback actually improve the interaction quality. System usability will be measured with the target population using the System Usability Scale (SUS), a standardized questionnaire that assesses perceived ease of use and satisfaction. Engagement metrics will be tracked including session duration, conversation length, and dropout rates, providing quantitative indicators of user engagement and system stickiness.
 
-  Expert evaluation will recruit registered nutritionists and linguistic experts to review system outputs. At least 2 nutritionists will review 100 randomly sampled system responses, rating each response on nutritional safety, appropriateness, and relevance using a 1-5 scale. The target will be set at ≥85% of responses rated as nutritionally safe (score ≥ 3), ensuring that the system does not provide harmful or misleading nutritional advice. Linguistic experts will review conversation naturalness and appropriateness, assessing whether the system's language feels authentic and maintains proper tone throughout interactions.
+  Expert evaluation will be done by registered nutritionists and linguistic experts to review system outputs. At least 2 nutritionists will review 100 randomly sampled system responses, rating each response on nutritional safety, appropriateness, and relevance using a 1-5 scale. The target will be set at ≥85% of responses rated as nutritionally safe (score ≥ 3), ensuring that the system does not provide harmful or misleading nutritional advice. Linguistic experts will review conversation naturalness and appropriateness, assessing whether the system's language feels authentic and maintains proper tone throughout interactions.
 
-  Comprehensive user testing will be conducted with a larger sample of 30-50 participants recruited from the target population. Each participant will complete 5-7 conversation sessions over 2-3 weeks, allowing observation of sustained engagement and longitudinal behavior change. Pre/post surveys will be administered measuring TPB constructs and TTM stage, enabling quantitative assessment of psychological and behavioral changes. System Usability Scale (SUS) scores will be collected with a target of SUS > 68 (above average), benchmarking the system against established usability standards. Behavioral outcomes will be tracked including stage progression (did users move forward through TTM stages?) and changes in TPB scores (did attitudes, norms, or PBC improve?).
-
-  // NOTE: This is the most comprehensive testing phase; includes technical, expert, and user evaluation
+  Comprehensive user testing will be conducted with a larger sample of 30-50 participants selected from the target population. Each participant will complete 5-7 conversation sessions over 2-3 weeks, allowing observation of sustained engagement and longitudinal behavior change. Pre/post surveys will be administered measuring TPB constructs and TTM stage, enabling quantitative assessment of psychological and behavioral changes. System Usability Scale (SUS) scores will be collected with a target of SUS > 68 (above average), benchmarking the system against established usability standards. Behavioral outcomes will be tracked including stage progression (did users move forward through TTM stages?) and changes in TPB scores (did attitudes, norms, or PBC improve?).
 
 ][*Review*
 
@@ -830,7 +819,6 @@ The third iteration will focus on polishing the system based on insights from pi
 
   The outputs of Iteration 3 will include a production-ready prototype with refined fallback mechanisms that handle edge cases gracefully, improved user experience based on pilot testing feedback, optimized response generation that maintains empathy and theoretical fidelity, comprehensive evaluation reports covering technical performance, expert validation, and user outcomes, and final system documentation suitable for deployment or further research.
 
-  // NOTE: System is now ready for potential deployment or larger-scale validation studies
 ]
 
 == Summary of Iterative Development

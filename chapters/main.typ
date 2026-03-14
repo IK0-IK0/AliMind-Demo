@@ -1,8 +1,18 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
-#set text(font: "Times New Roman")
+#set text(font: "Arial")
 #set par(justify: true)
 #set page(numbering: "1")
+
+#set page(
+  paper: "a4",
+  margin: 1in,
+)
+
+#set par(
+  leading: 0.4em,
+  justify: true,
+)
 
 #show figure: it => {
   v(1em)
@@ -10,25 +20,50 @@
   v(1em)
 }
 
-#show table: it => {
-  block(breakable: false, it)
-}
+#set math.equation(numbering: "(1)")
+
+#show heading.where(level: 1): it => [
+  #align(center)[
+    #text(size: 11pt, weight: "bold")[#it.body]
+  ]
+]
+
+#set text(size: 11pt)
+#align(center + horizon)[
+  *From Behavioral Inference to Stage-Specific
+  Nutrition Support: \ A TPB- and TTM- Informed System*
+
+  #v(-5pt)
+  Chris John David Manero#super[1],
+  Francis Neil Cuadra#super[2],
+  Mika Ysabelle Regalado#super[2],
+  \ John Lloyd Monterolla#super[2],
+
+]
+
+1 Faculty Researcher, College of Computer Studies
+#v(-6pt)
+2 Student Researcher, College of Computer Studies
 
 #show heading.where(level: 1): it => [
   #v(1em)
   #align(center)[
-    #text(size: 12pt, weight: "bold")[#upper(it.body)]
+    #text(size: 11pt, weight: "bold")[#upper(it.body)]
   ]
+  #v(-0.5em)
 ]
+
 
 #show heading.where(level: 2): it => [
   #v(1em)
   #align(center)[
-    #text(size: 12pt, weight: "bold")[#it.body]
+    #text(size: 11pt, weight: "bold")[#it.body]
   ]
 ]
 
+
 #include "introduction.typ"
 #include "methods.typ"
-
-#bibliography("/src/refs.bib")
+#bibliography("../src/refs.bib")
+#include "projectworkplan.typ"
+#include "budgetplan.typ"

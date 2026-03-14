@@ -1,0 +1,129 @@
+# gantt.yaml for Gantty
+# Work Plan: Theory-Driven Conversational AI for Healthy Eating
+# Duration: 9 Months (April 1, 2026 – December 31, 2026)
+
+show-today: false
+headers:
+  - month
+
+start: 2026-04-01
+end: 2026-12-31
+
+tasks:
+  # ============================================
+  # ITERATION 1: Prototyping (Months 1-3: Apr-Jun)
+  # ============================================
+  - name: Iteration 1 - Prototyping
+    subtasks:
+      - name: Requirements Analysis & Tool Setup
+        id: i1-req
+        start: 2026-04-01
+        end: 2026-04-30
+      - name: Design Pipeline Architecture (Steps 1-7)
+        id: i1-design
+        start: 2026-05-01
+        end: 2026-05-15
+      - name: Development with Synthetic Data (MHC-Coach, openCHA)
+        id: i1-dev
+        start: 2026-05-16
+        end: 2026-06-15
+      - name: Component Testing & Connectivity Validation
+        id: i1-test
+        start: 2026-06-16
+        end: 2026-06-30
+      - name: Review & Documentation (Iteration 1 Outputs)
+        id: i1-review
+        start: 2026-06-16
+        end: 2026-06-30
+
+  # ============================================
+  # ITERATION 2: Model Training (Months 4-6: Jul-Sep)
+  # ============================================
+  - name: Iteration 2 - Model Training
+    subtasks:
+      - name: Preliminary Survey Administration (150-200 participants)
+        id: i2-survey
+        start: 2026-07-01
+        end: 2026-07-31
+      - name: Thematic Analysis & Theme Taxonomy Development
+        id: i2-theme
+        start: 2026-08-01
+        end: 2026-08-15
+      - name: Data Annotation & Preparation for Training
+        id: i2-annotate
+        start: 2026-08-01
+        end: 2026-08-31
+      - name: Fine-tune Inference Models (DeBERTa, RoBERTa, DistilBERT)
+        id: i2-finetune
+        start: 2026-09-01
+        end: 2026-09-20
+      - name: Model Validation & Selection
+        id: i2-validate
+        start: 2026-09-21
+        end: 2026-09-25
+      - name: Pilot Testing (10-15 users) & Feedback Collection
+        id: i2-pilot
+        start: 2026-09-21
+        end: 2026-09-30
+      - name: Review & Refinement for Iteration 3
+        id: i2-review
+        start: 2026-09-26
+        end: 2026-09-30
+
+  # ============================================
+  # ITERATION 3: Refinement & Evaluation (Months 7-9: Oct-Dec)
+  # ============================================
+  - name: Iteration 3 - Refinement & Evaluation
+    subtasks:
+      - name: Implement Fallbacks & UX Improvements
+        id: i3-dev
+        start: 2026-10-01
+        end: 2026-10-15
+      - name: Integrate Longitudinal Tracking & Dynamic Weights
+        id: i3-track
+        start: 2026-10-01
+        end: 2026-10-20
+      - name: Comprehensive User Testing (30-40 participants, 5-7 sessions)
+        id: i3-usertest
+        start: 2026-10-16
+        end: 2026-11-15
+      - name: Expert Validation (Nutritionist Review)
+        id: i3-expert
+        start: 2026-11-01
+        end: 2026-11-15
+      - name: Final Data Analysis & Evaluation
+        id: i3-analysis
+        start: 2026-11-01
+        end: 2026-11-30
+      - name: Thesis Writing & Final Documentation
+        id: i3-write
+        start: 2026-10-15
+        end: 2026-12-20
+      - name: Final Review & Revisions
+        id: i3-review
+        start: 2026-12-01
+        end: 2026-12-31
+
+# Key Project Milestones
+milestones:
+  - name: Ethics Clearance Obtained
+    date: 2026-04-15
+    show-date: true
+  - name: ✅ Iteration 1 Complete (Functional Prototype)
+    date: 2026-06-30
+    show-date: true
+  - name: Preliminary Survey Data Collection Complete (N≈150)
+    date: 2026-07-31
+    show-date: true
+  - name: Trained Inference Models Ready (F1 > 0.80)
+    date: 2026-09-25
+    show-date: true
+  - name: ✅ Iteration 2 Complete (Validated Models)
+    date: 2026-09-30
+    show-date: true
+  - name: User Testing Phase Complete
+    date: 2026-11-15
+    show-date: true
+  - name: 🎓 Final Thesis Submission
+    date: 2026-12-31
+    show-date: true
