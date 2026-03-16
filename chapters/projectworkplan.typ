@@ -38,9 +38,6 @@
   [1.1], [Literature review and protocol writing], table.cell(fill: purple)[], table.cell(
     fill: purple,
   )[], [], [], [], [], [], [], [], [], [],
-  [1.2], [JREC submission and ethics review], table.cell(fill: purple)[], table.cell(
-    fill: purple,
-  )[], [], [], [], [], [], [], [], [], [],
 
   /* --- 2. Iteration 1 – Prototyping --- */
   [2], [Iteration 1 – Prototyping], [], [], [], [], [], [], [], [], [], [], [],

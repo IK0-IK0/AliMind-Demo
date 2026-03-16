@@ -209,7 +209,7 @@ This integrated framework ensures that the conversational AI is a theory-driven 
 
 === Seven-Step Computational Pipeline
 
-The proposed system will implement a modular pipeline architecture consisting of seven sequential processing stages (Figure 3). Each stage will be designed as an independent microservice that communicates via JSON payloads, allowing for modular updates and independent scaling.
+The proposed system will implement a modular pipeline architecture consisting of seven sequential processing stages (Figure 5). Each stage will be designed as an independent microservice that communicates via JSON payloads, allowing for modular updates and independent scaling.
 
 #figure(
   fletcher.diagram(
@@ -268,15 +268,15 @@ The seven steps are:
 6. *Feasible Dish/Plan Generation:* Recommend recipes filtered by user constraints (time, budget, skills, equipment)
 7. *Response Generation:* Generate chat response that follows chosen mode, targets selected TPB construct, and embeds feasible dishes
 
-The pipeline will operate as a closed-loop system where each conversation session feeds into longitudinal tracking. Across multiple sessions, the system will implement Ecological Momentary Assessment (EMA) principles by capturing repeated measurements of TPB constructs and TTM stages in the user's natural environment, enabling detection of psychological changes over time and adaptation of intervention strategies based on progress patterns. Detailed EMA implementation is described in Iteration 2 Design.
+The pipeline will operate as a closed-loop system where each conversation session feeds into longitudinal tracking. Across multiple sessions, the system will implement Exponential Moving Average (EMA) principles by capturing repeated measurements of TPB constructs and TTM stages in the user's natural environment, enabling detection of psychological changes over time and adaptation of intervention strategies based on progress patterns. Detailed EMA implementation is described in Iteration 2 Design.
 
 
 == Data Collection and Preparation
 
 === Target Population
 The study will focus on Filipino young adults and adults aged 18–40 in Davao City. This age range captures the transition from early adulthood through established adulthood, a period where dietary habits are both malleable and consequential for long-term health outcomes. The conversational system will operate in English, consistent with its role as the medium of instruction in Philippine higher education and its widespread use in professional and digital contexts within the target demographic @commission2012english. This also ensures compatibility with available NLP models and training corpora.
-=== Preliminary Survey
 
+=== Preliminary Survey
 The preliminary phase will consist of a single hybrid quali-quantitative survey designed to capture both natural language expressions and corresponding quantitative measures for all psychological constructs.
 
 *Survey Structure:* In collaboration with a registered nutritionist, the survey instrument will combine open-ended prompts with immediately paired quantitative measures to ensure clinical relevance and capture salient beliefs specific to the target population. The hybrid survey will include:
@@ -630,7 +630,7 @@ The second iteration will incorporate the preliminary survey data collected from
 
   *Validation Protocols.* Rigorous validation protocols will be established with 80/10/10 train/validation/test splits. Model performance will be evaluated using precision, recall, and F1-score for theme classification (target: F1 > 0.80), Mean Absolute Error (MAE), Root Mean Square Error (RMSE), and R² for TPB construct scoring (target: MAE < 0.5), and accuracy, precision, recall, and weighted F1-score for TTM stage classification (target: F1 > 0.80). Pearson correlation $r$ between inferred and survey-measured scores will be tracked as a key quality metric.
 
-  *Longitudinal Tracking Mechanisms.* A critical enhancement in Iteration 2 is the implementation of longitudinal tracking to monitor psychological changes over time, implementing Ecological Momentary Assessment (EMA) principles. EMA involves repeated sampling of participants' current behaviors and experiences in real-time within their natural environments, providing ecologically valid data on dynamic psychological processes @shiffman2007ecological. The system will maintain a rolling window of recent inferences to track changes across sessions, capturing TPB constructs and TTM stages as they naturally evolve during the user's behavior change journey.
+  *Longitudinal Tracking Mechanisms.* The system will maintain a rolling window of recent inferences to track changes across sessions, capturing TPB constructs and TTM stages as they naturally evolve during the user's behavior change journey.
 
   For each session, TPB construct scores will be computed at the turn level and then aggregated using exponential smoothing, a standard technique in EMA data analysis for balancing recent observations with historical trends:
 
@@ -972,3 +972,41 @@ The system will be considered successful based on three complementary evaluation
 Expert validation success centers on nutritional safety and appropriateness, with registered nutritionists rating at least 85% of system responses as nutritionally safe (score ≥ 3 on a 5-point scale). This criterion ensures that the system provides responsible health guidance that does not contradict established nutritional principles or pose risks to users. The expert review process also validates that recipe recommendations are culturally appropriate and feasible within the Filipino context.
 
 User acceptance success is demonstrated through positive user response metrics, including System Usability Scale scores above 68 (indicating above-average usability) and above-average ratings for perceived helpfulness and therapeutic alliance. These criteria ensure that the system not only functions correctly but also provides a satisfactory user experience that encourages sustained engagement and behavior change efforts. The combination of technical accuracy, expert validation, and user acceptance provides a comprehensive framework for evaluating the system's readiness for broader implementation.
+
+
+#v(3em)
+== Ethical Considerations
+
+=== Informed Consent
+
+All participants will provide informed consent before participating in any phase of the study. The consent process will clearly explain the study's purpose, procedures, expected time commitment, potential risks and benefits, and the voluntary nature of participation. Participants will be informed that they may withdraw from the study at any time without penalty or loss of benefits. For the preliminary survey phase, consent will be obtained through a digital consent form presented before survey access. For the pilot testing and evaluation phases, participants will complete a separate informed consent process that specifically addresses the conversational AI interaction, data collection during conversations, and the experimental nature of the system.
+
+The consent documentation will be written in clear, accessible language appropriate for the target population (Filipino young adults aged 18-40) and will be available in both English and Filipino to ensure comprehension. Participants will have the opportunity to ask questions before providing consent, and contact information for the research team will be provided for any subsequent inquiries or concerns.
+
+=== Risk Classification and Mitigation
+
+This study is classified as minimal risk research. The primary activities involve completing surveys about dietary habits and attitudes, and interacting with a conversational AI system that provides nutritional guidance and recipe recommendations. These activities pose no greater risk than those encountered in daily life when discussing food choices or using nutrition apps.
+
+Potential risks are limited and manageable. Psychological discomfort may arise if participants feel judged about their eating habits or perceive social pressure to change behaviors. To mitigate this, the conversational system is designed with a non-judgmental, supportive tone, and participants are reminded that their responses are confidential and that participation is voluntary. Nutritional safety risks are addressed through expert validation, where registered nutritionists review system outputs to ensure recommendations are safe and appropriate. The system includes safeguards to avoid providing medical advice or recommendations for individuals with specific health conditions, instead directing such users to consult healthcare professionals.
+
+Privacy risks related to disclosure of personal dietary information are mitigated through robust data protection measures described below. Participants will be informed that their conversation data will be stored securely and used only for research purposes.
+
+=== Data Privacy and Security
+
+All participant data will be handled in accordance with data protection principles and institutional research ethics guidelines. Personal identifiers will be separated from research data through a coding system, with the linking key stored separately in a password-protected file accessible only to authorized research personnel. Participant names and contact information will not be associated with survey responses or conversation logs in the research database.
+
+Conversational data collected during pilot testing will be stored on secure, password-protected servers with encrypted transmission protocols. Access to identifiable data will be restricted to the research team members who require it for data analysis and quality assurance purposes. All research personnel will complete training on data protection and confidentiality requirements before accessing participant data.
+
+Data retention will follow institutional guidelines, with identifiable data destroyed after the completion of the study and publication of results, while de-identified data may be retained for potential secondary analyses or methodological validation. Participants will be informed of these data retention practices during the consent process.
+
+=== Confidentiality and Reporting
+
+Individual participant data will be kept confidential and will not be disclosed to third parties. Research findings will be reported only in aggregate form, ensuring that individual participants cannot be identified in publications, presentations, or other dissemination activities. Direct quotes from participant conversations may be used in research outputs only if they are sufficiently de-identified and do not contain information that could reasonably identify the participant.
+
+If during the course of the study, a participant discloses information suggesting imminent risk of harm to themselves or others, the research team will follow institutional protocols for managing such disclosures, which may include breaking confidentiality to ensure participant safety. Participants will be informed of these limits to confidentiality during the consent process.
+
+=== Expert Review and Validation
+
+This research protocol will undergo expert review by a registered nutritionist-dietitian before deployment to ensure that all nutritional guidance, recipe recommendations, and dietary advice provided by the system are safe, evidence-based, and appropriate for the target population. The nutritionist will review the system's intervention logic, behavior change technique mappings, and sample outputs to verify alignment with established nutritional principles and dietary guidelines.
+
+During the pilot testing phase, the nutritionist will conduct ongoing review of system responses, rating a random sample of at least 100 interactions for nutritional safety and appropriateness. Any recommendations flagged as potentially unsafe or inappropriate will trigger immediate system refinement. The nutritionist will also validate that the system appropriately handles edge cases, such as users who may have underlying health conditions, by ensuring the system directs such individuals to consult healthcare professionals rather than providing specific medical advice.

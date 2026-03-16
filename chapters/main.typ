@@ -30,8 +30,9 @@
 
 #set text(size: 11pt)
 #align(center + horizon)[
+  #v(-5em)
   *From Behavioral Inference to Stage-Specific
-  Nutrition Support: \ A TPB- and TTM- Informed System*
+  Nutrition Support: \ A Theory of Planned Behavior - and Transtheoretical Model- Informed System*
 
   #v(-5pt)
   Chris John David Manero#super[1],
@@ -42,7 +43,7 @@
 ]
 
 1 Faculty Researcher, College of Computer Studies
-#v(-6pt)
+#v(-7pt)
 2 Student Researcher, College of Computer Studies
 
 #show heading.where(level: 1): it => [
