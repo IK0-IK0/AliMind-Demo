@@ -11,10 +11,9 @@ import {
   IconButton } from
 '@mui/material';
 import {
-  FavoriteRounded as HeartIcon,
   PsychologyRounded as BrainIcon,
-  FitnessCenterRounded as FitnessIcon,
-  LocalDiningRounded as DiningIcon,
+  TimelineRounded as TimelineIcon,
+  EmojiObjectsRounded as LightbulbIcon,
   ExpandMore as ExpandMoreIcon } from
 '@mui/icons-material';
 export function Features() {
@@ -50,7 +49,7 @@ export function Features() {
               letterSpacing: 1.5
             }}>
             
-            Why It Matters
+            How It Works
           </Typography>
           <Typography
             variant="h3"
@@ -60,7 +59,7 @@ export function Features() {
               mb: 2
             }}>
             
-            The importance of good nutrition
+            Science-backed behavior change
           </Typography>
           <Typography
             variant="body1"
@@ -71,14 +70,14 @@ export function Features() {
               lineHeight: 1.7
             }}>
             
-            Proper nutrition is the foundation of a healthy life. Here's why
-            paying attention to what you eat can transform your well-being.
+            NutriBot uses proven psychological frameworks to understand your unique situation
+            and provide personalized guidance that matches where you are in your journey.
           </Typography>
         </Box>
 
         <Grid container spacing={3}>
-          {/* Card 1 */}
-          <Grid item xs={12} sm={6} md={3}>
+          {/* Card 1: Seven-Step Pipeline */}
+          <Grid item xs={12} md={4}>
             <Card
               elevation={0}
               onClick={() => handleToggle(0)}
@@ -121,7 +120,7 @@ export function Features() {
                     })
                   }}>
                   
-                  <HeartIcon fontSize="medium" />
+                  <TimelineIcon fontSize="medium" />
                 </Avatar>
                 <Typography
                   variant="h6"
@@ -132,7 +131,7 @@ export function Features() {
                     fontSize: '1.05rem'
                   }}>
                   
-                  Prevents Chronic Disease
+                  Seven-Step Smart Pipeline
                 </Typography>
                 <Typography
                   variant="body2"
@@ -142,8 +141,7 @@ export function Features() {
                     mb: 1
                   }}>
                   
-                  A balanced diet reduces the risk of heart disease, diabetes,
-                  and obesity.
+                  Our system analyzes your conversation through seven intelligent steps to provide truly personalized guidance.
                 </Typography>
                 <Box
                   sx={{
@@ -191,10 +189,10 @@ export function Features() {
                         lineHeight: 1.7
                       }}>
                       
-                      Studies show that diets rich in fruits, vegetables, whole
-                      grains, and lean proteins can reduce the risk of chronic
-                      diseases by up to 80%. Small, consistent changes in your
-                      diet can have a profound impact on your long-term health.
+                      First, we understand your eating habits and goals. Then we identify what motivates you, 
+                      what holds you back, and where you are in your change journey. Based on this, we choose 
+                      the right approach, suggest practical strategies, recommend recipes that fit your life, 
+                      and craft a response that speaks to your unique situation.
                     </Typography>
                   </Box>
                 </Collapse>
@@ -202,8 +200,8 @@ export function Features() {
             </Card>
           </Grid>
 
-          {/* Card 2 */}
-          <Grid item xs={12} sm={6} md={3}>
+          {/* Card 2: TPB Constructs */}
+          <Grid item xs={12} md={4}>
             <Card
               elevation={0}
               onClick={() => handleToggle(1)}
@@ -257,7 +255,7 @@ export function Features() {
                     fontSize: '1.05rem'
                   }}>
                   
-                  Boosts Mental Clarity
+                  Understanding Your Mindset
                 </Typography>
                 <Typography
                   variant="body2"
@@ -267,8 +265,8 @@ export function Features() {
                     mb: 1
                   }}>
                   
-                  The right nutrients fuel your brain for better focus, mood,
-                  and cognitive function.
+                  We identify three key factors that influence your eating choices: how you feel about healthy eating, 
+                  what others think, and how confident you are.
                 </Typography>
                 <Box
                   sx={{
@@ -313,13 +311,30 @@ export function Features() {
                       variant="body2"
                       sx={{
                         color: '#2E7D32',
+                        lineHeight: 1.7,
+                        mb: 1.5
+                      }}>
+                      
+                      <strong>Your Attitude:</strong> Do you see healthy eating as beneficial and enjoyable, or as restrictive and difficult?
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#2E7D32',
+                        lineHeight: 1.7,
+                        mb: 1.5
+                      }}>
+                      
+                      <strong>Social Influence:</strong> Do your family, friends, and community support your healthy eating goals?
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#2E7D32',
                         lineHeight: 1.7
                       }}>
                       
-                      Omega-3 fatty acids, B vitamins, and antioxidants are
-                      essential for brain health. A nutrient-rich diet can
-                      improve memory, reduce brain fog, and even help prevent
-                      age-related cognitive decline.
+                      <strong>Your Confidence:</strong> Do you feel you have the skills, time, and resources to eat healthier?
                     </Typography>
                   </Box>
                 </Collapse>
@@ -327,8 +342,8 @@ export function Features() {
             </Card>
           </Grid>
 
-          {/* Card 3 */}
-          <Grid item xs={12} sm={6} md={3}>
+          {/* Card 3: TTM Stages */}
+          <Grid item xs={12} md={4}>
             <Card
               elevation={0}
               onClick={() => handleToggle(2)}
@@ -371,7 +386,7 @@ export function Features() {
                     })
                   }}>
                   
-                  <FitnessIcon fontSize="medium" />
+                  <LightbulbIcon fontSize="medium" />
                 </Avatar>
                 <Typography
                   variant="h6"
@@ -382,7 +397,7 @@ export function Features() {
                     fontSize: '1.05rem'
                   }}>
                   
-                  Fuels Physical Performance
+                  Your Change Journey
                 </Typography>
                 <Typography
                   variant="body2"
@@ -392,8 +407,8 @@ export function Features() {
                     mb: 1
                   }}>
                   
-                  Proper nutrition maximizes energy, endurance, and recovery for
-                  an active lifestyle.
+                  Everyone is at a different stage in their health journey. We meet you where you are and 
+                  provide guidance that matches your readiness to change.
                 </Typography>
                 <Box
                   sx={{
@@ -438,127 +453,42 @@ export function Features() {
                       variant="body2"
                       sx={{
                         color: '#2E7D32',
-                        lineHeight: 1.7
+                        lineHeight: 1.7,
+                        mb: 1.5
                       }}>
                       
-                      Whether you're an athlete or just staying active, the
-                      right balance of carbs, protein, and fats can dramatically
-                      improve your performance. Proper hydration and
-                      micronutrients also play a key role in recovery.
+                      <strong>Just Exploring:</strong> You're curious but not ready to commit yet. We help you understand the benefits.
                     </Typography>
-                  </Box>
-                </Collapse>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* Card 4 */}
-          <Grid item xs={12} sm={6} md={3}>
-            <Card
-              elevation={0}
-              onClick={() => handleToggle(3)}
-              sx={{
-                height: '100%',
-                borderRadius: 4,
-                border:
-                expandedCard === 3 ?
-                '2px solid #00796B' :
-                '1px solid rgba(0,0,0,0.06)',
-                cursor: 'pointer',
-                transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
-                '&:hover': {
-                  transform: 'translateY(-6px)',
-                  boxShadow: '0 16px 32px rgba(0, 121, 107, 0.15)',
-                  borderColor: '#4DB6AC'
-                },
-                display: 'flex',
-                flexDirection: 'column'
-              }}>
-              
-              <CardContent
-                sx={{
-                  p: 3.5,
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}>
-                
-                <Avatar
-                  sx={{
-                    bgcolor: '#E0F2F1',
-                    color: '#00796B',
-                    width: 56,
-                    height: 56,
-                    mb: 2.5,
-                    transition: 'transform 0.3s ease',
-                    ...(expandedCard === 3 && {
-                      transform: 'scale(1.1)'
-                    })
-                  }}>
-                  
-                  <DiningIcon fontSize="medium" />
-                </Avatar>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 1.5,
-                    color: '#1B5E20',
-                    fontSize: '1.05rem'
-                  }}>
-                  
-                  Builds Healthy Habits
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: '#558B2F',
-                    lineHeight: 1.6,
-                    mb: 1
-                  }}>
-                  
-                  Understanding nutrition empowers you to make lasting, positive
-                  changes every day.
-                </Typography>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    mt: 'auto',
-                    pt: 1
-                  }}>
-                  
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: '#00796B',
-                      fontWeight: 600
-                    }}>
-                    
-                    {expandedCard === 3 ? 'Show less' : 'Learn more'}
-                  </Typography>
-                  <IconButton
-                    size="small"
-                    sx={{
-                      ml: 'auto',
-                      transform:
-                      expandedCard === 3 ? 'rotate(180deg)' : 'rotate(0deg)',
-                      transition: 'transform 0.3s ease',
-                      color: '#00796B'
-                    }}
-                    aria-label="expand">
-                    
-                    <ExpandMoreIcon fontSize="small" />
-                  </IconButton>
-                </Box>
-                <Collapse in={expandedCard === 3}>
-                  <Box
-                    sx={{
-                      pt: 2,
-                      borderTop: '1px solid #E0F2F1',
-                      mt: 1.5
-                    }}>
-                    
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#2E7D32',
+                        lineHeight: 1.7,
+                        mb: 1.5
+                      }}>
+                      
+                      <strong>Thinking About It:</strong> You're considering change but weighing pros and cons. We help you work through doubts.
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#2E7D32',
+                        lineHeight: 1.7,
+                        mb: 1.5
+                      }}>
+                      
+                      <strong>Getting Ready:</strong> You're planning to start soon. We help you create a realistic action plan.
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#2E7D32',
+                        lineHeight: 1.7,
+                        mb: 1.5
+                      }}>
+                      
+                      <strong>Taking Action:</strong> You're actively making changes. We provide practical tips and encouragement.
+                    </Typography>
                     <Typography
                       variant="body2"
                       sx={{
@@ -566,10 +496,7 @@ export function Features() {
                         lineHeight: 1.7
                       }}>
                       
-                      Knowledge is power. When you understand how food affects
-                      your body, you naturally make better choices. NutriBot
-                      helps you build these habits one meal at a time, without
-                      overwhelming you with information.
+                      <strong>Keeping It Up:</strong> You've made lasting changes. We help you stay on track and handle setbacks.
                     </Typography>
                   </Box>
                 </Collapse>

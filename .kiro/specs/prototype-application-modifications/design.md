@@ -64,6 +64,11 @@ The application follows a three-tier architecture:
 │  │  │ Service  │  │ Service  │  │ Service  │           │  │
 │  │  └──────────┘  └──────────┘  └──────────┘           │  │
 │  └────┬──────────────┬──────────────┬───────────────────┘  │
+│       │              │              │                       │
+│  ┌────▼──────────────▼──────────────▼───────────────────┐  │
+│  │         SQL Connection Pool (pg-pool)                 │  │
+│  │  (Manages pooled connections to PostgreSQL)           │  │
+│  └────┬──────────────────────────────────────────────────┘  │
 └───────┼──────────────┼──────────────┼──────────────────────┘
         │              │              │
 ┌───────▼──────┐  ┌────▼────┐  ┌─────▼──────┐
@@ -86,7 +91,7 @@ The application follows a three-tier architecture:
 - Node.js 20.x LTS
 - Express 4.x for REST API
 - PostgreSQL 15.x for database
-- Sequelize 6.x for ORM
+- SQL with connection pooling (e.g., pg with pg-pool, or similar)
 - JWT (jsonwebtoken) for authentication
 - bcrypt for password hashing
 - express-validator for input validation
@@ -357,6 +362,179 @@ Response: {
 ```
 
 ## Data Models
+
+### Database Connection Configuration
+
+The application uses PostgreSQL with pooled connections for efficient database access. Connection details should be configured via environment variables.
+
+**Connection Pooling Library:**
+
+The design uses the `pg` library with its built-in connection pooling (`Pool` class), but you can substitute any PostgreSQL connection pooling solution that fits your needs:
+- `pg` with `Pool` (recommended, built-in)
+- `pg-pool` (standalone pooling)
+- `pgBouncer` (external connection pooler)
+- Custom pooling implementation
+
+The key requirement is that the connection pool supports:
+- Parameterized queries for SQL injection prevention
+- Transaction management (BEGIN, COMMIT, ROLLBACK)
+- Connection lifecycle management (acquire, release)
+- Error handling and reconnection logic
+
+**Required Environment Variables:**
+```
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=nutribot
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_POOL_MIN=2
+DB_POOL_MAX=10
+DB_IDLE_TIMEOUT_MS=30000
+DB_CONNECTION_TIMEOUT_MS=2000
+```
+
+**Connection Pool Setup Example:**
+
+```javascript
+// config/database.js
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  min: process.env.DB_POOL_MIN || 2,
+  max: process.env.DB_POOL_MAX || 10,
+  idleTimeoutMillis: process.env.DB_IDLE_TIMEOUT_MS || 30000,
+  connectionTimeoutMillis: process.env.DB_CONNECTION_TIMEOUT_MS || 2000,
+});
+
+// Test connection on startup
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.error('Database connection error:', err);
+  } else {
+    console.log('Database connected successfully');
+  }
+});
+
+module.exports = pool;
+```
+
+**Query Execution Pattern:**
+
+```javascript
+// Example: Parameterized query with connection pool
+const getUserById = async (userId) => {
+  const query = 'SELECT * FROM users WHERE id = $1';
+  const values = [userId];
+  
+  try {
+    const result = await pool.query(query, values);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Database query error:', error);
+    throw error;
+  }
+};
+
+// Example: Transaction handling
+const createUserWithProfile = async (userData, profileData) => {
+  const client = await pool.connect();
+  
+  try {
+    await client.query('BEGIN');
+    
+    const userQuery = 'INSERT INTO users (email, password_hash, name) VALUES ($1, $2, $3) RETURNING id';
+    const userResult = await client.query(userQuery, [userData.email, userData.passwordHash, userData.name]);
+    const userId = userResult.rows[0].id;
+    
+    const profileQuery = 'INSERT INTO user_profiles (user_id) VALUES ($1)';
+    await client.query(profileQuery, [userId]);
+    
+    await client.query('COMMIT');
+    return userId;
+  } catch (error) {
+    await client.query('ROLLBACK');
+    throw error;
+  } finally {
+    client.release();
+  }
+};
+```
+
+**Connection Pool Best Practices:**
+- Always use parameterized queries ($1, $2, etc.) to prevent SQL injection
+- Release clients back to the pool after transactions
+- Handle connection errors gracefully with retry logic
+- Monitor pool metrics (active connections, idle connections, wait time)
+- Set appropriate pool size based on expected concurrent load
+- Use transactions for multi-step operations that must be atomic
+
+**Database Migration Management:**
+
+Since the application uses raw SQL instead of an ORM, database schema changes should be managed through migration scripts. Consider using a migration tool like `node-pg-migrate`, `db-migrate`, or custom migration scripts.
+
+**Example Migration Structure:**
+```
+backend/
+  migrations/
+    001_create_users_table.sql
+    002_create_user_profiles_table.sql
+    003_create_conversations_table.sql
+    004_create_messages_table.sql
+    ...
+```
+
+**Migration Script Example:**
+```sql
+-- migrations/001_create_users_table.sql
+CREATE TABLE IF NOT EXISTS users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_login TIMESTAMP,
+  is_active BOOLEAN DEFAULT true
+);
+
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+```
+
+**Running Migrations:**
+```javascript
+// scripts/migrate.js
+const fs = require('fs');
+const path = require('path');
+const pool = require('../config/database');
+
+const runMigrations = async () => {
+  const migrationsDir = path.join(__dirname, '../migrations');
+  const files = fs.readdirSync(migrationsDir).sort();
+  
+  for (const file of files) {
+    if (file.endsWith('.sql')) {
+      console.log(`Running migration: ${file}`);
+      const sql = fs.readFileSync(path.join(migrationsDir, file), 'utf8');
+      await pool.query(sql);
+      console.log(`Completed: ${file}`);
+    }
+  }
+  
+  console.log('All migrations completed');
+  process.exit(0);
+};
+
+runMigrations().catch(err => {
+  console.error('Migration failed:', err);
+  process.exit(1);
+});
+```
 
 ### Database Schema
 
@@ -1079,9 +1257,53 @@ test('error boundary catches component errors', () => {
 
 **Database Integration Tests:**
 - Test migrations and schema
+- Test SQL queries with parameterized inputs
 - Test complex queries and joins
 - Test transaction rollback on errors
-- Test database constraints
+- Test database constraints and foreign key relationships
+- Test connection pool behavior under load
+
+**Example Database Integration Tests:**
+
+```javascript
+// Test transaction rollback
+test('transaction rolls back on error', async () => {
+  const client = await pool.connect();
+  
+  try {
+    await client.query('BEGIN');
+    await client.query('INSERT INTO users (email, password_hash, name) VALUES ($1, $2, $3)', 
+      ['test@example.com', 'hash', 'Test User']);
+    
+    // This should fail due to duplicate email
+    await expect(
+      client.query('INSERT INTO users (email, password_hash, name) VALUES ($1, $2, $3)', 
+        ['test@example.com', 'hash2', 'Test User 2'])
+    ).rejects.toThrow();
+    
+    await client.query('ROLLBACK');
+  } finally {
+    client.release();
+  }
+  
+  // Verify no users were inserted
+  const result = await pool.query('SELECT COUNT(*) FROM users WHERE email = $1', ['test@example.com']);
+  expect(parseInt(result.rows[0].count)).toBe(0);
+});
+
+// Test parameterized queries prevent SQL injection
+test('parameterized queries prevent SQL injection', async () => {
+  const maliciousInput = "'; DROP TABLE users; --";
+  
+  await expect(
+    pool.query('SELECT * FROM users WHERE email = $1', [maliciousInput])
+  ).resolves.not.toThrow();
+  
+  // Verify users table still exists
+  const result = await pool.query("SELECT table_name FROM information_schema.tables WHERE table_name = 'users'");
+  expect(result.rows.length).toBe(1);
+});
+```
 
 ### End-to-End Testing
 
@@ -1103,15 +1325,71 @@ test('error boundary catches component errors', () => {
 
 **Test Database:**
 - Separate test database instance
-- Database reset before each test suite
-- Seed data for consistent test scenarios
-- Transaction rollback after each test
+- Database reset before each test suite using SQL scripts
+- Seed data for consistent test scenarios using INSERT statements
+- Transaction rollback after each test or TRUNCATE tables between tests
+
+**Database Setup for Tests:**
+
+```javascript
+// tests/setup.js
+const pool = require('../config/database');
+const fs = require('fs');
+const path = require('path');
+
+// Run before all tests
+beforeAll(async () => {
+  // Run migrations
+  const schema = fs.readFileSync(path.join(__dirname, '../migrations/schema.sql'), 'utf8');
+  await pool.query(schema);
+});
+
+// Run before each test
+beforeEach(async () => {
+  // Clear all tables
+  await pool.query(`
+    TRUNCATE TABLE 
+      weight_logs, meal_plan_items, meal_plans, favorite_foods, 
+      food_logs, foods, messages, conversations, user_profiles, users 
+    RESTART IDENTITY CASCADE
+  `);
+});
+
+// Run after all tests
+afterAll(async () => {
+  await pool.end();
+});
+```
 
 **Test Fixtures:**
 - Predefined user accounts with various profiles
 - Sample food items with known nutrition values
 - Example meal plans and recipes
-- Mock API responses for external services
+- SQL seed scripts for common test scenarios
+
+**Example Test Fixture:**
+
+```javascript
+// tests/fixtures/users.js
+const createTestUser = async (pool, overrides = {}) => {
+  const defaults = {
+    email: 'test@example.com',
+    password_hash: '$2b$10$...',  // bcrypt hash of 'password123'
+    name: 'Test User'
+  };
+  
+  const userData = { ...defaults, ...overrides };
+  
+  const result = await pool.query(
+    'INSERT INTO users (email, password_hash, name) VALUES ($1, $2, $3) RETURNING *',
+    [userData.email, userData.password_hash, userData.name]
+  );
+  
+  return result.rows[0];
+};
+
+module.exports = { createTestUser };
+```
 
 ### Mocking Strategy
 

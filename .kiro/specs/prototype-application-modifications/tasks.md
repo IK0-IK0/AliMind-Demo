@@ -1,519 +1,303 @@
-# Implementation Plan: NutriBot Application Transformation
+# Implementation Plan: NutriBot Session-Only Demo
 
 ## Overview
 
-This plan transforms the existing React/TypeScript prototype into a full-stack nutrition assistant application. The implementation adds backend infrastructure (Node.js/Express + PostgreSQL), authentication, persistent data storage, external API integrations (USDA FoodData Central, OpenAI GPT-4), and enhanced frontend features while maintaining the existing Material-UI design system.
+This plan transforms the existing React/TypeScript prototype into a MINIMAL SESSION-ONLY demonstration focused on TPB/TTM inference and recipe recommendation. This is a DEMO to showcase the theoretical framework WITHOUT persistence, complex features, or production deployment.
+
+**Key Characteristics:**
+- All data kept in React state (in-memory only)
+- Session resets on page reload or manual reset button
+- No localStorage, no persistence across sessions
+- Client-side TPB/TTM inference (keyword-based)
+- Hardcoded recipe database (50+ Filipino dishes)
+- All processing happens in the browser
+- Maintains existing Material-UI design and green/teal color scheme
+
+**What This Demo Demonstrates:**
+- TPB score inference from conversation (Attitude, Subjective Norm, Perceived Behavioral Control)
+- TTM stage classification (Pre-contemplation → Maintenance)
+- Identification of weakest TPB determinant (main barrier)
+- Recipe recommendations based on constraints and TTM stage
+- Simple meal plan generation (displayed once, not saved)
+
+**What This Demo DOES NOT Include:**
+- No localStorage or any persistence
+- No food logging or progress tracking
+- No saved meal plans (just show generated plan once)
+- No profile dialog (just ask in chat)
+- Session resets completely on page reload
 
 ## Tasks
 
-- [ ] 1. Set up backend project structure and core dependencies
-  - Create backend directory with TypeScript configuration
-  - Install Express, PostgreSQL client (pg), Sequelize ORM, JWT libraries, bcrypt, express-validator
-  - Configure TypeScript compiler options for Node.js
-  - Set up environment variable management (.env file structure)
-  - Create basic Express server with health check endpoint
-  - _Requirements: 2.1, 2.7, 10.2, 10.3_
+- [x] 0. Create TPB/TTM questionnaire prototype for data collection
+  - [x] 0.1 Create self-contained HTML/JS questionnaire prototype
+    - Create single HTML file with inline CSS and JavaScript (no external dependencies)
+    - Implement 20 TPB questions covering Attitude, Subjective Norm, and Perceived Behavioral Control constructs
+    - Implement 20 TTM questions covering all 5 stages (Pre-contemplation, Contemplation, Preparation, Action, Maintenance)
+    - Each question should have unique ID, question text, and 1-5 Likert scale (Strongly Disagree to Strongly Agree)
+    - Store questions and answers in JSON structure with numeric value and corresponding label
+    - Create tabbed UI to display TPB questions, TTM questions, and sample dishes separately
+    - Add progress bar showing completion percentage
+    - Add Export JSON functionality (no save/load needed)
+    - Include array of 20 Filipino dish examples (name, description, prep time, difficulty, calories)
+    - Use green/teal color scheme matching the main application design
+    - _Requirements: Research data collection for Iteration 1_
 
-- [ ] 2. Configure database and implement schema
-  - [ ] 2.1 Set up PostgreSQL connection and Sequelize configuration
-    - Create database connection module with connection pooling
-    - Configure Sequelize with environment-based settings
-    - Implement database connection error handling
-    - _Requirements: 2.2, 2.6_
+- [x] 1. Update homepage components for TPB/TTM framework
+  - [x] 1.1 Update Hero component with TPB/TTM description
+    - Update main heading to describe TPB/TTM-based conversational AI system
+    - Add subtitle mentioning target population (Filipino young adults and adults aged 18-40 in Davao City)
+    - Emphasize conversational, natural language approach to dietary behavior change
+    - Add note that this is a session-only demo
+    - Maintain existing green/teal design and Material-UI styling
+    - _Requirements: 0.1, 0.2, 0.8, 0.9, 0.10_
   
-  - [ ] 2.2 Create database migration files for all tables
-    - Create migrations for users, user_profiles, conversations, messages tables
-    - Create migrations for foods, food_logs, favorite_foods tables
-    - Create migrations for meal_plans, meal_plan_items, weight_logs tables
-    - Add indexes as specified in design document
-    - _Requirements: 2.2, 10.5_
+  - [x] 1.2 Update Features component with seven-step pipeline and TPB/TTM constructs
+    - Replace existing feature cards with seven-step pipeline explanation
+    - Add card explaining TPB constructs (Attitude, Subjective Norm, Perceived Behavioral Control) in user-friendly language
+    - Add card explaining TTM stages (Pre-contemplation, Contemplation, Preparation, Action, Maintenance) in user-friendly language
+    - Present theoretical framework in accessible, non-academic language
+    - Maintain existing card interaction patterns and green/teal design
+    - _Requirements: 0.3, 0.4, 0.5, 0.8, 0.9_
   
-  - [ ] 2.3 Define Sequelize models matching database schema
-    - Create User, UserProfile, Conversation, Message models
-    - Create Food, FoodLog, FavoriteFood models
-    - Create MealPlan, MealPlanItem, WeightLog models
-    - Define model associations (foreign keys, cascades)
-    - _Requirements: 2.2_
+  - [x] 1.3 Update HowItWorks component with intervention approach
+    - Update steps to describe personalized intervention based on psychological barriers and readiness
+    - Mention stage-matched interventions using Behavior Change Techniques (BCTs)
+    - Explain how the system adapts to user's current situation
+    - Clarify this is a session-only demo
+    - Maintain existing three-step visual structure and animations
+    - _Requirements: 0.6, 0.7, 0.8, 0.9_
 
-- [ ] 3. Implement authentication system
-  - [ ] 3.1 Create authentication middleware and JWT utilities
-    - Implement JWT token generation and verification functions
-    - Create authentication middleware to protect routes
-    - Implement password hashing with bcrypt
-    - Create token refresh mechanism
-    - _Requirements: 1.1, 1.2, 1.10_
+- [ ] 2. Create hardcoded recipe database
+  - [x] 2.1 Create recipe data module with Filipino dishes
+    - Create src/data/recipes.ts with array of 50+ Filipino recipes
+    - Each recipe should include: id, name, description, ingredients, instructions, prepTime, cookTime, difficulty, calories, protein, carbs, fat, tags (vegetarian, quick, budget-friendly, etc.)
+    - Include variety: breakfast (tapsilog, champorado), lunch/dinner (adobo, sinigang, kare-kare), snacks (lumpia, turon)
+    - Add constraint tags: time (quick: <30min, medium: 30-60min, long: >60min), budget (low, medium, high), difficulty (easy, medium, hard), equipment (basic, intermediate, advanced)
+    - _Requirements: 6.5, 6.6, 6.11_
   
-  - [ ]* 3.2 Write property test for authentication round trip
-    - **Property 2: Authentication Round Trip**
-    - **Validates: Requirements 1.2, 1.10**
-  
-  - [ ] 3.3 Implement authentication API endpoints
-    - POST /api/auth/register endpoint with validation
-    - POST /api/auth/login endpoint with credential verification
-    - POST /api/auth/logout endpoint
-    - POST /api/auth/refresh endpoint for token renewal
-    - GET /api/auth/me endpoint for current user info
-    - _Requirements: 1.1, 1.2, 1.10_
-  
-  - [ ]* 3.4 Write property test for user registration creates profile
-    - **Property 1: User Registration Creates Profile**
-    - **Validates: Requirements 1.1, 1.4**
-  
-  - [ ]* 3.5 Write property test for unauthenticated access restriction
-    - **Property 4: Unauthenticated Access Restriction**
-    - **Validates: Requirements 1.9**
+  - [x] 2.2 Create recipe search and filter functions
+    - Implement searchRecipes(query: string) for text search
+    - Implement filterByConstraints(recipes, constraints) for time, budget, difficulty, equipment
+    - Implement filterByDietaryRestrictions(recipes, restrictions) for vegetarian, vegan, etc.
+    - Implement calculateCalories(recipes, targetCalories) to find recipes matching caloric goals
+    - _Requirements: 6.4, 6.5_
 
-- [ ] 4. Implement user profile management
-  - [ ] 4.1 Create user profile API endpoints
-    - GET /api/profile endpoint to retrieve user profile
-    - PUT /api/profile endpoint to update full profile
-    - PATCH /api/profile/preferences endpoint for dietary preferences
-    - PATCH /api/profile/goals endpoint for health goals and targets
-    - _Requirements: 1.5, 1.6, 1.7, 1.8_
+- [x] 3. Implement client-side TPB/TTM inference (simplified)
+  - [x] 3.1 Create TPB scoring module
+    - Create src/services/tpbInference.ts
+    - Implement keyword-based scoring for Attitude (positive/negative food words)
+    - Implement keyword-based scoring for Subjective Norm (social/family references)
+    - Implement keyword-based scoring for Perceived Behavioral Control (confidence/difficulty words)
+    - Return scores as continuous values (0-100)
+    - _Requirements: 5.3, 1.8_
   
-  - [ ]* 4.2 Write property test for profile data persistence
-    - **Property 3: Profile Data Persistence**
-    - **Validates: Requirements 1.5, 1.6, 1.7, 1.8**
-  
-  - [ ]* 4.3 Write unit tests for profile validation
-    - Test validation of age, weight, height ranges
-    - Test dietary preferences array handling
-    - Test target calorie calculations
-    - _Requirements: 1.5, 1.6, 1.7_
+  - [x] 3.2 Create TTM stage classification module
+    - Create src/services/ttmInference.ts
+    - Implement rule-based classification using conversation history
+    - Pre-contemplation: user expresses no interest in change
+    - Contemplation: user considers change but hasn't committed
+    - Preparation: user plans to change soon
+    - Action: user is actively changing
+    - Maintenance: user has sustained change
+    - Return stage classification with confidence score
+    - _Requirements: 5.4, 1.9_
 
-- [ ] 5. Implement backend middleware and error handling
-  - [ ] 5.1 Create validation middleware and error handlers
-    - Implement express-validator schemas for all endpoints
-    - Create global error handling middleware
-    - Implement rate limiting middleware with express-rate-limit
-    - Configure CORS middleware for frontend communication
-    - Set up Winston logger with file and console transports
-    - _Requirements: 2.3, 2.4, 2.5, 2.6, 2.8_
+- [x] 4. Create chatbot service with seven-step pipeline simulation
+  - [x] 4.1 Create chatbot service with seven-step pipeline
+    - Create src/services/chatbotService.ts
+    - Implement Step 1: Extract dietary context from user message (keywords, patterns)
+    - Implement Step 2: Calculate TPB scores using tpbInference module
+    - Implement Step 3: Classify TTM stage using ttmInference module
+    - Implement Step 4: Select intervention mode based on TTM stage
+    - Implement Step 5: Choose BCT based on weakest TPB determinant
+    - Implement Step 6: Filter recipes by user constraints and recommend top 3
+    - Implement Step 7: Generate response text combining all analyses
+    - Add response templates for each TTM stage
+    - Include disclaimer in all responses
+    - _Requirements: 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.15, 5.16_
   
-  - [ ]* 5.2 Write property test for input validation rejection
-    - **Property 5: Input Validation Rejection**
-    - **Validates: Requirements 2.4**
-  
-  - [ ]* 5.3 Write property test for error status codes
-    - **Property 6: Error Status Codes**
-    - **Validates: Requirements 2.3**
+  - [x] 4.2 Create response templates for each intervention mode
+    - Create templates for Awareness interventions (Pre-contemplation)
+    - Create templates for Ambivalence-resolution (Contemplation)
+    - Create templates for Planning interventions (Preparation)
+    - Create templates for Coping interventions (Action)
+    - Create templates for Relapse-prevention (Maintenance)
+    - Include BCT-specific language in templates
+    - _Requirements: 5.5, 5.6_
 
-- [ ] 6. Checkpoint - Ensure backend foundation is working
-  - Ensure all tests pass, ask the user if questions arise.
+- [x] 5. Update ChatbotShowcase component for session-only operation
+  - [x] 5.1 Refactor ChatbotShowcase to use in-memory state only
+    - Remove all mock API calls and hardcoded responses
+    - Store messages in component state (useState)
+    - Implement message sending using chatbotService (local processing)
+    - Add loading indicator during processing (simulate 1-2 second delay)
+    - Display TPB scores and TTM stage in sidebar panel
+    - Add "Reset Session" button to clear all state
+    - Add disclaimer banner about session-only demo
+    - Remove authentication-related code
+    - _Requirements: 3.7, 5.11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 11.10_
+  
+  - [x] 5.2 Add dynamic suggestion chips based on TTM stage
+    - Remove hardcoded suggestions
+    - Generate suggestions based on current TTM stage
+    - Pre-contemplation: "Tell me about healthy eating", "What are the benefits?"
+    - Contemplation: "What are my barriers?", "How can I start?"
+    - Preparation: "Help me plan meals", "What recipes are easy?"
+    - Action: "Track my progress", "Give me tips"
+    - Maintenance: "How do I stay on track?", "What if I slip?"
+    - _Requirements: 11.8_
+  
+  - [x] 5.3 Add TPB/TTM visualization panel
+    - Create collapsible panel showing current TPB scores (Attitude, Subjective Norm, PBC)
+    - Display current TTM stage with description
+    - Add tooltips explaining each construct
+    - Style with Material-UI Accordion
+    - _Requirements: 5.3, 5.4_
 
-- [ ] 7. Integrate external nutrition API (USDA FoodData Central)
-  - [ ] 7.1 Create nutrition service module
-    - Implement USDA FoodData Central API client with axios
-    - Create food search function with query parameters
-    - Create food details retrieval by FDC ID
-    - Implement response caching mechanism
-    - Add error handling for API failures and timeouts
-    - _Requirements: 4.1, 4.2, 4.4, 4.5, 4.7_
+- [x] 6. Implement simple meal plan generator
+  - [x] 6.1 Create meal plan generation service
+    - Create src/services/mealPlanService.ts
+    - Implement generateMealPlan(constraints, durationDays) function
+    - Use recipe database and filter by user constraints
+    - Calculate caloric distribution: breakfast 25%, lunch 35%, dinner 35%, snack 5%
+    - Select recipes that meet caloric targets (within 10%)
+    - Return meal plan with recipes for each day
+    - _Requirements: 6.1, 6.2, 6.3, 6.4_
   
-  - [ ] 7.2 Create nutrition API endpoints
-    - GET /api/nutrition/search endpoint with fuzzy matching
-    - GET /api/nutrition/food/:fdcId endpoint for food details
-    - POST /api/nutrition/custom endpoint for custom food creation
-    - _Requirements: 4.1, 4.2, 9.1, 9.7_
-  
-  - [ ]* 7.3 Write property test for nutrition data structure
-    - **Property 11: Nutrition Data Structure**
-    - **Validates: Requirements 4.3**
-  
-  - [ ]* 7.4 Write property test for food search results
-    - **Property 24: Food Search Results**
-    - **Validates: Requirements 9.2**
-  
-  - [ ]* 7.5 Write unit tests for nutrition API error handling
-    - Test API timeout handling
-    - Test invalid FDC ID responses
-    - Test empty search results
-    - _Requirements: 4.4_
+  - [x] 6.2 Create MealPlanView component
+    - Create component to display generated meal plan
+    - Show day-by-day breakdown with meal types
+    - Display recipe cards with name, description, calories, macros
+    - Add "View Recipe" button to show full details (ingredients, instructions)
+    - Add "Generate New Plan" button
+    - Style with Material-UI Cards and Grid
+    - Note: Plans are NOT saved, just displayed once
+    - _Requirements: 6.5, 6.7_
 
-- [ ] 8. Integrate OpenAI GPT-4 for chat functionality
-  - [ ] 8.1 Create chat service module with AI integration
-    - Implement OpenAI API client with GPT-4 configuration
-    - Create function to build conversation context from message history
-    - Implement prompt engineering for nutrition-focused responses
-    - Add user profile context injection into prompts
-    - Implement response streaming or timeout handling (5 second limit)
-    - Add fallback responses for API failures
-    - Include disclaimer text in all bot responses
-    - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8_
-  
-  - [ ]* 8.2 Write property test for AI context preservation
-    - **Property 12: AI Context Preservation**
-    - **Validates: Requirements 5.6**
-  
-  - [ ]* 8.3 Write property test for disclaimer presence
-    - **Property 13: Disclaimer Presence**
-    - **Validates: Requirements 5.8**
-
-- [ ] 9. Implement chat persistence and history
-  - [ ] 9.1 Create chat API endpoints with database integration
-    - POST /api/chat/message endpoint (create conversation if needed, store messages, call AI service)
-    - GET /api/chat/history endpoint with pagination support
-    - DELETE /api/chat/history/:conversationId endpoint
-    - DELETE /api/chat/history endpoint (clear all history)
-    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6_
-  
-  - [ ]* 9.2 Write property test for message persistence
-    - **Property 7: Message Persistence**
-    - **Validates: Requirements 3.1, 3.2, 3.3, 3.4**
-  
-  - [ ]* 9.3 Write property test for chat history deletion
-    - **Property 8: Chat History Deletion**
-    - **Validates: Requirements 3.5**
-  
-  - [ ]* 9.4 Write property test for chat pagination
-    - **Property 9: Chat Pagination**
-    - **Validates: Requirements 3.6**
-  
-  - [ ]* 9.5 Write property test for unauthenticated chat non-persistence
-    - **Property 10: Unauthenticated Chat Non-Persistence**
-    - **Validates: Requirements 3.7**
-
-- [ ] 10. Implement meal planning functionality
-  - [ ] 10.1 Create meal plan generation service
-    - Implement meal plan generator using OpenAI API with structured prompts
-    - Create function to calculate caloric distribution across meals
-    - Implement dietary restriction filtering logic
-    - Create recipe parser to extract ingredients, steps, nutrition from AI response
-    - Validate generated meal plans meet caloric targets (within 10%)
-    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.8_
-  
-  - [ ] 10.2 Create meal plan API endpoints
-    - POST /api/meals/generate endpoint (generate plan based on user profile)
-    - GET /api/meals endpoint (list user's saved meal plans)
-    - GET /api/meals/:planId endpoint (get specific plan details)
-    - POST /api/meals/:planId/save endpoint (save generated plan)
-    - DELETE /api/meals/:planId endpoint
-    - GET /api/meals/:planId/recipes/:recipeId endpoint
-    - _Requirements: 6.1, 6.6, 6.7_
-  
-  - [ ]* 10.3 Write property test for meal plan generation
-    - **Property 14: Meal Plan Generation**
-    - **Validates: Requirements 6.1, 6.2**
-  
-  - [ ]* 10.4 Write property test for meal plan caloric accuracy
-    - **Property 15: Meal Plan Caloric Accuracy**
-    - **Validates: Requirements 6.3**
-  
-  - [ ]* 10.5 Write property test for dietary restriction compliance
-    - **Property 16: Dietary Restriction Compliance**
-    - **Validates: Requirements 6.4**
-  
-  - [ ]* 10.6 Write property test for recipe data completeness
-    - **Property 17: Recipe Data Completeness**
-    - **Validates: Requirements 6.5**
-
-- [ ] 11. Checkpoint - Ensure AI integrations are working
-  - Ensure all tests pass, ask the user if questions arise.
-
-- [ ] 12. Implement progress tracking and food logging
-  - [ ] 12.1 Create food logging API endpoints
-    - POST /api/progress/log endpoint (log food with portion size)
-    - GET /api/progress/daily endpoint (get daily nutrition totals)
-    - GET /api/progress/range endpoint (get data for date range)
-    - PUT /api/progress/log/:logId endpoint (edit food log)
-    - DELETE /api/progress/log/:logId endpoint
-    - _Requirements: 7.1, 7.2, 7.4, 9.5, 9.6_
-  
-  - [ ] 12.2 Create weight tracking and insights endpoints
-    - POST /api/progress/weight endpoint (log weight measurement)
-    - GET /api/progress/weight endpoint (get weight history for date range)
-    - GET /api/progress/insights endpoint (calculate insights based on progress data)
-    - _Requirements: 7.6, 7.7_
-  
-  - [ ]* 12.3 Write property test for food log persistence
-    - **Property 19: Food Log Persistence**
-    - **Validates: Requirements 7.1, 9.5**
-  
-  - [ ]* 12.4 Write property test for daily nutrition calculation
-    - **Property 20: Daily Nutrition Calculation**
-    - **Validates: Requirements 7.2**
-  
-  - [ ]* 12.5 Write property test for date range queries
-    - **Property 21: Date Range Queries**
-    - **Validates: Requirements 7.4**
-  
-  - [ ]* 12.6 Write property test for goal comparison accuracy
-    - **Property 22: Goal Comparison Accuracy**
-    - **Validates: Requirements 7.5**
-  
-  - [ ]* 12.7 Write property test for weight log persistence
-    - **Property 23: Weight Log Persistence**
-    - **Validates: Requirements 7.6**
-  
-  - [ ]* 12.8 Write property test for portion size scaling
-    - **Property 25: Portion Size Scaling**
-    - **Validates: Requirements 9.4**
-  
-  - [ ]* 12.9 Write property test for food log modification
-    - **Property 26: Food Log Modification**
-    - **Validates: Requirements 9.6**
-
-- [ ] 13. Implement favorites functionality
-  - [ ] 13.1 Create favorites API endpoints
-    - GET /api/nutrition/favorites endpoint (list user's favorite foods)
-    - POST /api/nutrition/favorites/:foodId endpoint (add to favorites)
-    - DELETE /api/nutrition/favorites/:foodId endpoint (remove from favorites)
-    - _Requirements: 6.6, 9.8_
-  
-  - [ ]* 13.2 Write property test for saved data retrieval
-    - **Property 18: Saved Data Retrieval**
-    - **Validates: Requirements 6.6, 6.7, 9.8**
-  
-  - [ ]* 13.3 Write property test for custom food creation
-    - **Property 27: Custom Food Creation**
-    - **Validates: Requirements 9.7**
-
-- [ ] 14. Set up frontend routing and authentication context
-  - [ ] 14.1 Install and configure React Router
+- [x] 7. Create simple routing and navigation
+  - [x] 7.1 Install and configure React Router
     - Install react-router-dom
-    - Create route configuration with protected routes
-    - Implement route guards for authenticated pages
-    - Update App.tsx to use BrowserRouter
+    - Create route configuration in App.tsx
+    - Routes: / (home), /demo (chatbot)
+    - No authentication guards (all routes public)
     - _Requirements: 8.1_
   
-  - [ ] 14.2 Create authentication context and API client
-    - Create AuthContext with login, logout, register functions
-    - Create axios instance with interceptors for JWT tokens
-    - Implement token storage in httpOnly cookies
-    - Create API client functions for all backend endpoints
-    - Add automatic token refresh on 401 responses
-    - _Requirements: 1.2, 1.10, 8.10_
+  - [x] 7.2 Update TopBar with navigation links
+    - Add navigation buttons: Home, Demo
+    - Highlight active route
+    - Keep existing design and styling
+    - _Requirements: 8.6_
 
-- [ ] 15. Create authentication UI components
-  - [ ] 15.1 Create AuthPage with login and registration forms
-    - Create login form with email and password fields
-    - Create registration form with email, password, name fields
-    - Add client-side validation with error messages
-    - Implement form submission handlers calling auth API
-    - Add loading states during authentication
-    - Style with Material-UI matching existing design
-    - _Requirements: 1.1, 1.2, 8.8_
+- [x] 8. Add demo disclaimers and documentation
+  - [x] 8.1 Add disclaimer banner to demo page
+    - Create DisclaimerBanner component
+    - Display: "This is a session-only demo. All data resets on page reload. No information is saved."
+    - Add "Learn More" button with modal explaining demo limitations
+    - Style with Material-UI Alert component
+    - _Requirements: Prototype clarity_
   
-  - [ ]* 15.2 Write unit tests for AuthPage component
-    - Test form validation
-    - Test successful login flow
-    - Test registration flow
-    - Test error display
-    - _Requirements: 1.1, 1.2_
+  - [x] 8.2 Create About/Help dialog
+    - Create HelpDialog component explaining how to use the demo
+    - Explain seven-step pipeline concept
+    - Explain TPB/TTM framework in simple terms
+    - List demo limitations (no real AI, simplified inference, no persistence)
+    - Add "Reset Session" button to clear all state
+    - _Requirements: User guidance_
 
-- [ ] 16. Update TopBar component for authentication
-  - [ ] 16.1 Modify TopBar to show authentication status
-    - Add user menu dropdown when authenticated
-    - Display user name and avatar/initials
-    - Add logout button in dropdown
-    - Add navigation links to Dashboard, Profile, Meal Plans, Progress
-    - Show login/register buttons when not authenticated
-    - _Requirements: 8.6, 8.7_
-  
-  - [ ]* 16.2 Write unit tests for TopBar authentication features
-    - Test authenticated vs unauthenticated rendering
-    - Test logout functionality
-    - Test navigation links
-    - _Requirements: 8.6, 8.7_
-
-- [ ] 17. Create DashboardPage component
-  - [ ] 17.1 Implement dashboard with quick stats and summaries
-    - Create layout with grid of stat cards
-    - Display today's calorie and macro totals
-    - Show recent chat messages preview
-    - Add quick action buttons (log food, start chat, view progress)
-    - Fetch dashboard data from multiple API endpoints
-    - Implement loading skeletons for data fetching
-    - Style with Material-UI cards and green/teal theme
-    - _Requirements: 8.2, 7.8, 8.8_
-  
-  - [ ]* 17.2 Write unit tests for DashboardPage
-    - Test loading states
-    - Test data display
-    - Test quick action buttons
-    - _Requirements: 8.2_
-
-- [ ] 18. Create ProfileSettingsPage component
-  - [ ] 18.1 Implement profile settings form
-    - Create form sections for personal info, dietary preferences, health goals
-    - Add input fields for age, weight, height, gender, activity level
-    - Create multi-select for dietary preferences (vegetarian, vegan, etc.)
-    - Add fields for health goal and target macros
-    - Implement form validation
-    - Add save button with loading state
-    - Display success/error messages
-    - Style with Material-UI form components
-    - _Requirements: 8.3, 1.5, 1.6, 1.7, 1.8, 8.8_
-  
-  - [ ]* 18.2 Write unit tests for ProfileSettingsPage
-    - Test form rendering
-    - Test form validation
-    - Test save functionality
-    - Test error handling
-    - _Requirements: 1.8_
-
-- [ ] 19. Checkpoint - Ensure frontend authentication and profile work
-  - Ensure all tests pass, ask the user if questions arise.
-
-- [ ] 20. Update ChatbotShowcase component for backend integration
-  - [ ] 20.1 Modify ChatbotShowcase to use real API
-    - Replace mock messages with API calls to /api/chat/message
-    - Load chat history from /api/chat/history on component mount
-    - Implement message sending with loading indicator
-    - Add typing indicator while waiting for bot response
-    - Display error messages for failed requests
-    - Add delete conversation functionality
-    - Ensure component works for both authenticated and unauthenticated users
-    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.7, 5.4_
-  
-  - [ ]* 20.2 Write unit tests for ChatbotShowcase integration
-    - Test message sending
-    - Test history loading
-    - Test error handling
-    - Test authenticated vs unauthenticated behavior
-    - _Requirements: 3.1, 3.2, 3.7_
-
-- [ ] 21. Create shared UI components
-  - [ ] 21.1 Create FoodSearchDialog component
-    - Create modal dialog with search input
-    - Implement debounced search calling /api/nutrition/search
-    - Display search results with nutrition preview
-    - Add portion size input
-    - Create select button to confirm food choice
-    - Style with Material-UI Dialog and List components
-    - _Requirements: 9.1, 9.2, 9.3, 9.4_
-  
-  - [ ] 21.2 Create NutritionCard component
-    - Display calories, protein, carbs, fat in consistent format
-    - Use progress bars or circular progress for macro breakdown
-    - Add optional fiber, sugar, sodium display
-    - Style with Material-UI Card
-    - _Requirements: 4.6, 7.8_
-  
-  - [ ] 21.3 Create ProgressChart component
-    - Implement line chart for trends over time
-    - Implement bar chart for daily comparisons
-    - Implement pie chart for macro distribution
-    - Use Recharts library for visualizations
-    - Add responsive sizing
-    - _Requirements: 7.3, 7.4_
-  
-  - [ ] 21.4 Create LoadingSpinner component
-    - Create reusable loading indicator with size variants
-    - Add optional loading message
-    - Style with Material-UI CircularProgress
-    - _Requirements: 8.10_
-
-- [ ] 22. Create MealPlansPage component
-  - [ ] 22.1 Implement meal plans list and detail view
-    - Create list view showing saved meal plans
-    - Add "Generate New Plan" button calling /api/meals/generate
-    - Implement meal plan detail view with day-by-day breakdown
-    - Display recipes with ingredients and instructions
-    - Add save and delete functionality
-    - Show loading states during generation
-    - Style with Material-UI cards and expansion panels
-    - _Requirements: 8.4, 6.1, 6.2, 6.5, 6.6, 6.7, 8.8_
-  
-  - [ ]* 22.2 Write unit tests for MealPlansPage
-    - Test meal plan list rendering
-    - Test meal plan generation
-    - Test recipe display
-    - Test save/delete functionality
-    - _Requirements: 6.6, 6.7_
-
-- [ ] 23. Create ProgressTrackingPage component
-  - [ ] 23.1 Implement progress visualization and food logging
-    - Create date range selector (daily, weekly, monthly views)
-    - Display ProgressChart components for calories and macros over time
-    - Show goal comparison with visual indicators
-    - Add food logging section with FoodSearchDialog integration
-    - Display today's food log with edit/delete buttons
-    - Show weight tracking chart
-    - Display insights from /api/progress/insights
-    - Style with Material-UI grid layout
-    - _Requirements: 8.5, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 9.1, 9.5, 9.6, 8.8_
-  
-  - [ ]* 23.2 Write unit tests for ProgressTrackingPage
-    - Test chart rendering
-    - Test food logging
-    - Test date range selection
-    - Test edit/delete functionality
-    - _Requirements: 7.1, 7.3, 9.6_
-
-- [ ] 24. Implement responsive design and mobile optimization
-  - [ ] 24.1 Ensure all pages are responsive
-    - Test all pages on mobile, tablet, desktop breakpoints
+- [x] 9. Implement responsive design and mobile optimization
+  - [x] 9.1 Ensure all components are responsive
+    - Test ChatbotShowcase on mobile, tablet, desktop
+    - Test MealPlanView on different screen sizes
     - Adjust layouts using Material-UI Grid and responsive props
-    - Ensure navigation works on mobile (hamburger menu if needed)
-    - Test forms on mobile devices
-    - Verify charts are readable on small screens
+    - Ensure dialogs are mobile-friendly
     - _Requirements: 8.9_
 
-- [ ] 25. Implement error boundaries and loading states
-  - [ ] 25.1 Add error boundaries to major sections
+- [x] 10. Add loading states and error handling
+  - [x] 10.1 Add loading indicators
+    - Add loading spinner during chatbot response generation
+    - Add loading state during meal plan generation
+    - Add skeleton loaders for data loading
+    - _Requirements: 8.10_
+  
+  - [x] 10.2 Add error boundaries
     - Create ErrorBoundary component
-    - Wrap Dashboard, Profile, MealPlans, Progress pages
+    - Wrap main sections (ChatbotShowcase, MealPlanView)
     - Display user-friendly error messages
     - Add "Try Again" functionality
     - _Requirements: 10.8_
-  
-  - [ ] 25.2 Add loading states to all async operations
-    - Add skeleton loaders for data fetching
-    - Disable buttons during submissions
-    - Show progress indicators for long operations
-    - _Requirements: 8.10_
 
-- [ ] 26. Checkpoint - Ensure all frontend features are working
-  - Ensure all tests pass, ask the user if questions arise.
-
-- [ ] 27. Create deployment configuration
-  - [ ] 27.1 Set up production build configuration
-    - Create production environment variables template
-    - Configure Vite for production builds
-    - Set up backend production configuration
-    - Create Docker configuration files (optional)
-    - _Requirements: 10.1, 10.3, 10.4_
-  
-  - [ ] 27.2 Create deployment documentation
-    - Write README with setup instructions
-    - Document environment variables
-    - Create database setup guide
-    - Document API endpoint usage
-    - Add troubleshooting section
-    - _Requirements: 10.2, 10.6_
-  
-  - [ ] 27.3 Configure HTTPS and security headers
-    - Set up HTTPS configuration for production
-    - Add security headers (HSTS, CSP, etc.)
-    - Configure secure cookie settings
-    - _Requirements: 10.7_
-
-- [ ] 28. Final integration and testing
-  - [ ] 28.1 Run complete test suite
-    - Run all unit tests (frontend and backend)
-    - Run all property-based tests
-    - Run integration tests
-    - Verify test coverage meets goals (80% backend, 70% frontend)
+- [x] 11. Final testing and polish
+  - [x] 11.1 Test complete user flow
+    - Test: Chat with bot → View TPB/TTM scores → Get recipe recommendations → Generate meal plan
+    - Test: Reset session and verify complete state clear
+    - Test: Page reload and verify session reset
     - _Requirements: All_
   
-  - [ ] 28.2 Perform manual end-to-end testing
-    - Test complete user journey: register → login → set profile → chat → log food → view progress → generate meal plan
-    - Test error scenarios and edge cases
-    - Test on multiple browsers
-    - Test responsive design on different devices
-    - _Requirements: All_
+  - [x] 11.2 Test on multiple browsers
+    - Test on Chrome, Firefox, Safari, Edge
+    - Test responsive design on mobile browsers
+    - _Requirements: Browser compatibility_
+  
+  - [x] 11.3 Polish UI and add finishing touches
+    - Ensure consistent spacing and alignment
+    - Verify color scheme consistency (green/teal)
+    - Add smooth transitions and animations
+    - Ensure all buttons have hover states
+    - Add loading skeletons where appropriate
+    - _Requirements: 8.8, 8.9_
 
-- [ ] 29. Final checkpoint - Application ready for deployment
-  - Ensure all tests pass, ask the user if questions arise.
+- [x] 12. Create demo documentation
+  - [x] 12.1 Update README with demo information
+    - Explain this is a SESSION-ONLY DEMO
+    - List what the demo demonstrates
+    - List demo limitations (no real AI, no backend, no persistence)
+    - Add setup instructions (npm install, npm run dev)
+    - Add usage guide
+    - _Requirements: Documentation_
 
 ## Notes
 
-- Tasks marked with `*` are optional testing tasks and can be skipped for faster MVP delivery
-- Each task references specific requirements for traceability
-- Property-based tests validate universal correctness properties using fast-check
-- Unit tests validate specific examples and edge cases
-- Checkpoints ensure incremental validation at major milestones
-- The implementation maintains the existing Material-UI design system and green/teal color scheme
-- All backend code uses TypeScript for type safety
-- Frontend uses React 18 with TypeScript and Material-UI v7
+- This is a SESSION-ONLY DEMO with NO persistence
+- All data stored in React component state (in-memory only)
+- Session resets completely on page reload
+- No localStorage, no backend, no database
+- No user authentication or accounts
+- No real AI integration (simplified rule-based inference)
+- Hardcoded recipe database (50+ Filipino dishes)
+- All processing happens client-side in the browser
+- Maintains existing Material-UI design system and green/teal color scheme
+- Demonstrates TPB/TTM inference and recipe recommendation concept
+- Suitable for demonstrations and concept validation
+- NOT suitable for production use or real dietary guidance
+
+**Core Demo Flow:**
+1. User chats with bot
+2. Bot infers TPB scores (Attitude, Subjective Norm, PBC) from conversation
+3. Bot classifies TTM stage (Pre-contemplation → Maintenance)
+4. Bot identifies weakest TPB determinant (main barrier)
+5. Bot recommends 3 recipes based on stage and constraints
+6. User can generate meal plan (displayed once, not saved)
+7. User can reset session to start over
+
+**Removed from Original Plan:**
+- All localStorage tasks (Task 2)
+- Food logging and progress tracking (Task 9)
+- Saved meal plans (just show generated plan, don't save)
+- Profile dialog (just ask in chat)
+- All backend setup
+- All database tasks
+- All authentication system tasks
+- All API endpoint creation tasks
+- All external API integrations
+- All deployment tasks
+- All persistent chat history
+- All property-based tests
+
+**Key Simplifications:**
+- ChatbotShowcase: Uses in-memory state instead of localStorage
+- Recipe recommendations: Uses hardcoded database
+- Meal planning: Generated and displayed once, not saved
+- TPB/TTM inference: Simplified keyword-based scoring
+- No progress tracking or food logging features
+- Session resets on page reload or manual reset button

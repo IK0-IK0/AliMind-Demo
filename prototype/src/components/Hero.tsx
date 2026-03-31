@@ -73,14 +73,14 @@ export function Hero({ onTryDemo }: HeroProps) {
             lineHeight: 1.15
           }}>
           
-          Your Personal <br />
+          Conversational AI for <br />
           <Box
             component="span"
             sx={{
               color: '#00897B'
             }}>
             
-            Nutrition Assistant
+            Dietary Behavior Change
           </Box>
         </Typography>
 
@@ -88,15 +88,51 @@ export function Hero({ onTryDemo }: HeroProps) {
           variant="h5"
           sx={{
             color: '#2E7D32',
-            mb: 6,
+            mb: 2,
             fontWeight: 400,
-            maxWidth: '700px',
+            maxWidth: '800px',
             mx: 'auto',
             lineHeight: 1.6
           }}>
           
-          Meet NutriBot — the AI-powered guide that helps you eat healthier,
-          plan smarter meals, and achieve your wellness goals.
+          Meet NutriBot — a theory-driven nutrition assistant that understands your barriers, 
+          readiness for change, and personal context through natural conversation.
+        </Typography>
+
+        <Typography
+          variant="h6"
+          sx={{
+            color: '#388E3C',
+            mb: 1,
+            fontWeight: 500,
+            maxWidth: '750px',
+            mx: 'auto',
+            lineHeight: 1.5,
+            fontSize: {
+              xs: '1rem',
+              sm: '1.1rem',
+              md: '1.25rem'
+            }
+          }}>
+          
+          Designed for Filipino young adults and adults aged 18-40 in Davao City
+        </Typography>
+
+        <Typography
+          variant="body1"
+          sx={{
+            color: '#558B2F',
+            mb: 6,
+            fontStyle: 'italic',
+            maxWidth: '650px',
+            mx: 'auto',
+            fontSize: {
+              xs: '0.9rem',
+              sm: '1rem'
+            }
+          }}>
+          
+          Note: This is a session-only demo. Your conversations will not be saved.
         </Typography>
 
         <Stack

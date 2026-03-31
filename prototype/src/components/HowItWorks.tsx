@@ -43,13 +43,26 @@ export function HowItWorks() {
             sx={{
               fontWeight: 400,
               color: '#2E7D32',
-              maxWidth: 500,
+              maxWidth: 600,
               mx: 'auto',
               lineHeight: 1.6
             }}>
             
-            Three simple steps to a healthier you. No complicated apps or
-            tedious calorie counting.
+            Personalized nutrition guidance that adapts to your psychological barriers, 
+            readiness for change, and current situation.
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 400,
+              color: '#558B2F',
+              maxWidth: 500,
+              mx: 'auto',
+              mt: 1,
+              fontStyle: 'italic'
+            }}>
+            
+            (Session-only demo - no data is saved)
           </Typography>
         </Box>
 
@@ -139,7 +152,7 @@ export function HowItWorks() {
                     color: '#1B5E20'
                   }}>
                   
-                  Ask a Question
+                  Share Your Situation
                 </Typography>
                 <Typography
                   variant="body1"
@@ -148,8 +161,7 @@ export function HowItWorks() {
                     lineHeight: 1.6
                   }}>
                   
-                  Type your nutrition question, dietary preference, or health
-                  goal into the chat.
+                  Tell us about your dietary habits, barriers, and goals through natural conversation.
                 </Typography>
                 <Grow in={activeStep === 0} timeout={400}>
                   <Typography
@@ -164,7 +176,7 @@ export function HowItWorks() {
                       border: '1px dashed #A5D6A7'
                     }}>
                     
-                    💬 "How much protein should I eat daily?"
+                    💬 "I want to eat healthier but I'm always too busy to cook"
                   </Typography>
                 </Grow>
               </Paper>
@@ -251,7 +263,7 @@ export function HowItWorks() {
                     color: '#1B5E20'
                   }}>
                   
-                  Get Personalized Advice
+                  Get Matched Interventions
                 </Typography>
                 <Typography
                   variant="body1"
@@ -260,8 +272,7 @@ export function HowItWorks() {
                     lineHeight: 1.6
                   }}>
                   
-                  NutriBot analyzes your needs and provides science-backed,
-                  actionable recommendations.
+                  Receive stage-matched interventions using evidence-based Behavior Change Techniques tailored to your readiness.
                 </Typography>
                 <Grow in={activeStep === 1} timeout={400}>
                   <Typography
@@ -276,8 +287,7 @@ export function HowItWorks() {
                       border: '1px dashed #80CBC4'
                     }}>
                     
-                    💡 Tailored meal plans, macro breakdowns, and tips just for
-                    you.
+                    💡 Strategies adapted to your barriers, resources, and motivation level.
                   </Typography>
                 </Grow>
               </Paper>
@@ -364,7 +374,7 @@ export function HowItWorks() {
                     color: '#1B5E20'
                   }}>
                   
-                  Track Your Progress
+                  Adapt and Progress
                 </Typography>
                 <Typography
                   variant="body1"
@@ -373,8 +383,7 @@ export function HowItWorks() {
                     lineHeight: 1.6
                   }}>
                   
-                  Follow tailored meal plans and watch your health improve over
-                  time.
+                  The system continuously adapts as your situation changes, supporting your journey through each stage of change.
                 </Typography>
                 <Grow in={activeStep === 2} timeout={400}>
                   <Typography
@@ -389,7 +398,7 @@ export function HowItWorks() {
                       border: '1px dashed #A5D6A7'
                     }}>
                     
-                    📊 See your nutrition habits improve week over week.
+                    📊 From awareness to action to maintenance - we meet you where you are.
                   </Typography>
                 </Grow>
               </Paper>

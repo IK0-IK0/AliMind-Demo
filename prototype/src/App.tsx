@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
+import { AnimatePresence, motion } from 'framer-motion';
 import { TopBar } from './components/TopBar';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
@@ -68,42 +69,90 @@ const theme = createTheme({
   }
 });
 export function App() {
-  const [currentPage, setCurrentPage] = useState<'landing' | 'demo'>('landing');
-  const navigateTo = (page: string) => {
-    if (page === 'demo') {
-      setCurrentPage('demo');
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    } else {
-      setCurrentPage('landing');
-    }
-  };
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <BrowserRouter>
+        <AnimatedRoutes />
+      </BrowserRouter>
+    </ThemeProvider>
+  );
+}
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/demo" element={<DemoPageWrapper />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
+function LandingPage() {
+  const navigate = useNavigate();
+
+  const navigateToDemo = () => {
+    navigate('/demo');
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.3 }}
+      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+    >
       <Box
         sx={{
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column'
         }}>
-        
-        <TopBar currentPage={currentPage} onNavigate={navigateTo} />
-
-        {currentPage === 'landing' ?
-        <>
-            <Hero onTryDemo={() => navigateTo('demo')} />
-            <Features />
-            <HowItWorks />
-            <ContactSection />
-            <Footer onTryDemo={() => navigateTo('demo')} />
-          </> :
-
-        <DemoPage onBack={() => navigateTo('landing')} />
-        }
+        <TopBar currentPage="landing" onNavigate={(page) => page === 'demo' && navigate('/demo')} />
+        <Hero onTryDemo={navigateToDemo} />
+        <Features />
+        <HowItWorks />
+        <ContactSection />
+        <Footer onTryDemo={navigateToDemo} />
       </Box>
-    </ThemeProvider>);
+    </motion.div>
+  );
+}
 
+function DemoPageWrapper() {
+  const navigate = useNavigate();
+
+  const navigateToLanding = () => {
+    navigate('/');
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 20 }}
+      transition={{ duration: 0.3 }}
+      style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+    >
+      <Box
+        sx={{
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden'
+        }}>
+        <TopBar currentPage="demo" onNavigate={(page) => page !== 'demo' && navigate('/')} />
+        <DemoPage onBack={navigateToLanding} />
+      </Box>
+    </motion.div>
+  );
 }

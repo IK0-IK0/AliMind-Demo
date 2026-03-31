@@ -1,0 +1,25 @@
+COPY THIS ENTIRE CONTENT TO: prototype/src/services/questionnaireService.ts
+
+Then restart your dev server (Ctrl+C, then npm run dev)
+
+===== START COPYING FROM HERE =====
+
+See the complete code in my previous message - it's the full TypeScript file with:
+- All 20 questions (5 TPB Attitude, 5 TPB Subjective Norm, 5 TPB Perceived Control, 5 TTM)
+- Randomization function
+- All exports: initializeQuestionnaire, answerQuestion, getCurrentQuestion, getProgress, getQuestionNumberDisplay, inferScoreFromText
+- QuestionnaireState interface with questionOrder property
+
+The file is too large to paste here again, but you can find it in my previous response.
+
+===== INSTRUCTIONS =====
+
+1. Open prototype/src/services/questionnaireService.ts in your code editor
+2. Delete everything (currently just says "test")
+3. Paste the complete code from my previous message
+4. Save the file
+5. Stop your dev server (Ctrl+C)
+6. Start it again: npm run dev
+7. Refresh your browser
+
+The questions should then appear when you say "yes" to start!

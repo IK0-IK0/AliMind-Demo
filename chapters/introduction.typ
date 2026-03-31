@@ -38,6 +38,8 @@ This integration addresses both the content of barriers (from TPB) and the proce
 
 Despite decades of accumulated evidence about what drives behavior change, commercially available AI nutrition tools remain largely atheoretical. This disconnect between scientific knowledge and technological application represents a fundamental flaw in current approaches @michie2017developing. While these tools excel at personalizing recommendations based on stated preferences and scaling to reach thousands of users, they systematically fail to model the psychological factors that research identifies as critical to sustained behavior change. For a digital nutrition tool to be considered theoretically aligned with TPB, it must at minimum assess users' attitudes toward healthy eating, account for perceived social pressures, and evaluate perceived behavioral control — not merely stated preferences. For TTM alignment, the tool must detect or estimate readiness to change and deliver stage-matched content rather than uniform recommendations. These criteria form the basis for evaluating existing tools below.
 
+//aim to change
+
 Table 1 summarizes the landscape of current digital nutrition tools, their capabilities, and their limitations when evaluated against the theoretical framework this study adopts.
 
 #table(
@@ -81,27 +83,37 @@ Table 1 summarizes the landscape of current digital nutrition tools, their capab
 
 As Table 1 illustrates, current tools cluster at opposite ends of a spectrum. At one end are commercially successful apps that prioritize usability and scale but ignore psychological theory. At the other end are research-backed prototypes that incorporate expert knowledge but remain inaccessible to most users. Neither approach has successfully integrated real-time psychological assessment with scalable deployment.
 
-//change
 A study evaluating ChatGPT-4o, Microsoft Copilot, and Gemini found that while all achieved satisfactory overall diet quality scores (DQI-I > 70), they consistently performed poorly on macronutrient and fatty acid balance. Gemini showed particular instability, with over 50% of its diet plans deviating from target calories by more than 20% @wang2025. These findings demonstrate that current AI tools cannot be relied upon for precise nutritional guidance without human oversight. Research on AI-moderated conversational surveys demonstrates that chatbots can elicit more thoughtful, detailed responses than traditional questionnaires @xiao2020tell. Participants engage more naturally, provide richer information, and report greater satisfaction with conversational interfaces. Yet this approach has not been systematically applied to build real-time, theory-based coaching models that adapt to users' evolving psychological states.
 
 The consequences of these limitations are evident in user engagement data. A study of the PROTEIN personalized nutrition app, developed through a European Union H2020 project, found that mHealth apps are often subject to dropout rates of up to 80 percent, with only 3.9 percent of participants using the apps for more than 15 days @kapsis2022proteina. Research on chatbot-based nutrition education similarly reports high attrition rates over relatively short study periods @aggarwal2023. These engagement failures are not merely technical problems; they reflect a fundamental mismatch between what apps offer and what users need. People download nutrition apps with enthusiasm, use them for a few weeks, and then abandon them when the advice feels irrelevant to their actual lives. The apps give recommendations that sound good in theory but prove impossible to follow, a nutritionally perfect recipe that requires expensive ingredients, specialized equipment, or advanced cooking skills that the user does not possess @yangValidatingAccuracyInternetBased2022.
 
+//aim to change
+
+This study addresses these limitations by developing AliMind, a conversational AI system that integrates the Theory of Planned Behavior and Transtheoretical Model to provide personalized nutrition support. The name reflects the system's focus on both alimentation (nutrition and feeding) and mindfulness of the psychological barriers that prevent behavior change. Unlike existing tools that rely on structured questionnaires or generic advice, AliMind infers users' attitudes, social pressures, and perceived control through natural conversation, classifies their readiness to change, and delivers interventions matched to their psychological state and practical constraints. The system implements a seven-step pipeline that continuously assesses users' TPB constructs and TTM stages across multiple sessions, enabling detection of psychological changes over time. Based on this assessment, AliMind selects appropriate behavior change techniques and recommends recipes that respect users' time, budget, cooking skills, and dietary restrictions. Rather than prescribing rigid meal plans, the system provides empathetic guidance that addresses specific barriers while respecting user autonomy. For example, a user in the contemplation stage with negative attitudes toward healthy food might receive pros-and-cons exploration, while someone in the action stage struggling with cooking confidence would get simple recipes with detailed instructions. This research contributes to the challenge of making behavioral theory actionable in digital health applications. By developing NLP models that infer psychological constructs from conversational text, the study enables real-time barrier identification without the assessment burden that drives user attrition. The modular pipeline architecture allows each component to be independently evaluated and refined, supporting iterative development and future enhancements. For Filipino young adults in Davao City, who face specific challenges including time scarcity from shift work, limited budgets, and social eating pressures, AliMind provides culturally situated support that bridges universal behavioral theory with local context.
+
 == Objectives
-The main objective of this study is to develop and evaluate a theory-driven conversational AI system that provides personalized support for healthy eating by integrating the Theory of Planned Behavior (TPB) and the Transtheoretical Model (TTM). Successfully developing such a system requires a comprehensive approach that spans multiple interconnected stages. This involves not only designing a natural conversational interface but also building the underlying inference engines that can detect psychological constructs from user language, estimate readiness to change, and deliver stage-matched, belief-targeted interventions. By addressing each of these stages, the study seeks to create a more effective and engaging digital health tool for Filipino young adults in Davao City. Specifically, this study aims to:
+
+To develop and evaluate AliMind, a conversational AI system that integrates the Theory of Planned Behavior and Transtheoretical Model to provide personalized nutrition support for Filipino young adults in Davao City. Specifically, the study will:
 
 - Design and implement a conversational interface that elicits rich, natural language from users about their dietary habits, challenges, social environment, and goals, while maintaining an empathetic and non-judgmental tone that encourages sustained engagement.
 
 - Develop natural language processing (NLP) models to infer the three core TPB constructs (Attitude, Subjective Norm, Perceived Behavioral Control) from user conversation, using a theme taxonomy derived from qualitative survey data and calibrated with population-specific regression weights.
 
 - Create a rule-based classification algorithm to estimate a user's current TTM stage of change (Pre-contemplation, Contemplation, Preparation, Action, or Maintenance) based on linguistic markers in conversation, with confidence thresholds and clarification mechanisms to ensure accurate stage assignment.
+-
+  - wawaBuild an integrated intervention engine that:
 
-- Build an integrated intervention engine that:
+#pad(left: 2em)[
   - Selects stage-appropriate intervention modes based on TTM stage
   - Identifies the weakest TPB determinant to target
   - Maps (stage, determinant) pairs to specific Behavior Change Techniques (BCTs)
   - Generates personalized, context-aware recipe recommendations that respect user constraints (time, budget, skill, equipment)
+]
 
 - Evaluate the overall effectiveness of the complete pipeline by measuring:
+
+#pad(left: 2em)[
   - Technical performance (classification accuracy, F1-score, Mean Absolute Error of construct inference)
   - Expert validation (nutritionist review of response safety and appropriateness)
   - User outcomes (TTM stage progression, changes in TPB construct scores, engagement metrics, and System Usability Scale scores)
+]

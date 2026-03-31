@@ -1,11 +1,11 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
-#v(20em)
+#v(40em)
 = Methods and Materials
 
 == Research Design
 
-The research will progress through structured development cycles as shown in Figure 2, following a Requirements-Design-Development-Testing-Review paradigm. Each iteration will build upon the previous one, progressively refining the system from initial prototyping through final deployment.
+AliMind's development will progress through structured development cycles as shown in Figure 2, following a Design-Development-Testing-Review paradigm. Each iteration will build upon the previous one, progressively refining the system from initial prototyping through final deployment.
 
 #figure(
   image("../figures/iterative.png"),
@@ -36,7 +36,7 @@ Developed by Icek Ajzen @ajzen1991theory, the Theory of Planned Behavior posits 
 
 Meta-analytic evidence confirms that these constructs reliably predict both intention and behavior. Armitage and Conner's comprehensive review of 185 independent studies found that the TPB accounted for 39% of the variance in intention and 27% of the variance in behavior across a wide range of health-related actions @armitage2001EfficacyOT.
 
-In this study, TPB will be used to diagnose the specific psychological barriers holding a user back. By analyzing a user's natural language, the system will infer their scores on Attitude, Subjective Norm, and PBC. The weakest of these determinants will become the primary target for intervention.
+In this study, TPB will be used to diagnose the specific psychological barriers holding a user back. By analyzing a user's natural language, AliMind will infer their scores on Attitude, Subjective Norm, and PBC. The weakest of these determinants will become the primary target for intervention.
 
 #figure(
   image("../figures/tpb.png"),
@@ -303,11 +303,11 @@ For each of the three TPB constructs, participants will provide:
 
 *Synthetic Data for Iteration 1:* During the initial prototyping phase, synthetic dialogue datasets will serve as the foundation for system development and testing. The openCHA framework demo scripts provide structured examples of health coaching conversations @zhang2024opencha, while MHC-Coach synthetic health coaching dialogues offer diverse conversational patterns and intervention strategies @mantena2025mhccoach. These synthetic datasets will enable comprehensive testing of the seven-step pipeline before real user data becomes available.
 
-*Recipe Database:* The system will utilize the RecipeNLG dataset containing 2.2 million recipes with structured metadata @bien2020recipenlg as the primary source for recipe recommendations. This comprehensive database will be supplemented with Filipino recipe datasets to ensure cultural appropriateness and relevance for the target population. All recipes will be indexed with metadata including preparation time, difficulty level, required equipment, and estimated cost to enable effective constraint-based filtering and recommendation.
+*Recipe Database:* AliMind will utilize the RecipeNLG dataset containing 2.2 million recipes with structured metadata @bien2020recipenlg as the primary source for recipe recommendations. This comprehensive database will be supplemented with Filipino recipe datasets to ensure cultural appropriateness and relevance for the target population. All recipes will be indexed with metadata including preparation time, difficulty level, required equipment, and estimated cost to enable effective constraint-based filtering and recommendation.
 
 === Programming and Development Environment
 
-The system will be developed using Python 3.9+ as the primary programming language. For computationally intensive tasks such as model training and fine-tuning, Google Colab (Premium/Pro) will be utilized to leverage cloud-based GPU resources. All code, documentation, and project assets will be managed using Git for version control.
+AliMind will be developed using Python 3.9+ as the primary programming language. For computationally intensive tasks such as model training and fine-tuning, Google Colab (Premium/Pro) will be utilized to leverage cloud-based GPU resources. All code, documentation, and project assets will be managed using Git for version control.
 
 == Design Procedure
 

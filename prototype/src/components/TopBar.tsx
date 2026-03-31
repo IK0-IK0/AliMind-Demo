@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -13,8 +13,7 @@ import {
   ListItemText,
   ListItemIcon,
   Container,
-  useScrollTrigger,
-  Slide } from
+  useScrollTrigger } from
 '@mui/material';
 import {
   SmartToy as SmartToyIcon,
@@ -23,33 +22,47 @@ import {
   Star as StarIcon,
   Settings as SettingsIcon,
   Mail as MailIcon,
-  Close as CloseIcon } from
+  Close as CloseIcon,
+  Chat as ChatIcon } from
 '@mui/icons-material';
+
 type TopBarProps = {
   currentPage: string;
   onNavigate: (page: string) => void;
 };
-const navItems = [
-{
-  label: 'Home',
-  sectionId: 'hero',
-  icon: <HomeIcon />
-},
-{
-  label: 'Features',
-  sectionId: 'features',
-  icon: <StarIcon />
-},
-{
-  label: 'How It Works',
-  sectionId: 'how-it-works',
-  icon: <SettingsIcon />
-},
-{
-  label: 'Contact',
-  sectionId: 'contact',
-  icon: <MailIcon />
-}];
+
+// Route-based navigation items
+const routeNavItems = [
+  {
+    label: 'Home',
+    route: 'landing',
+    icon: <HomeIcon />
+  },
+  {
+    label: 'Demo',
+    route: 'demo',
+    icon: <ChatIcon />
+  }
+];
+
+// Section-based navigation items (for landing page scrolling)
+const sectionNavItems = [
+  {
+    label: 'Features',
+    sectionId: 'features',
+    icon: <StarIcon />
+  },
+  {
+    label: 'How It Works',
+    sectionId: 'how-it-works',
+    icon: <SettingsIcon />
+  },
+  {
+    label: 'Contact',
+    sectionId: 'contact',
+    icon: <MailIcon />
+  }
+];
 
 export function TopBar({ currentPage, onNavigate }: TopBarProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -57,6 +70,7 @@ export function TopBar({ currentPage, onNavigate }: TopBarProps) {
     disableHysteresis: true,
     threshold: 50
   });
+
   const handleScrollTo = (sectionId: string) => {
     if (currentPage !== 'landing') {
       onNavigate('landing');
@@ -72,6 +86,12 @@ export function TopBar({ currentPage, onNavigate }: TopBarProps) {
     }
     setDrawerOpen(false);
   };
+
+  const handleRouteNavigate = (route: string) => {
+    onNavigate(route);
+    setDrawerOpen(false);
+  };
+
   return (
     <>
       <AppBar
@@ -139,45 +159,49 @@ export function TopBar({ currentPage, onNavigate }: TopBarProps) {
                 flex: 1
               }}>
               
-              {navItems.map((item) =>
-              <Button
-                key={item.label}
-                onClick={() => handleScrollTo(item.sectionId)}
-                sx={{
-                  color: '#2E7D32',
-                  fontWeight: 600,
-                  fontSize: '0.9rem',
-                  px: 2,
-                  borderRadius: 2,
-                  '&:hover': {
-                    bgcolor: '#E8F5E9',
-                    color: '#1B5E20'
-                  },
-                  transition: 'all 0.2s ease'
-                }}>
-                
+              {/* Section Navigation (only on landing page) */}
+              {currentPage === 'landing' && sectionNavItems.map((item) =>
+                <Button
+                  key={item.label}
+                  onClick={() => handleScrollTo(item.sectionId)}
+                  sx={{
+                    color: '#2E7D32',
+                    fontWeight: 600,
+                    fontSize: '0.9rem',
+                    px: 2,
+                    borderRadius: 2,
+                    '&:hover': {
+                      bgcolor: '#E8F5E9',
+                      color: '#1B5E20'
+                    },
+                    transition: 'all 0.2s ease'
+                  }}>
+                  
                   {item.label}
                 </Button>
               )}
             </Box>
 
-            {/* Try Demo Button (Desktop) */}
+            {/* Demo Button - Right Side */}
             <Button
+              onClick={() => handleRouteNavigate('demo')}
               variant="contained"
-              color="primary"
-              onClick={() => onNavigate('demo')}
               sx={{
+                bgcolor: '#4CAF50',
+                color: 'white',
+                fontWeight: 700,
+                fontSize: '0.9rem',
+                px: 3,
+                py: 1,
+                borderRadius: 2,
+                boxShadow: '0 2px 8px rgba(76, 175, 80, 0.3)',
                 display: {
                   xs: 'none',
                   md: 'flex'
                 },
-                borderRadius: '24px',
-                px: 3,
-                fontWeight: 700,
-                boxShadow: '0 4px 12px rgba(76, 175, 80, 0.3)',
                 '&:hover': {
-                  transform: 'translateY(-1px)',
-                  boxShadow: '0 6px 16px rgba(76, 175, 80, 0.4)'
+                  bgcolor: '#43A047',
+                  boxShadow: '0 4px 12px rgba(76, 175, 80, 0.4)'
                 },
                 transition: 'all 0.2s ease'
               }}>
@@ -259,61 +283,71 @@ export function TopBar({ currentPage, onNavigate }: TopBarProps) {
             px: 1
           }}>
           
-          {navItems.map((item) =>
-          <ListItem key={item.label} disablePadding>
+          {/* Route Navigation */}
+          {routeNavItems.map((item) =>
+            <ListItem key={item.label} disablePadding>
               <ListItemButton
-              onClick={() => handleScrollTo(item.sectionId)}
-              sx={{
-                borderRadius: 2,
-                mb: 0.5,
-                '&:hover': {
-                  bgcolor: '#E8F5E9'
-                }
-              }}>
-              
-                <ListItemIcon
+                onClick={() => handleRouteNavigate(item.route)}
                 sx={{
-                  color: '#4CAF50',
-                  minWidth: 40
+                  borderRadius: 2,
+                  mb: 0.5,
+                  bgcolor: currentPage === item.route ? '#E8F5E9' : 'transparent',
+                  '&:hover': {
+                    bgcolor: '#E8F5E9'
+                  }
                 }}>
                 
+                <ListItemIcon
+                  sx={{
+                    color: currentPage === item.route ? '#1B5E20' : '#4CAF50',
+                    minWidth: 40
+                  }}>
+                  
                   {item.icon}
                 </ListItemIcon>
                 <ListItemText
-                primary={item.label}
-                primaryTypographyProps={{
-                  fontWeight: 600,
-                  color: '#2E7D32'
-                }} />
-              
+                  primary={item.label}
+                  primaryTypographyProps={{
+                    fontWeight: currentPage === item.route ? 700 : 600,
+                    color: currentPage === item.route ? '#1B5E20' : '#2E7D32'
+                  }} />
+                
+              </ListItemButton>
+            </ListItem>
+          )}
+
+          {/* Section Navigation (only on landing page) */}
+          {currentPage === 'landing' && sectionNavItems.map((item) =>
+            <ListItem key={item.label} disablePadding>
+              <ListItemButton
+                onClick={() => handleScrollTo(item.sectionId)}
+                sx={{
+                  borderRadius: 2,
+                  mb: 0.5,
+                  '&:hover': {
+                    bgcolor: '#E8F5E9'
+                  }
+                }}>
+                
+                <ListItemIcon
+                  sx={{
+                    color: '#4CAF50',
+                    minWidth: 40
+                  }}>
+                  
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={item.label}
+                  primaryTypographyProps={{
+                    fontWeight: 600,
+                    color: '#2E7D32'
+                  }} />
+                
               </ListItemButton>
             </ListItem>
           )}
         </List>
-
-        <Box
-          sx={{
-            p: 2,
-            mt: 'auto'
-          }}>
-          
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            onClick={() => {
-              onNavigate('demo');
-              setDrawerOpen(false);
-            }}
-            sx={{
-              borderRadius: '24px',
-              py: 1.5,
-              fontWeight: 700
-            }}>
-            
-            Try Demo
-          </Button>
-        </Box>
       </Drawer>
     </>);
 

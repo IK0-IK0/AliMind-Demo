@@ -21,7 +21,6 @@
 }
 
 #set math.equation(numbering: "(1)")
-
 #show heading.where(level: 1): it => [
   #align(center)[
     #text(size: 11pt, weight: "bold")[#it.body]
@@ -32,13 +31,13 @@
 #align(center + horizon)[
   #v(-5em)
   *From Behavioral Inference to Stage-Specific
-  Nutrition Support: \ A Theory of Planned Behavior - and Transtheoretical Model- Informed System*
+  Nutrition Support: \ A Theory of Planned Behavior- and Transtheoretical Model- Informed System*
 
   #v(-5pt)
   Chris John David Manero#super[1],
   Francis Neil Cuadra#super[2],
   Mika Ysabelle Regalado#super[2],
-  \ John Lloyd Monterolla#super[2],
+  \ John Lloyd Monterolla#super[2]
 
 ]
 
@@ -67,4 +66,5 @@
 #include "methods.typ"
 #bibliography("../src/refs.bib")
 #include "projectworkplan.typ"
+#v(30em)
 #include "budgetplan.typ"

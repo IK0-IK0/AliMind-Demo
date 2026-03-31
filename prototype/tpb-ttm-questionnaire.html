@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPB/TTM Nutrition Questionnaire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 50%, #B2DFDB 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #1B5E20;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #558B2F;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #558B2F;
+            transition: all 0.3s ease;
+        }
+        
+        .tab:hover {
+            background: #F1F8E9;
+        }
+        
+        .tab.active {
+            color: #1B5E20;
+            border-bottom-color: #4CAF50;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #4CAF50, #00897B);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .question-card {
+            background: #FAFAFA;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .question-card:hover {
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
+            border-color: #4CAF50;
+        }
+        
+        .question-text {
+            color: #1B5E20;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .scale-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .scale-option {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .scale-option input[type="radio"] {
+            display: none;
+        }
+        
+        .scale-option label {
+            display: block;
+            padding: 12px 8px;
+            background: white;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: #558B2F;
+        }
+        
+        .scale-option input[type="radio"]:checked + label {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+            transform: scale(1.05);
+        }
+        
+        .scale-option label:hover {
+            border-color: #4CAF50;
+            background: #F1F8E9;
+        }
+        
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #757575;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #43A047;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+        }
+        
+        .btn-secondary:hover {
+            background: #F1F8E9;
+        }
+        
+        .progress-bar {
+            background: #E0E0E0;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #4CAF50, #00897B);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .dishes-section {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid #E0E0E0;
+        }
+        
+        .dish-card {
+            background: #F1F8E9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .dish-name {
+            color: #1B5E20;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .dish-description {
+            color: #558B2F;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Nutrition Behavior Questionnaire</h1>
+        <p class="subtitle">Theory of Planned Behavior (TPB) & Transtheoretical Model (TTM)</p>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('tpb')">TPB Questions</button>
+            <button class="tab" onclick="switchTab('ttm')">TTM Questions</button>
+            <button class="tab" onclick="switchTab('dishes')">Sample Dishes</button>
+        </div>
+        
+        <div id="tpbContent" class="tab-content active">
+            <div class="section-header">Theory of Planned Behavior (TPB) Questions</div>
+            <div id="tpbQuestions"></div>
+        </div>
+        
+        <div id="ttmContent" class="tab-content">
+            <div class="section-header">Transtheoretical Model (TTM) Questions</div>
+            <div id="ttmQuestions"></div>
+        </div>
+        
+        <div id="dishesContent" class="tab-content">
+            <div class="section-header">Sample Filipino Dishes</div>
+            <div id="dishesList"></div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-primary" onclick="saveAnswers()">💾 Save Answers</button>
+            <button class="btn btn-secondary" onclick="clearAnswers()">🗑️ Clear All</button>
+            <button class="btn btn-secondary" onclick="exportData()">📥 Export JSON</button>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // TPB Questions (20 questions covering Attitude, Subjective Norm, Perceived Behavioral Control)
+        const tpbQuestions = [
+            // Attitude (8 questions)
+            { id: 'tpb_1', text: 'Eating healthy food is beneficial for my overall health.', construct: 'attitude' },
+            { id: 'tpb_2', text: 'I believe that healthy eating improves my energy levels.', construct: 'attitude' },
+            { id: 'tpb_3', text: 'Healthy food tastes good to me.', construct: 'attitude' },
+            { id: 'tpb_4', text: 'I enjoy cooking and preparing healthy meals.', construct: 'attitude' },
+            { id: 'tpb_5', text: 'Eating healthy makes me feel good about myself.', construct: 'attitude' },
+            { id: 'tpb_6', text: 'I think healthy eating is worth the effort.', construct: 'attitude' },
+            { id: 'tpb_7', text: 'Healthy eating helps me maintain a good weight.', construct: 'attitude' },
+            { id: 'tpb_8', text: 'I believe that eating healthy prevents diseases.', construct: 'attitude' },
+            
+            // Subjective Norm (6 questions)
+            { id: 'tpb_9', text: 'My family encourages me to eat healthy.', construct: 'subjective_norm' },
+            { id: 'tpb_10', text: 'My friends think I should eat healthier.', construct: 'subjective_norm' },
+            { id: 'tpb_11', text: 'People important to me support my healthy eating choices.', construct: 'subjective_norm' },
+            { id: 'tpb_12', text: 'My colleagues at work/school eat healthy.', construct: 'subjective_norm' },
+            { id: 'tpb_13', text: 'I feel social pressure to eat healthy.', construct: 'subjective_norm' },
+            { id: 'tpb_14', text: 'Most people I know approve of healthy eating.', construct: 'subjective_norm' },
+            
+            // Perceived Behavioral Control (6 questions)
+            { id: 'tpb_15', text: 'I have enough time to prepare healthy meals.', construct: 'pbc' },
+            { id: 'tpb_16', text: 'I can afford to buy healthy food.', construct: 'pbc' },
+            { id: 'tpb_17', text: 'I am confident in my cooking skills.', construct: 'pbc' },
+            { id: 'tpb_18', text: 'Healthy food is easily accessible to me.', construct: 'pbc' },
+            { id: 'tpb_19', text: 'I have the knowledge to choose healthy foods.', construct: 'pbc' },
+            { id: 'tpb_20', text: 'It is easy for me to eat healthy even when busy.', construct: 'pbc' }
+        ];
+
+        // TTM Questions (20 questions covering all 5 stages)
+        const ttmQuestions = [
+            // Pre-contemplation (4 questions)
+            { id: 'ttm_1', text: 'I have not thought about changing my eating habits.', stage: 'precontemplation' },
+            { id: 'ttm_2', text: 'I do not see any reason to eat healthier.', stage: 'precontemplation' },
+            { id: 'ttm_3', text: 'My current diet is fine as it is.', stage: 'precontemplation' },
+            { id: 'ttm_4', text: 'I am not interested in learning about healthy eating.', stage: 'precontemplation' },
+            
+            // Contemplation (4 questions)
+            { id: 'ttm_5', text: 'I am thinking about eating healthier in the next 6 months.', stage: 'contemplation' },
+            { id: 'ttm_6', text: 'I am weighing the pros and cons of healthy eating.', stage: 'contemplation' },
+            { id: 'ttm_7', text: 'I want to change my diet but have not started yet.', stage: 'contemplation' },
+            { id: 'ttm_8', text: 'I am considering joining a nutrition program.', stage: 'contemplation' },
+            
+            // Preparation (4 questions)
+            { id: 'ttm_9', text: 'I plan to start eating healthier within the next month.', stage: 'preparation' },
+            { id: 'ttm_10', text: 'I have made small changes to my diet recently.', stage: 'preparation' },
+            { id: 'ttm_11', text: 'I am gathering information about healthy eating.', stage: 'preparation' },
+            { id: 'ttm_12', text: 'I have set specific goals for improving my diet.', stage: 'preparation' },
+            
+            // Action (4 questions)
+            { id: 'ttm_13', text: 'I have been eating healthy for less than 6 months.', stage: 'action' },
+            { id: 'ttm_14', text: 'I am actively working on improving my diet.', stage: 'action' },
+            { id: 'ttm_15', text: 'I track what I eat to ensure it is healthy.', stage: 'action' },
+            { id: 'ttm_16', text: 'I have made significant changes to my eating habits recently.', stage: 'action' },
+            
+            // Maintenance (4 questions)
+            { id: 'ttm_17', text: 'I have been eating healthy for more than 6 months.', stage: 'maintenance' },
+            { id: 'ttm_18', text: 'Healthy eating has become a habit for me.', stage: 'maintenance' },
+            { id: 'ttm_19', text: 'I am confident I can maintain my healthy eating habits.', stage: 'maintenance' },
+            { id: 'ttm_20', text: 'I rarely struggle with eating healthy anymore.', stage: 'maintenance' }
+        ];
+
+        // Sample Filipino Dishes
+        const sampleDishes = [
+            { name: 'Adobo', description: 'Chicken or pork marinated in vinegar, soy sauce, garlic, and spices', prepTime: 45, difficulty: 'Easy', calories: 350 },
+            { name: 'Sinigang', description: 'Sour tamarind soup with pork, vegetables, and tomatoes', prepTime: 60, difficulty: 'Medium', calories: 280 },
+            { name: 'Tinola', description: 'Ginger chicken soup with green papaya and chili leaves', prepTime: 40, difficulty: 'Easy', calories: 220 },
+            { name: 'Kare-Kare', description: 'Oxtail stew in peanut sauce with vegetables', prepTime: 90, difficulty: 'Hard', calories: 450 },
+            { name: 'Pancit Canton', description: 'Stir-fried noodles with vegetables, meat, and soy sauce', prepTime: 30, difficulty: 'Easy', calories: 320 },
+            { name: 'Lumpia', description: 'Filipino spring rolls with vegetables and meat', prepTime: 45, difficulty: 'Medium', calories: 180 },
+            { name: 'Pinakbet', description: 'Mixed vegetables with shrimp paste and pork', prepTime: 35, difficulty: 'Easy', calories: 200 },
+            { name: 'Laing', description: 'Taro leaves cooked in coconut milk with chili', prepTime: 50, difficulty: 'Medium', calories: 250 },
+            { name: 'Ginataang Gulay', description: 'Vegetables cooked in coconut milk', prepTime: 30, difficulty: 'Easy', calories: 180 },
+            { name: 'Chicken Inasal', description: 'Grilled chicken marinated in calamansi and lemongrass', prepTime: 40, difficulty: 'Easy', calories: 300 },
+            { name: 'Bulalo', description: 'Beef shank soup with bone marrow and vegetables', prepTime: 120, difficulty: 'Medium', calories: 380 },
+            { name: 'Bicol Express', description: 'Spicy pork in coconut milk with chili peppers', prepTime: 45, difficulty: 'Medium', calories: 420 },
+            { name: 'Monggo Guisado', description: 'Mung bean stew with pork and vegetables', prepTime: 40, difficulty: 'Easy', calories: 240 },
+            { name: 'Tortang Talong', description: 'Eggplant omelet with ground meat', prepTime: 25, difficulty: 'Easy', calories: 160 },
+            { name: 'Ginisang Ampalaya', description: 'Sautéed bitter melon with eggs and tomatoes', prepTime: 20, difficulty: 'Easy', calories: 140 },
+            { name: 'Ensaladang Talong', description: 'Grilled eggplant salad with tomatoes and onions', prepTime: 15, difficulty: 'Easy', calories: 90 },
+            { name: 'Nilagang Baka', description: 'Boiled beef with vegetables in clear broth', prepTime: 90, difficulty: 'Easy', calories: 320 },
+            { name: 'Paksiw na Isda', description: 'Fish stewed in vinegar with ginger and vegetables', prepTime: 30, difficulty: 'Easy', calories: 210 },
+            { name: 'Ginataang Kalabasa', description: 'Squash cooked in coconut milk with shrimp', prepTime: 25, difficulty: 'Easy', calories: 190 },
+            { name: 'Chicken Tinola with Malunggay', description: 'Ginger chicken soup with moringa leaves', prepTime: 35, difficulty: 'Easy', calories: 200 }
+        ];
+
+        // Scale labels
+        const scaleLabels = [
+            { value: 1, label: 'Strongly Disagree' },
+            { value: 2, label: 'Disagree' },
+            { value: 3, label: 'Neutral' },
+            { value: 4, label: 'Agree' },
+            { value: 5, label: 'Strongly Agree' }
+        ];
+
+        // Store answers in memory
+        let answers = {};
+
+        // Initialize the questionnaire
+        function init() {
+            loadAnswers();
+            renderQuestions('tpb', tpbQuestions, 'tpbQuestions');
+            renderQuestions('ttm', ttmQuestions, 'ttmQuestions');
+            renderDishes();
+            updateProgress();
+        }
+
+        // Render questions
+        function renderQuestions(type, questions, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            questions.forEach((question, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                
+                const questionText = document.createElement('div');
+                questionText.className = 'question-text';
+                questionText.textContent = `${index + 1}. ${question.text}`;
+                card.appendChild(questionText);
+                
+                const scaleContainer = document.createElement('div');
+                scaleContainer.className = 'scale-container';
+                
+                scaleLabels.forEach(scale => {
+                    const option = document.createElement('div');
+                    option.className = 'scale-option';
+                    
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = question.id;
+                    input.id = `${question.id}_${scale.value}`;
+                    input.value = scale.value;
+                    input.checked = answers[question.id]?.value === scale.value;
+                    input.onchange = () => handleAnswer(question.id, scale.value, scale.label);
+                    
+                    const label = document.createElement('label');
+                    label.htmlFor = `${question.id}_${scale.value}`;
+                    label.textContent = scale.value;
+                    
+                    option.appendChild(input);
+                    option.appendChild(label);
+                    scaleContainer.appendChild(option);
+                });
+                
+                card.appendChild(scaleContainer);
+                
+                const scaleLabelsDiv = document.createElement('div');
+                scaleLabelsDiv.className = 'scale-labels';
+                scaleLabelsDiv.innerHTML = `
+                    <span>Strongly Disagree</span>
+                    <span>Strongly Agree</span>
+                `;
+                card.appendChild(scaleLabelsDiv);
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Render dishes
+        function renderDishes() {
+            const container = document.getElementById('dishesList');
+            container.innerHTML = '';
+            
+            sampleDishes.forEach(dish => {
+                const card = document.createElement('div');
+                card.className = 'dish-card';
+                card.innerHTML = `
+                    <div class="dish-name">${dish.name}</div>
+                    <div class="dish-description">${dish.description}</div>
+                    <div style="margin-top: 8px; font-size: 0.85rem; color: #757575;">
+                        ⏱️ ${dish.prepTime} min | 📊 ${dish.difficulty} | 🔥 ${dish.calories} cal
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Handle answer selection
+        function handleAnswer(questionId, value, label) {
+            answers[questionId] = {
+                value: parseInt(value),
+                label: label,
+                timestamp: new Date().toISOString()
+            };
+            updateProgress();
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const totalQuestions = tpbQuestions.length + ttmQuestions.length;
+            const answeredQuestions = Object.keys(answers).length;
+            const percentage = (answeredQuestions / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        // Save answers to localStorage
+        function saveAnswers() {
+            const data = {
+                answers: answers,
+                tpbQuestions: tpbQuestions,
+                ttmQuestions: ttmQuestions,
+                dishes: sampleDishes,
+                savedAt: new Date().toISOString()
+            };
+            localStorage.setItem('tpb_ttm_questionnaire', JSON.stringify(data));
+            showNotification('✅ Answers saved successfully!');
+        }
+
+        // Load answers from localStorage
+        function loadAnswers() {
+            const saved = localStorage.getItem('tpb_ttm_questionnaire');
+            if (saved) {
+                const data = JSON.parse(saved);
+                answers = data.answers || {};
+            }
+        }
+
+        // Clear all answers
+        function clearAnswers() {
+            if (confirm('Are you sure you want to clear all answers?')) {
+                answers = {};
+                localStorage.removeItem('tpb_ttm_questionnaire');
+                init();
+                showNotification('🗑️ All answers cleared!');
+            }
+        }
+
+        // Export data as JSON
+        function exportData() {
+            const data = {
+                answers: answers,
+                tpbQuestions: tpbQuestions,
+                ttmQuestions: ttmQuestions,
+                dishes: sampleDishes,
+                exportedAt: new Date().toISOString(),
+                summary: {
+                    totalQuestions: tpbQuestions.length + ttmQuestions.length,
+                    answeredQuestions: Object.keys(answers).length,
+                    completionPercentage: ((Object.keys(answers).length / (tpbQuestions.length + ttmQuestions.length)) * 100).toFixed(2) + '%'
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `tpb-ttm-questionnaire-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showNotification('📥 Data exported successfully!');
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Switch tabs
+        function switchTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tab + 'Content').classList.add('active');
+        }
+
+        // Initialize on page load
+        window.onload = init;
+    </script>
+</body>
+</html>

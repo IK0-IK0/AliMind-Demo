@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "name": "Auto-compile Typst PDF",
+  "description": "Automatically compiles main.typ to PDF when introduction.typ or methods.typ is saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "chapters/introduction.typ",
+      "chapters/methods.typ",
+      "chapters/budgetplan.typ",
+      "chapters/projectworkplan.typ"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "typst compile --root \"C:\\Users\\MY PC\\Desktop\\Stuff\\6 7\" chapters/main.typ",
+    "timeout": 30
+  },
+  "workspaceFolderName": "6 7",
+  "shortName": "auto-compile-typst"
+}
