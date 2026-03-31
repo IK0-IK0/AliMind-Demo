@@ -1,6 +1,5 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
-#v(40em)
 = Methods and Materials
 
 == Research Design
@@ -16,7 +15,7 @@ AliMind's development will progress through structured development cycles as sho
 
 === Overview of Iterations
 
-*Iteration 1: Synthetic Data and Pipeline Prototyping.* The first cycle will focus on establishing the core system architecture and conversation flow before collecting real user data. Using synthetic dialogue datasets (MHC-Coach, openCHA demo scripts) and simulated user interactions, this cycle will test the end-to-end functionality of the seven-step pipeline.
+*Iteration 1: Proxy Data and Pipeline Prototyping.* The first cycle will focus on establishing the core system architecture and conversation flow before collecting real user data. Using placeholder dialogue datasets (MHC-Coach, openCHA demo scripts) and simulated user interactions, this cycle will test the end-to-end functionality of the seven-step pipeline.
 
 *Iteration 2: Real Data Integration and Model Fine-Tuning.* The second cycle will incorporate the preliminary survey data collected from the target population, with open-ended responses paired with TPB scores and TTM stage labels. This iteration will focus on training and validating the core inference models.
 
@@ -28,59 +27,38 @@ AliMind's development will progress through structured development cycles as sho
 
 Developed by Icek Ajzen @ajzen1991theory, the Theory of Planned Behavior posits that the immediate antecedent of any behavior is the individual's *intention* to perform that behavior. Intention represents the motivational factors that influence how hard people are willing to try and how much effort they plan to exert @ajzen1991theory. According to the TPB, intention is itself a function of three independent constructs:
 
-- *Attitude Toward the Behavior (A):* This refers to the degree to which a person has a favorable or unfavorable evaluation or appraisal of the behavior in question. It encompasses both *instrumental* aspects (e.g., beneficial/harmful, wise/foolish) and *experiential* aspects (e.g., pleasant/unpleasant, enjoyable/unenjoyable) of performing the behavior @ajzen2020changing. A person who believes that eating healthy will lead to positive outcomes (e.g., more energy, better health) will hold a more positive attitude.
-
-- *Subjective Norm (SN):* This is the perceived social pressure to perform or not perform the behavior @ajzen1991theory. It is determined by the individual's beliefs about whether significant others (e.g., family, friends, colleagues) think they should engage in the behavior, weighted by their motivation to comply with those referents @armitage2001EfficacyOT. For instance, a young adult might feel pressure from peers to eat out at fast-food restaurants, creating a subjective norm that discourages healthy eating.
-
-- *Perceived Behavioral Control (PBC):* This refers to the individual's perception of the ease or difficulty of performing the behavior @ajzen1991theory. It reflects both *internal* control factors (e.g., skills, knowledge, willpower) and *external* control factors (e.g., time, opportunity, cooperation of others). PBC is a unique addition to the model as it has both a motivational influence on intention and a direct link to behavior, as it can serve as a partial substitute for actual control @ajzen2020changing.
-
-Meta-analytic evidence confirms that these constructs reliably predict both intention and behavior. Armitage and Conner's comprehensive review of 185 independent studies found that the TPB accounted for 39% of the variance in intention and 27% of the variance in behavior across a wide range of health-related actions @armitage2001EfficacyOT.
-
-In this study, TPB will be used to diagnose the specific psychological barriers holding a user back. By analyzing a user's natural language, AliMind will infer their scores on Attitude, Subjective Norm, and PBC. The weakest of these determinants will become the primary target for intervention.
-
 #figure(
   image("../figures/tpb.png"),
   caption: [Theory of Planned Behavior],
 )
 
-#table(
-  columns: (auto, auto, auto, auto),
-  stroke: 0.5pt,
-  align: (left, left, left, left),
+#pad(left: 1em)[
+  - *Attitude Toward the Behavior (A):* This refers to the degree to which a person has a favorable or unfavorable evaluation or appraisal of the behavior in question. It encompasses both *instrumental* aspects (e.g., beneficial/harmful, wise/foolish) and *experiential* aspects (e.g., pleasant/unpleasant, enjoyable/unenjoyable) of performing the behavior @ajzen2020changing. A person who believes that eating healthy will lead to positive outcomes (e.g., more energy, better health) will hold a more positive attitude.
 
-  [*Construct*], [*Definition*], [*Measurement Approach*], [*Example Themes*],
+  - *Subjective Norm (SN):* This is the perceived social pressure to perform or not perform the behavior @ajzen1991theory. It is determined by the individual's beliefs about whether significant others (e.g., family, friends, colleagues) think they should engage in the behavior, weighted by their motivation to comply with those referents @armitage2001EfficacyOT. For instance, a young adult might feel pressure from peers to eat out at fast-food restaurants, creating a subjective norm that discourages healthy eating.
 
-  [Attitude],
-  [Evaluation of behavior (beneficial/harmful, pleasant/unpleasant)],
-  [Theme detection + scoring from expressions of evaluation],
-  ["healthy food tastes bad", "cooking is rewarding", "eating well makes me feel good"],
+  - *Perceived Behavioral Control (PBC):* This refers to the individual's perception of the ease or difficulty of performing the behavior @ajzen1991theory. It reflects both *internal* control factors (e.g., skills, knowledge, willpower) and *external* control factors (e.g., time, opportunity, cooperation of others). PBC is a unique addition to the model as it has both a motivational influence on intention and a direct link to behavior, as it can serve as a partial substitute for actual control @ajzen2020changing.
+]
 
-  [Subjective Norm],
-  [Perceived social pressure from significant others],
-  [Social reference extraction and influence assessment],
-  ["family expects fast food", "friends support healthy eating", "colleagues eat out daily"],
-
-  [Perceived Behavioral Control],
-  [Perception of ease/difficulty of performing behavior],
-  [Barrier/facilitator identification and confidence assessment],
-  ["no time to cook", "confident in kitchen skills", "grocery stores too far"],
-)
+In this study, TPB will be used to diagnose the specific psychological barriers holding a user back. By analyzing a user's natural language, AliMind will infer their scores on Attitude, Subjective Norm, and PBC. The weakest of these determinants will become the primary target for intervention.
 
 === The Transtheoretical Model (TTM)
 
 Developed by Prochaska and DiClemente @prochaska1997transtheoretical, the Transtheoretical Model conceptualizes behavior change not as a discrete event, but as a process that unfolds over time through a series of stages. The model's core premise is that individuals at different stages of change require different types of interventions @prochaska2005transtheoretical. The five stages are:
 
-1. *Pre-contemplation:* The individual does not intend to take action in the foreseeable future (usually measured as the next six months). They may be unaware that their behavior is problematic or may be demoralized from past failed attempts.
+#pad(left: 1em)[
+  1. *Pre-contemplation:* The individual does not intend to take action in the foreseeable future (usually measured as the next six months). They may be unaware that their behavior is problematic or may be demoralized from past failed attempts.
 
-2. *Contemplation:* The individual intends to change within the next six months. They are aware of the pros and cons of changing, leading to a state of ambivalence and "weighing" of the costs and benefits.
+  2. *Contemplation:* The individual intends to change within the next six months. They are aware of the pros and cons of changing, leading to a state of ambivalence and "weighing" of the costs and benefits.
 
-3. *Preparation:* The individual intends to take action in the immediate future (usually within the next month). They may have a plan of action, such as joining a support group, buying a cookbook, or speaking to a counselor.
+  3. *Preparation:* The individual intends to take action in the immediate future (usually within the next month). They may have a plan of action, such as joining a support group, buying a cookbook, or speaking to a counselor.
 
-4. *Action:* The individual has made specific, overt modifications to their lifestyle within the past six months. This is a busy period of active change and is the most vulnerable to relapse.
+  4. *Action:* The individual has made specific, overt modifications to their lifestyle within the past six months. This is a busy period of active change and is the most vulnerable to relapse.
 
-5. *Maintenance:* The individual is working to prevent relapse and consolidate the gains attained during action. They are less tempted to regress and increasingly more confident they can sustain the change.
+  5. *Maintenance:* The individual is working to prevent relapse and consolidate the gains attained during action. They are less tempted to regress and increasingly more confident they can sustain the change.
+]
 
-A study confirms that stage-matched interventions improve dietary outcomes across diverse populations @vanduyn1998.
+*TTM Stage Assessment:* Traditional TTM assessment relies on validated staging algorithms and instruments. The University of Rhode Island Change Assessment (URICA) is one of the most widely used instruments for measuring stages of change @mcconnaughy1989stages. URICA is a 32-item self-report measure with four subscales corresponding to precontemplation, contemplation, action, and maintenance stages, using 5-point Likert scales. For dietary behavior specifically, validated staging algorithms employ combinations of yes/no questions about current behavior and intentions for future change @greene1994stages @prochaska1994changing. Typical staging questions assess current eating patterns, intentions to change within specific timeframes (6 months for contemplation, 30 days for preparation), and duration of current healthy eating behaviors (less than 6 months for action, more than 6 months for maintenance) @greene1999dietary @horwath2013transtheoretical.
 
 In this study, TTM will be used to determine the user's current readiness for change by analyzing linguistic markers in their conversation. This stage classification will dictate the intervention mode.
 
@@ -118,6 +96,14 @@ In this study, TTM will be used to determine the user's current readiness for ch
 )
 
 #v(20pt)
+
+=== Cognitive Aspects of Survey Methodology (CASM)
+
+The inference of TPB constructs and TTM stages from natural language is grounded in the Cognitive Aspects of Survey Methodology (CASM) framework @tourangeau2000psychology. CASM posits that answering any survey question involves four cognitive stages: (1) comprehension, (2) retrieval from memory, (3) judgment formation, and (4) response mapping. Critically, the first three stages are identical regardless of response format; only the final stage differs between structured and open-ended responses @tourangeau2000psychology. Whether a respondent rates their perceived behavioral control as "3" on a Likert scale or states "I don't have time to cook" in conversation, they have engaged the same cognitive processes of comprehension, retrieval, and judgment. Similarly, whether someone selects "Contemplation" on a URICA scale or says "I've been thinking about changing my diet but haven't started yet," the underlying stage assessment reflects the same cognitive judgment. The difference lies only in how the internal judgment is expressed.
+
+This principle validates the core methodological approach: open-ended conversational responses contain the same underlying psychological constructs as structured assessments. Empirical support comes from qualitative TPB research demonstrating that open-ended elicitation interviews reliably capture belief structures underlying attitudes, subjective norms, and perceived behavioral control @francis2004constructing @downs1999eliciting, and from TTM research showing that stage classification can be reliably derived from open-ended interviews @prochaska2005transtheoretical. Studies further demonstrate that conversational formats yield richer responses while maintaining construct consistency @schuman1996questions @geer1988what @bishop1988changing.
+
+The NLP inference models developed in this research analyze the response mapping stage, extracting latent judgments from natural language and converting them to quantitative representations. The paired training data where participants provide both open-ended explanations and corresponding Likert-scale ratings enables supervised learning of this mapping function, ensuring that inferred scores reflect the same cognitive judgments captured by validated psychometric instruments @kjell2019semantic @boyd2022development.
 
 == Conceptual Framework
 
@@ -173,11 +159,13 @@ The integrated framework operates on a simple yet powerful principle: *What you 
 
 This integration is applied in the system's core logic as follows:
 
-- *Early Stages (Pre-contemplation & Contemplation):* The interaction is *TTM-led*. The primary goal is stage progression, not directly attacking a TPB barrier. The system uses TPB scores contextually to understand *why* the user is stuck. For example, if a user is in Contemplation, the system will use the TPB profile to inform a "decisional balance" exercise (a TTM process) @kleis2021ttm. If the user's main barrier is a negative Attitude ("Healthy food is bland"), the system can explore the "pros" of taste versus the "cons" of health, but the goal is still to move them toward Preparation, not to convince them to like broccoli today.
+#pad(left: 1em)[
+  - *Early Stages (Pre-contemplation & Contemplation):* The interaction is *TTM-led*. The primary goal is stage progression, not directly attacking a TPB barrier. The system uses TPB scores contextually to understand *why* the user is stuck. For example, if a user is in Contemplation, the system will use the TPB profile to inform a "decisional balance" exercise (a TTM process) @kleis2021ttm. If the user's main barrier is a negative Attitude ("Healthy food is bland"), the system can explore the "pros" of taste versus the "cons" of health, but the goal is still to move them toward Preparation, not to convince them to like broccoli today.
 
-- *Middle Stages (Preparation & Action):* The interaction becomes *TPB-led*. The user is ready to act, so the system uses the TPB profile to identify the "weakest link" (e.g., low PBC due to poor cooking skills). It then selects a specific Behavior Change Technique (BCT), guided by the TTM stage, to target that barrier @michie2013behavior. For instance, for a user in the Action stage with low PBC, the system might use BCT 4.1 ("Instruction on how to perform") and recommend a simple, low-skill recipe.
+  - *Middle Stages (Preparation & Action):* The interaction becomes *TPB-led*. The user is ready to act, so the system uses the TPB profile to identify the "weakest link" (e.g., low PBC due to poor cooking skills). It then selects a specific Behavior Change Technique (BCT), guided by the TTM stage, to target that barrier @michie2013behavior. For instance, for a user in the Action stage with low PBC, the system might use BCT 4.1 ("Instruction on how to perform") and recommend a simple, low-skill recipe.
 
-- *Late Stage (Maintenance):* The interaction returns to being *TTM-led*, with a focus on relapse prevention. The TPB scores are monitored longitudinally as an early warning system @bassett-gunterOhBabyMotivation2013. A sudden drop in PBC scores, for example, could signal an increased risk of relapse, prompting the system to intervene with coping strategies before the user backslides.
+  - *Late Stage (Maintenance):* The interaction returns to being *TTM-led*, with a focus on relapse prevention. The TPB scores are monitored longitudinally as an early warning system @bassett-gunterOhBabyMotivation2013. A sudden drop in PBC scores, for example, could signal an increased risk of relapse, prompting the system to intervene with coping strategies before the user backslides.
+]
 
 This integrated framework ensures that the conversational AI is a theory-driven coach that delivers the right type of support, at the right time, for the right reason. It allows the system to understand both the user's destination (healthy eating) and their current location on the map (TTM stage), as well as the specific obstacles in their path (TPB determinants).
 
@@ -260,13 +248,15 @@ The proposed system will implement a modular pipeline architecture consisting of
 
 The seven steps are:
 
-1. *Conversational Context Collection:* User chats about eating habits, preferences, barriers, schedule, budget, cooking skills, and food access
-2. *TPB Construct Inference:* NLP models output continuous scores for Attitude, Subjective Norms, and Perceived Behavioral Control
-3. *Stage Estimation (TTM):* Assign a stage: pre-contemplation, contemplation, preparation, action, or maintenance
-4. *Intervention Mode Selection:* Choose a mode based on stage: awareness, ambivalence-resolution, planning, coping, or relapse prevention
-5. *TPB-Targeted Intervention Choice:* Select what to target: attitude, subjective norms, or PBC based on weakest determinant
-6. *Feasible Dish/Plan Generation:* Recommend recipes filtered by user constraints (time, budget, skills, equipment)
-7. *Response Generation:* Generate chat response that follows chosen mode, targets selected TPB construct, and embeds feasible dishes
+#pad(left: 1em)[
+  1. *Conversational Context Collection:* User chats about eating habits, preferences, barriers, schedule, budget, cooking skills, and food access
+  2. *TPB Construct Inference:* NLP models output continuous scores for Attitude, Subjective Norms, and Perceived Behavioral Control
+  3. *Stage Estimation (TTM):* Assign a stage: pre-contemplation, contemplation, preparation, action, or maintenance
+  4. *Intervention Mode Selection:* Choose a mode based on stage: awareness, ambivalence-resolution, planning, coping, or relapse prevention
+  5. *TPB-Targeted Intervention Choice:* Select what to target: attitude, subjective norms, or PBC based on weakest determinant
+  6. *Feasible Dish/Plan Generation:* Recommend recipes filtered by user constraints (time, budget, skills, equipment)
+  7. *Response Generation:* Generate chat response that follows chosen mode, targets selected TPB construct, and embeds feasible dishes
+]
 
 The pipeline will operate as a closed-loop system where each conversation session feeds into longitudinal tracking. Across multiple sessions, the system will implement Exponential Moving Average (EMA) principles by capturing repeated measurements of TPB constructs and TTM stages in the user's natural environment, enabling detection of psychological changes over time and adaptation of intervention strategies based on progress patterns. Detailed EMA implementation is described in Iteration 2 Design.
 
@@ -283,17 +273,23 @@ The preliminary phase will consist of a single hybrid quali-quantitative survey 
 
 *TPB Construct Assessment:*
 For each of the three TPB constructs, participants will provide:
-- Open-ended responses to natural prompts eliciting attitudes, social pressures, and perceived control (e.g., "How do you feel about eating healthier? What are your thoughts on this?")
-- Paired Likert-scale items measuring the same construct (e.g., "Rate your attitude toward healthy eating: 1=very negative to 7=very positive")
+#pad(left: 1em)[
+  - Open-ended responses to natural prompts eliciting attitudes, social pressures, and perceived control (e.g., "How do you feel about eating healthier? What are your thoughts on this?")
+  - Paired Likert-scale items measuring the same construct (e.g., "Rate your attitude toward healthy eating: 1=very negative to 7=very positive")
+]
 
 *TTM Stage Classification:*
-- Open-ended questions about current eating habits and change intentions (e.g., "Where are you right now with healthy eating? What are your plans, if any?")
-- Standard TTM staging questions using both Likert scales and yes/no format to classify participants' readiness for dietary change
+#pad(left: 1em)[
+  - Open-ended questions about current eating habits and change intentions (e.g., "Where are you right now with healthy eating? What are your plans, if any?")
+  - The University of Rhode Island Change Assessment (URICA) adapted for dietary behavior, using both Likert scales and yes/no format to classify participants' readiness for dietary change @greene1994stages
+]
 
 *Additional Measures:*
-- Behavioral Intention measured through both open-ended expression and 7-point Likert scales
-- Demographic and socioeconomic contextual variables
-- Probing questions to elicit deeper explanations of specific barriers and motivations
+#pad(left: 1em)[
+  - Behavioral Intention measured through both open-ended expression and 7-point Likert scales
+  - Demographic and socioeconomic contextual variables
+  - Probing questions to elicit deeper explanations of specific barriers and motivations
+]
 
 *Data Analysis:* Responses will be analyzed using thematic analysis to identify recurring patterns and barriers, with identified themes systematically mapped to the three core TPB constructs. This creates the theme taxonomy that the NLP inference models will use. The direct pairing of open-ended responses with their corresponding quantitative scores from the same survey session forms the primary labeled training corpus for the psychological inference models, ensuring temporal alignment and reducing noise in the training data.
 
@@ -301,7 +297,7 @@ For each of the three TPB constructs, participants will provide:
 
 *Primary Data Corpus:* The primary training data will consist of open-ended explanations from the preliminary survey paired with their corresponding TPB Likert-scale scores and TTM stage classifications. This corpus will provide the essential ground truth for training the psychological inference models, ensuring that the system can accurately map natural language expressions to theoretical constructs. Additionally, annotated conversational logs collected during pilot testing phases in Iterations 2-3 will supplement the primary corpus with real-world interaction patterns and user feedback.
 
-*Synthetic Data for Iteration 1:* During the initial prototyping phase, synthetic dialogue datasets will serve as the foundation for system development and testing. The openCHA framework demo scripts provide structured examples of health coaching conversations @zhang2024opencha, while MHC-Coach synthetic health coaching dialogues offer diverse conversational patterns and intervention strategies @mantena2025mhccoach. These synthetic datasets will enable comprehensive testing of the seven-step pipeline before real user data becomes available.
+*Proxy Data for Iteration 1:* During the initial prototyping phase, placeholder dialogue datasets will serve as the foundation for system development and testing. The openCHA framework demo scripts provide structured examples of health coaching conversations, while MHC-Coach health coaching dialogues offer diverse conversational patterns and intervention strategies @zhang2024opencha @mantena2025mhccoach. These datasets will enable comprehensive testing of the seven-step pipeline before real user data becomes available.
 
 *Recipe Database:* AliMind will utilize the RecipeNLG dataset containing 2.2 million recipes with structured metadata @bien2020recipenlg as the primary source for recipe recommendations. This comprehensive database will be supplemented with Filipino recipe datasets to ensure cultural appropriateness and relevance for the target population. All recipes will be indexed with metadata including preparation time, difficulty level, required equipment, and estimated cost to enable effective constraint-based filtering and recommendation.
 
@@ -318,22 +314,20 @@ The first iteration will focus on establishing the core system architecture and 
 #enum(numbering: "A)", spacing: 1.5em)[
   *Requirements Gathering*
 
-  The requirements gathering phase will establish the foundation for the system's annotation tool and evaluation metric by identifying key components necessary for implementation. Foundational requirements will be identified for the system based on the TPB and TTM theoretical framework, including functional requirements for each of the seven pipeline steps, requirements for conversation flow and natural language elicitation of psychological constructs, dialogue state tracking needs (what information must be captured and maintained), technical requirements for pipeline connectivity and confidence propagation, data requirements for recipe retrieval and recommendation, and ethical and safety requirements for health coaching conversations.
+  The requirements gathering phase will establish foundational requirements based on the TPB and TTM theoretical framework, including functional requirements for each pipeline step, conversation flow and dialogue state tracking needs, technical requirements for pipeline connectivity and confidence propagation, data requirements for recipe retrieval, and ethical requirements for health coaching conversations.
 
-  The collection of data will be split into two sections. First, synthetic dialogue data will be gathered using openCHA framework demo scripts and MHC-Coach synthetic datasets @zhang2024opencha @mantena2025mhccoach. These conversational examples will be suitable for prototyping the seven-step pipeline, simulating user interactions discussing dietary habits, barriers, and goals. The purpose of this collection will be to test the end-to-end pipeline functionality before real user data becomes available. Second, the RecipeNLG dataset containing 2.2 million recipes @bien2020recipenlg will be indexed and pre-processed for retrieval. Recipes will be filtered for cultural appropriateness and tagged with metadata including prep time, difficulty level, equipment required, and estimated cost.
+  Data collection will proceed in two parts. First, placeholder dialogue data will be gathered using openCHA framework demo scripts and MHC-Coach datasets @zhang2024opencha @mantena2025mhccoach to test end-to-end pipeline functionality before real user data becomes available. Second, the RecipeNLG dataset containing 2.2 million recipes @bien2020recipenlg will be indexed and pre-processed, with recipes filtered for cultural appropriateness and tagged with metadata including prep time, difficulty level, equipment required, and estimated cost.
 
-  Following data collection, the next step will be identifying the tools and frameworks required for data processing, model deployment, and system development. The primary tools for development will be identified: LangChain for conversation management and dialogue state tracking, DeBERTa-v3, RoBERTa, and DistilBERT as baseline models for TPB/TTM inference, Llama 3 8B and Mistral 7B for response generation, FAISS for vector search in recipe retrieval, and Unsloth/LoRA for parameter-efficient fine-tuning. These tools will be set up to ensure smooth transition to the next phase.
+  The primary development tools will be identified: LangChain for conversation management, DeBERTa-v3-base, DeBERTa-v3-large, RoBERTa-base, and DistilBERT as candidate models for TPB/TTM inference (to be compared and selected based on validation performance), Llama 3 8B and Mistral 7B for response generation, FAISS for vector search in recipe retrieval, and Unsloth/LoRA for parameter-efficient fine-tuning.
 
 
 ][*Design*
 
-  The design phase will focus on structuring the system's architecture and evaluation pipeline, following both the theoretical and conceptual framework. The seven-step computational pipeline will be designed as a modular architecture where each stage operates as an independent microservice communicating via JSON payloads. This design will allow for modular updates and independent scaling, following a cascading inference design where the output of each stage serves as input to the next, with confidence scores propagating through the pipeline to inform downstream decision-making.
+  The seven-step computational pipeline will be designed as a modular architecture where each stage operates as an independent microservice communicating via JSON payloads, with confidence scores propagating through the pipeline to inform downstream decision-making.
 
-  *Step 1: Conversational Context Collection.* The pipeline will establish an ongoing, naturalistic dialogue with the user to gather rich contextual information about their dietary habits, challenges, social environment, resources, and goals. Rather than administering structured questionnaires, the system will employ a conversational approach that embeds psychologically informed prompts within an organic exchange. This design choice is grounded in evidence that conversational agents elicit more thoughtful, detailed, and authentic responses than traditional surveys @xiao2020tell @aggarwalArtificialIntelligenceBased2023, while reducing assessment burden and improving user engagement @fueerriegel2025.
+  *Step 1: Conversational Context Collection.* The system will employ a conversational approach that embeds psychologically informed prompts within organic dialogue, grounded in evidence that conversational agents elicit more thoughtful responses than traditional surveys @xiao2020tell @aggarwalArtificialIntelligenceBased2023 @fueerriegel2025.
 
-  *Question Pool and Prompt Selection:* The conversational prompts will be derived from multiple sources to create a comprehensive question pool organized hierarchically by TPB constructs and sub-themes within each construct. During Iteration 1, the system will make use of dialogues from the MHC-Coach synthetic dataset @mantena2025mhccoach, extracting questions that align with TPB and TTM theoretical frameworks.
-
-  The question pool will be structured with sub-themes under each TPB construct to enable fine-grained coverage tracking. For Subjective Norm, sub-themes will include family pressure, peer influence, workplace eating culture, and social eating situations. For Attitude, sub-themes will encompass taste expectations, health beliefs, cooking enjoyment, and outcome expectations. For Perceived Behavioral Control, sub-themes will cover time scarcity, cost concerns, cooking skill confidence, and food access. Similarly, TTM stage indicators will be organized by stage-specific linguistic and behavioral markers.
+  *Question Pool and Prompt Selection:* Conversational prompts will be organized hierarchically by TPB constructs and sub-themes. During Iteration 1, the system will use dialogues from the MHC-Coach dataset @mantena2025mhccoach, extracting questions that align with TPB and TTM frameworks. Sub-themes include: for Subjective Norm (family pressure, peer influence, workplace culture, social situations), for Attitude (taste expectations, health beliefs, cooking enjoyment, outcome expectations), and for Perceived Behavioral Control (time scarcity, cost concerns, cooking skill, food access). TTM stage indicators will be organized by stage-specific linguistic markers.
 
   #table(
     columns: (auto, auto, auto),
@@ -401,19 +395,27 @@ The first iteration will focus on establishing the core system architecture and 
     ],
   )
 
-  As the conversation progresses, when the user mentions something that maps to a sub-theme (e.g., "my family always orders fast food" triggers the family pressure sub-theme under Subjective Norm), it will register as evidence for that sub-theme under its parent TPB construct. Similarly, TTM stage indicators accumulate confidence scores based on linguistic markers detected in user utterances. This accumulates across turns, with each relevant mention adding to the confidence score of that sub-theme or stage indicator, which then contributes to the overall TPB construct scores and TTM stage probability in Steps 2 and 3. Each system-generated prompt will be selected from this pool based on the current dialogue state and theoretical targeting needs, ensuring comprehensive construct coverage while maintaining natural dialogue flow.
+  As the conversation progresses, user mentions that map to sub-themes (e.g., "my family always orders fast food" triggers family pressure under Subjective Norm) register as evidence, accumulating confidence scores across turns that contribute to overall TPB construct scores and TTM stage probability in Steps 2 and 3.
 
-  *Text Processing and Cleaning:* User inputs will undergo minimal preprocessing to improve accuracy while preserving natural language authenticity. The system will remove repeating letters (e.g., "sooooo good" becomes "so good"), eliminate excessive whitespace, and standardize basic punctuation without altering the semantic content or emotional expression of the user's message. This cleaning process will enhance the reliability of downstream NLP processing while maintaining the conversational tone and personal voice that are crucial for accurate psychological inference.
+  *Text Processing and Cleaning:* User inputs will undergo minimal preprocessing (removing repeating letters, excessive whitespace, standardizing punctuation) while preserving semantic content and emotional expression.
 
-  *Dialogue State Tracking and Coverage Monitoring:* Conversation flow will be managed using the LangChain framework, which supports prompt chaining and context retention. A dialogue state tracker will maintain a running tally of which sub-themes have been triggered and how strongly, using this information to decide which construct still needs more exploration. The tracker will maintain a structured representation including: (1) sub-theme confidence scores accumulated across turns, (2) parent TPB construct coverage levels computed from their sub-themes, (3) TTM stage indicator confidence scores, (4) mentioned constraints (time, budget, cooking skills, equipment), and (5) outstanding clarifications needed.
+  *Dialogue State Tracking and Coverage Monitoring:* LangChain will manage conversation flow and context retention. A dialogue state tracker will maintain: (1) sub-theme confidence scores, (2) TPB construct coverage levels, (3) TTM stage indicator confidence, (4) mentioned constraints, and (5) outstanding clarifications. The tracker updates after each turn using pattern matching and keyword detection. A construct is sufficiently covered when sub-theme confidence ≥ 0.6. When coverage gaps exist, the system selects follow-up questions from the corresponding sub-theme pool.
 
-  The tracker will be updated after each user turn using pattern matching and keyword detection to identify sub-theme mentions. A construct will be considered sufficiently covered when its sub-themes have accumulated enough confidence above a set threshold (e.g., average sub-theme confidence ≥ 0.6 for that construct). When the dialogue state tracker detects that a construct has not been adequately addressed, it will select follow-up questions from the corresponding sub-theme pool to fill coverage gaps. To handle ambiguous or incomplete responses, the system will employ a confidence-based clarification mechanism, asking targeted follow-up questions when NER extraction yields low confidence or when critical sub-themes remain unexplored.
+  *Practical Constraints Collection:* After TPB/TTM construct coverage reaches sufficient thresholds (70% coverage and TTM confidence > 0.6), Step 1 will collect dietary restrictions, food allergies, medical dietary needs, and cultural restrictions using a hybrid approach: open-ended questions followed by structured checklist confirmation. These constraints serve as hard filters for recipe recommendation.
 
-  Input and output specifications for Step 1 include: Input as raw user utterances in natural language captured via a chat interface; Output as a structured conversation object containing an array of turns (each with speaker, timestamp, and raw text), extracted entities using spaCy with custom training, a dialogue state record indicating coverage of TPB constructs and confidence levels, and session metadata (user ID, session start/end time, device type). Tools employed will include LangChain for dialogue management, Llama 3 8B or Mistral 7B for response generation, spaCy for NER, and bert-fda-nutrition-ner for food entity extraction.
+  Step 1 outputs a structured conversation object containing turns, extracted entities (spaCy, bert-fda-nutrition-ner), dialogue state with TPB/TTM coverage, dietary constraints, and session metadata. Tools: LangChain, Llama 3 8B or Mistral 7B, spaCy.
 
-  *Step 2: TPB Construct Inference.* This step will transform the raw conversational data into quantitative scores for the three core TPB constructs. The system will first detect the presence and intensity of themes from an empirically derived taxonomy (e.g., "time scarcity," "cost concerns," "family pressure"). A fine-tuned DeBERTa-v3 model will perform multi-label classification on the user's recent conversation window (typically the last 3–5 turns), outputting confidence scores for each theme.
+  *Step 2: TPB Construct Inference.* A fine-tuned bert model will perform multi-label classification on the user's recent conversation window (last 3–5 turns), detecting themes from an empirically derived taxonomy. Each theme maps to TPB constructs via a mapping matrix $m_{"ic"}$ in [0,1].
 
-  Each theme in the taxonomy will be mapped to one or more TPB constructs based on the theoretical framework. This mapping matrix will define the contribution of theme $i$ to construct $c$ as a weight $m_{"ic"}$ in [0,1]. For each TPB construct, a continuous score will be computed using weighted aggregation:
+  The scoring formula will incorporate population-specific regression weights derived from the quantitative survey. Multiple linear regression analysis will yield standardized coefficients representing the relative contribution of each construct to behavioral intention:
+
+  #v(5pt)
+  #align(center)[
+    $ "BI" = beta_0 + beta_1 A + beta_2 "SN" + beta_3 "PBC" + epsilon $ <eq:regression>
+  ]
+  #v(5pt)
+
+  These coefficients ($w_i$) will calibrate the importance of each theme within its associated construct. TPB construct scores are then computed using weighted aggregation:
 
   #v(5pt)
   #align(center)[
@@ -423,17 +425,13 @@ The first iteration will focus on establishing the core system architecture and 
   ]
   #v(5pt)
 
-  where $w_i$ represents the population-specific regression weight for theme $i$, $m_{"ic"}$ is the mapping weight of theme $i$ to construct $c$, $"confidence"_i$ is the classifier's confidence score, and $"intensity"_i$ is the normalized frequency of theme-related language.
+  where $w_i$ represents the population-specific regression weight for theme $i$, $m_{"ic"}$ is the mapping weight of theme $i$ to construct $c$, $"confidence"_i$ is the classifier's confidence score, and $"intensity"_i$ is the normalized frequency of theme-related language. This weighted aggregation approach will be validated during Iteration 2 Development and Testing phases to ensure that the interaction effects between the four factors produce theoretically consistent construct scores. Sensitivity analysis will be conducted to verify that the formula appropriately balances high-confidence detections of less important themes against low-confidence detections of more important themes.
 
-  To improve robustness, the system will test two competing approaches for TPB construct inference: fine-tuned DeBERTa-v3 for multi-label theme classification followed by theme-to-construct mapping, and regression head on RoBERTa for direct construct scoring. Both approaches will be evaluated during Iteration 2 to determine which performs better on the target population data, with the superior model selected for final implementation. A keyword dictionary will serve as fallback when model confidence is low (< 0.6).
+  *Step 3: Stage Estimation (TTM).* A lightweight DistilBERT or BERT-small model will be fine-tuned on TTM-annotated corpus, outputting a probability distribution across the five stages. When confidence falls below threshold ($P_"max" < 0.7$), the system falls back on rule-based pattern matching using linguistic markers identified in the literature @horwath2013transtheoretical @wyker2010behavioral. Confidence thresholds guide behavior: High ($P_"max" >= 0.7$) accepts and proceeds; Medium ($0.5 <= P_"max" < 0.7$) accepts but flags for monitoring; Low ($P_"max" < 0.5$) triggers clarification. The fallback rate (percentage of classifications requiring rule-based pattern matching) will be monitored during Iteration 2 Testing, with a target of less than 20% fallback usage indicating that the model provides reliable classifications for the majority of cases. Stage classifications are tracked across sessions to detect movement, backsliding, or stalling.
 
-  *Step 3: Stage Estimation (TTM).* This step will determine the user's current TTM stage using a two-tier classification approach. A lightweight DistilBERT or BERT-small model will be fine-tuned on TTM-annotated corpus, taking the user's recent conversation window as input and outputting a probability distribution across the five stages. When the model's confidence falls below threshold ($P_"max" < 0.7$), the system will fall back on rule-based pattern matching using linguistic markers (e.g., "should" statements for Contemplation, future tense with specific timing for Preparation, past tense describing recent changes for Action).
+  *Step 4: Intervention Mode Selection.* TTM stage translates to intervention mode via deterministic lookup: Pre-contemplation → Awareness, Contemplation → Ambivalence-resolution, Preparation → Planning, Action → Coping, Maintenance → Relapse-prevention @bridle2009stagematched @kleis2021ttm.
 
-  Confidence thresholds will guide system behavior: High confidence ($P_"max" >= 0.7$) accepts classification and proceeds; Medium confidence ($0.5 <= P_"max" < 0.7$) accepts but flags for monitoring; Low confidence ($P_"max" < 0.5$) triggers a clarification question. The system will track stage classifications across sessions to detect forward movement, backsliding, or stalling.
-
-  *Step 4: Intervention Mode Selection.* This step will translate the TTM stage into intervention mode using a deterministic stage-to-mode lookup table: Pre-contemplation → Awareness, Contemplation → Ambivalence-resolution, Preparation → Planning, Action → Coping, Maintenance → Relapse-prevention. Each mode encompasses a family of dialogue strategies and interaction patterns based on TTM clinical guidelines @bridle2009stagematched @kleis2021ttm.
-
-  *Behavior Change Techniques (BCTs) Framework:* Before proceeding to Step 5, it is essential to understand the intervention toolkit employed by the system. Behavior Change Techniques (BCTs) are specific, observable, and replicable components of behavioral interventions designed to alter psychological determinants of behavior @michie2013behavior. The system will utilize the BCT Taxonomy version 1 (BCTTv1), which provides a standardized classification of 93 distinct techniques organized into 16 hierarchical clusters @michie2013behavior. Each BCT targets specific psychological mechanisms. For example, "Action Planning" (BCT 1.4) enhances Perceived Behavioral Control, while "Information about Health Consequences" (BCT 5.1) strengthens attitudes. The systematic application of BCTs will enable the system to deliver evidence-based intervention strategies rather than generic advice.
+  *Behavior Change Techniques (BCTs) Framework:* The system will utilize the BCT Taxonomy version 1 (BCTTv1), which provides 93 distinct techniques organized into 16 hierarchical clusters @michie2013behavior. Each BCT targets specific psychological mechanisms (e.g., "Action Planning" enhances PBC, "Information about Health Consequences" strengthens attitudes).
 
   #table(
     columns: 4,
@@ -468,23 +466,11 @@ The first iteration will focus on establishing the core system architecture and 
     [Coping strategies, environmental restructuring],
   )
 
-  *Step 5: TPB-Targeted Intervention Choice.* This step will identify the weakest TPB determinant and select an appropriate Behavior Change Technique (BCT) to target that specific psychological barrier. The process will operate through a systematic decision-making framework that combines TPB diagnostic information with TTM stage-appropriate intervention strategies.
+  The complete intervention library contains BCTs covering all 15 possible combinations of TTM stage (5 stages) and weakest TPB determinant (3 constructs), with 2-3 evidence-based BCTs specified for each combination to provide flexibility in intervention selection. The BCT mappings shown in the table above are derived from systematic reviews of behavior change interventions and TTM clinical guidelines @michie2013behavior @prochaska2005transtheoretical, and will be validated by behavioral scientists during Iteration 2 Design to ensure theoretical appropriateness and practical applicability.
 
-  The system will first identify the weakest determinant by comparing the three TPB construct scores computed in Step 2:
+  *Step 5: TPB-Targeted Intervention Choice.* The system identifies the weakest TPB determinant by comparing the three construct scores and selecting the one with the lowest value. It then consults an intervention library mapping (TTM Stage, Weakest TPB Determinant) pairs to specific BCTs from BCTTv1 @michie2013behavior. The balance of TPB versus TTM influence varies by stage: early stages (Pre-contemplation, Contemplation) are TTM-led with TPB providing context; middle stages (Preparation, Action) are TPB-led, directly targeting the weakest determinant; late stage (Maintenance) returns to TTM-led with TPB monitoring as early warning indicators.
 
-  #v(5pt)
-  #align(center)[
-    $ "WeakestDeterminant" = "argmin"_{c in {A, "SN", "PBC"}} "Score"_c $ <eq:weakest-determinant>
-  ]
-  #v(5pt)
-
-  This mathematical approach will ensure that intervention efforts target the most significant psychological barrier rather than applying generic advice. For example, a user with low Perceived Behavioral Control (PBC = 2.1) but adequate Attitude (A = 5.2) and Subjective Norm (SN = 4.8) would have PBC identified as their primary intervention target.
-
-  The system will then consult a predefined intervention library that maps (TTM Stage, Weakest TPB Determinant) pairs to specific Behavior Change Techniques from the BCTTv1 taxonomy @michie2013behavior. This library contains evidence-based BCT selections derived from systematic reviews of digital health interventions. For instance, a user in the Preparation stage with weak PBC might receive "Action Planning" (BCT 1.4) combined with "Graded Tasks" (BCT 8.7), while someone in Contemplation with weak Attitude might receive "Information about Health Consequences" (BCT 5.1) paired with "Pros and Cons" (BCT 9.2).
-
-  The balance of TPB versus TTM influence will vary strategically by stage to optimize intervention effectiveness. In early stages (Pre-contemplation and Contemplation), the approach will be TTM-led with TPB providing contextual understanding. The primary goal will be stage progression rather than directly attacking barriers. In middle stages (Preparation and Action), the approach will become TPB-led with TTM support, directly targeting the weakest determinant since users are ready for specific skill-building. In the late stage (Maintenance), the approach will return to TTM-led with TPB monitoring, focusing on relapse prevention while using TPB scores as early warning indicators of declining motivation.
-
-  *Step 6: Feasible Dish/Plan Generation.* This step will translate the intervention focus into concrete recipe recommendations respecting user constraints. The system will implement a hybrid search architecture with two sequential stages: semantic retrieval followed by constraint-based filtering and re-ranking.
+  *Step 6: Feasible Dish/Plan Generation.* The system implements a hybrid search architecture with two stages: semantic retrieval followed by constraint-based filtering and re-ranking.
 
   #figure(
     fletcher.diagram(
@@ -521,9 +507,35 @@ The first iteration will focus on establishing the core system architecture and 
     caption: [Recipe Recommendation Architecture (Step 6)],
   ) <fig:recipe-arch>
 
-  The first stage will employ semantic search using FAISS (Facebook AI Similarity Search) to efficiently handle the massive RecipeNLG database containing 2.2 million recipes. User context including mentioned food preferences, cooking styles, cultural background, and dietary goals will be encoded into a query vector using the all-MiniLM-L6-v2 embedding model. FAISS will then perform approximate nearest neighbor search using an Inverted File Index (IVF) structure to rapidly identify the top 100 recipes that are semantically most similar to the user's context. This approach will enable real-time performance by avoiding computationally expensive similarity calculations across the entire database, instead leveraging pre-built index structures that compress and organize recipe embeddings for efficient retrieval.
+  Stage 1 employs FAISS semantic search on the RecipeNLG database (2.2M recipes). User context is encoded using all-MiniLM-L6-v2, then FAISS performs approximate nearest neighbor search via Inverted File Index (IVF) to identify the top 100 semantically similar recipes.
 
-  The second stage will apply constraint filtering and multi-criteria re-ranking to the 100 semantically relevant recipes. Constraint filtering will remove recipes that exceed the user's stated limitations regarding preparation time, cooking difficulty, required equipment, and budget constraints. The remaining recipes will then be scored using a weighted multi-criteria formula that balances health optimization with practical feasibility:
+  Stage 2 applies constraint filtering (removing recipes exceeding time, difficulty, equipment, budget limits, plus dietary restrictions/allergies from Step 1), then BCT-driven re-ranking based on the selected intervention strategy:
+
+  #table(
+    columns: (auto, auto, auto, auto),
+    stroke: 0.5pt,
+    align: (left, left, left, left),
+
+    [*BCT*], [*BCT Name*], [*Target Construct*], [*Recipe Features Prioritized*],
+
+    [1.4],
+    [Action Planning],
+    [PBC],
+    [Step-by-step instructions, ingredient prep lists, time estimates, equipment lists],
+
+    [5.1],
+    [Health Consequences],
+    [Attitude],
+    [Nutritional info highlighted, health benefits explained, ingredient benefits],
+
+    [8.7], [Graded Tasks], [PBC], [Beginner-friendly tag, progressive difficulty, simple techniques],
+
+    [9.2], [Pros and Cons], [Attitude], [Taste appeal emphasized, "healthy but delicious" framing],
+
+    [12.5], [Environmental Restructuring], [PBC], [Common ingredients, minimal equipment, pantry staples],
+  )
+
+  Final scoring uses weighted multi-criteria formula:
 
   #v(5pt)
   #align(center)[
@@ -533,106 +545,84 @@ The first iteration will focus on establishing the core system architecture and 
   ]
   #v(5pt)
 
+  where HealthScore is a composite nutritional quality metric (0-1) computed from: (1) nutrient density (vitamins, minerals, fiber per calorie), (2) macronutrient balance, (3) whole food ingredient ratio, and (4) vegetable/fruit content //@mozaffarian2016dietary.
+
   This two-stage approach will ensure that recipe recommendations are both contextually relevant to the user's expressed preferences and practically achievable within their stated constraints, while prioritizing nutritional value and maintaining variety in suggestions.
 
-  *Step 7: Response Generation.* The final step will synthesize all previous analyses into a coherent, natural language response that closes the loop by translating theoretical insights into practical, personalized guidance. This step represents the culmination of the entire pipeline, where stage-appropriate intervention modes, targeted TPB constructs with specific BCTs, and feasible recipe recommendations will be woven together into a supportive message that advances the user's change journey.
+  *Step 7: Response Generation.* The final step synthesizes all previous analyses into a coherent, natural language response. Step 7 receives: conversation history (Step 1), intervention mode and stage context (Step 4), targeted TPB construct and selected BCT (Step 5), ranked recipe recommendations (Step 6), and current TPB/TTM confidence scores.
 
-  *Input Specifications:* Step 7 will receive comprehensive information from all previous steps: conversation history from Step 1 (for context and coherence), intervention mode and stage context from Step 4, targeted TPB construct and selected BCT from Step 5, ranked recipe recommendations with feasibility scores from Step 6, and current TPB/TTM confidence scores for quality assurance. This rich input will enable the generation of responses that are simultaneously theoretically grounded, practically relevant, and conversationally natural.
+  The system employs Llama 3 8B or Mistral 7B as the core language model. Dynamic prompt templates managed through Jinja2 or LangChain incorporate: intervention mode, targeted TPB construct with BCT framing, embedded recipe recommendations with motivational context, and empathetic acknowledgment of the user's situation. Templates are designed to feel conversational rather than prescriptive.
 
-  *Response Generation Architecture:* The system will employ Llama 3 8B or Mistral 7B as the core language model, selected for their balance of performance and computational feasibility. During Iteration 1, base versions of these models will be tested with synthetic datasets to establish baseline performance and refine prompt templates. The models will utilize dynamic prompt templates managed through Jinja2 or LangChain, which store and render mode-specific system prompts that ensure theoretical fidelity while maintaining conversational naturalness.
-
-  *Prompt Template Structure:* Each response will be generated using a structured template that incorporates the intervention mode (awareness, ambivalence-resolution, planning, coping, or relapse-prevention), the targeted TPB construct with appropriate BCT framing, embedded recipe recommendations with motivational context, and empathetic acknowledgment of the user's current situation and progress. The templates will be designed to feel conversational rather than prescriptive, using language that matches the user's stage of readiness and psychological barriers.
-
-  *Quality Assurance and Fallbacks:* Before delivery, each generated response will undergo validation checks including theoretical consistency (does the response align with the selected intervention mode and BCT?), practical feasibility (are the suggested recipes appropriate for the user's constraints?), conversational coherence (does the response flow naturally from the conversation history?), and safety screening (does the response avoid harmful or inappropriate nutritional advice?). If any check fails, the system will fall back to a templated response that acknowledges the limitation and redirects constructively.
-
+  *Quality Assurance and Safety Checks.* Before delivery, responses undergo a multi-layered validation pipeline to ensure safety and appropriateness. First, theoretical consistency is verified by checking that the response aligns with the selected intervention mode and BCT using keyword matching and semantic similarity scoring against mode-specific reference responses. Second, practical feasibility is validated by confirming that recommended recipes match the user's stated constraints (time, budget, skill level, dietary restrictions) through automated constraint checking. Third, conversational coherence is assessed by verifying that the response flows naturally from the conversation history using perplexity scoring and context relevance metrics. Fourth, safety screening is performed using a rule-based filter that flags potentially harmful content including: extreme caloric restrictions, elimination of entire food groups without medical justification, medical claims or diagnoses (e.g., "this will cure your diabetes"), supplement or medication recommendations, and weight loss promises or guarantees. Additionally, a keyword blocklist screens for inappropriate language, stigmatizing terms related to body image, or overly prescriptive medical advice. If any check fails, the system falls back to a pre-validated templated response that acknowledges the limitation (e.g., "I want to make sure I give you the best advice. Let me ask a few more questions to understand your situation better") and redirects the conversation constructively. All flagged responses are logged for expert review during the testing phase to refine the safety filters.
 
 ][*Development*
 
-  During the development phase, the seven-step pipeline will be implemented using synthetic datasets. The basic conversation management framework will be implemented using LangChain, providing the foundation for dialogue flow and state tracking. Prototype TPB inference will be developed using off-the-shelf models in zero-shot mode, without fine-tuning at this stage, to establish baseline functionality. The RAG pipeline will be built with FAISS vector search on the RecipeNLG dataset, enabling semantic recipe retrieval based on user context and constraints. Initial versions of all seven pipeline steps will be created with mock confidence propagation to test the flow of information through the system. The dialogue state tracker will be implemented with basic clarification logic to handle ambiguous or incomplete user responses.
+  The seven-step pipeline will be implemented using placeholder datasets. LangChain will provide conversation management, off-the-shelf models will establish baseline TPB inference (zero-shot mode), and FAISS will enable semantic recipe retrieval on RecipeNLG. Initial versions of all seven steps will be created with mock confidence propagation. The dialogue state tracker will include basic clarification logic.
 
 ][*Testing*
 
-  The testing phase will involve conducting technical validation of component functionality to ensure the system operates as designed. End-to-end connectivity between all seven steps will be verified to confirm that data flows correctly through the pipeline without breaking. Conversation flow will be tested with simulated user interactions using the synthetic dialogues, evaluating whether the system can maintain coherent multi-turn conversations. Response latency will be measured for different LLM backbones, specifically comparing Llama 3 8B and Mistral 7B, to identify performance bottlenecks and inform model selection. The system will validate that confidence scores propagate correctly through the pipeline, ensuring that low-confidence outputs in early steps trigger appropriate clarification mechanisms in later steps. Bottlenecks and failure points in the architecture will be identified and documented for refinement.
+  The testing phase will conduct technical validation of component functionality. End-to-end connectivity between all seven steps will be verified to confirm that data flows correctly through the pipeline. Conversation flow will be tested with simulated user interactions using the placeholder dialogues, evaluating whether the system can maintain coherent multi-turn conversations. Response latency will be measured for different language model backbones, specifically comparing Llama 3 8B and Mistral 7B, to identify performance bottlenecks and inform model selection. The system will validate that confidence scores propagate correctly through the pipeline, ensuring that low-confidence outputs in early steps trigger appropriate clarification mechanisms in later steps. Bottlenecks and failure points in the architecture will be identified and documented for refinement.
 
-  Success criteria for Iteration 1 will be assessed through several key questions. Does the pipeline complete all seven steps without breaking? Can the system maintain coherent conversations over multiple turns? Are theoretical constructs being elicited naturally in the conversation? What are the baseline performance metrics for future comparison? These questions will guide the evaluation and inform the refinement phase.
+  Success criteria for Iteration 1 will be assessed through several key questions: Does the pipeline complete all seven steps without breaking? Can the system maintain coherent conversations over multiple turns? Are theoretical constructs being elicited naturally in the conversation? What are the baseline performance metrics for future comparison?
 
 ][*Review*
 
-  The final phase of the first iteration will consist of analyzing the pipeline's overall performance and identifying areas for improvement. Prompt templates will be updated based on conversation flow observations, refining the naturalness and theoretical alignment of system utterances. Dialogue state tracker logic will be refined to better capture user inputs and detect when constructs have been sufficiently discussed. Clarification strategies will be adjusted based on simulated user responses, improving the system's ability to handle ambiguous inputs. A prioritized list of improvements for Iteration 2 will be created, focusing on areas where the prototype shows limitations or where real user data would enable significant enhancements. Baseline performance metrics will be documented, including latency measurements, conversation coherence scores, and construct coverage rates, providing a foundation for measuring progress in subsequent iterations.
-
-  The outputs of Iteration 1 will include a functional pipeline prototype with documented architecture, conversation flow specifications detailing how each step operates and connects to others, initial prompt templates for all intervention modes, baseline performance metrics establishing the starting point for improvement, and a comprehensive requirements document that guides all subsequent iterations.
+  The review phase will analyze pipeline performance and identify improvements. Prompt templates will be updated based on conversation flow observations. Dialogue state tracker logic will be refined to better capture user inputs and detect sufficient construct coverage. Clarification strategies will be adjusted based on simulated responses. A prioritized improvement list for Iteration 2 will be created. Baseline performance metrics will be documented (latency, conversation coherence, construct coverage rates).
 ]
 
 === Iteration 2:
-
 The second iteration will incorporate the preliminary survey data collected from the target population. Building on the requirements established in Iteration 1, this iteration will focus on training and validating the core inference models.
 
 #enum(numbering: "A)", spacing: 1.5em)[
   *Design*
 
-  Building on the foundation of Iteration 1, the design phase in Iteration 2 will focus on integrating real user data and enhancing the system's inference capabilities through model fine-tuning. The preliminary survey data from both Stage 1 (qualitative) and Stage 2 (quantitative) will become available at this point, including open-ended responses paired with TPB Likert-scale scores, TTM stage classifications from standard staging questions, and demographic and contextual metadata.
+  Iteration 2 will focus on integrating real user data and enhancing inference capabilities through model fine-tuning. The preliminary survey data will include open-ended responses paired with TPB Likert-scale scores, TTM stage classifications from standard staging questions, and demographic metadata.
 
-  *Theme Taxonomy Development.* Through thematic analysis of Stage 1 qualitative responses, a comprehensive theme taxonomy will be established. Responses will be analyzed using thematic analysis to identify recurring patterns and barriers. Each theme (such as "time scarcity," "cost concerns," "family pressure," "cooking skills deficit," "taste expectations," "social eating pressures") will be systematically mapped to TPB constructs with association weights. For example, "time scarcity" maps primarily to PBC with weight $m_{"ic"} = 0.9$, but may also influence Attitude with $m_{"ic"} = 0.3$. The mapping will be established through expert review by behavioral scientists and validated during the preliminary phase.
+  *Theme Taxonomy Development.* Thematic analysis of qualitative responses will establish a comprehensive theme taxonomy. Each theme (e.g., "time scarcity," "cost concerns," "family pressure") will be systematically mapped to TPB constructs with association weights. For example, "time scarcity" maps primarily to PBC with weight $m_{"ic"} = 0.9$, but may also influence Attitude with $m_{"ic"} = 0.3$. The mapping will be established through expert review by behavioral scientists.
 
-  *Model Architecture Refinement for Step 2 (TPB Construct Inference).* Two competing approaches will be designed for TPB construct inference to determine the optimal method for the target population. DeBERTa-v3 (base or large) will serve as the primary approach for multi-label theme classification, fine-tuned on the manually annotated corpus from the preliminary survey using binary cross-entropy loss with class weights to address imbalance in theme frequencies. The dataset will be split 80/10/10 for training, validation, and testing, with an acceptance threshold of F1 > 0.80 required for deployment. RoBERTa-base with regression head will serve as the alternative approach, bypassing explicit theme detection to directly predict continuous scores for Attitude, Subjective Norm, and Perceived Behavioral Control from text. This provides a direct pathway that captures holistic patterns without intermediate theme classification. A keyword dictionary derived from thematic analysis will serve as fallback when neural model confidence is low (< 0.6).
+  *Model Architecture Refinement for Step 2 (TPB Construct Inference).* Multiple transformer architectures will be evaluated for multi-label theme classification: DeBERTa-v3-base, DeBERTa-v3-large, and RoBERTa-base. All models will be fine-tuned using binary cross-entropy loss with class weights to address theme frequency imbalance (dataset split 80/10/10, acceptance threshold F1 > 0.80). The best-performing model will be selected based on validation performance. A keyword dictionary will serve as fallback when neural model confidence is low (< 0.6).
 
   #table(
     columns: (auto, auto, auto, auto),
     stroke: 0.5pt,
     align: (left, left, left, left),
 
-    [*Component*], [*DeBERTa-v3 Approach*], [*RoBERTa Approach*], [*Selection Criteria*],
+    [*Component*], [*DeBERTa-v3-base*], [*DeBERTa-v3-large*], [*RoBERTa-base*],
 
-    [Input], [Conversation window (3-5 turns)], [Conversation window (3-5 turns)], [Same for both approaches],
+    [Parameters], [~184M], [~435M], [~125M],
+
+    [Input], [Conversation window (3-5 turns)], [Conversation window (3-5 turns)], [Conversation window (3-5 turns)],
 
     [Processing],
     [Multi-label theme classification → TPB mapping],
-    [Direct regression to TPB scores],
-    [Performance comparison on validation set],
+    [Multi-label theme classification → TPB mapping],
+    [Multi-label theme classification → TPB mapping],
 
     [Output],
     [Theme confidence scores → construct scores],
-    [Direct TPB construct scores],
-    [Accuracy (MAE < 0.5), correlation with ground truth],
+    [Theme confidence scores → construct scores],
+    [Theme confidence scores → construct scores],
 
-    [Advantages],
-    [Interpretable, theory-aligned, explainable],
-    [Direct, potentially more accurate, simpler],
-    [Empirical evaluation: F1 > 0.80, MAE < 0.5],
+    [Selection Criteria],
+    [F1 score, inference speed, interpretability],
+    [F1 score, inference speed, interpretability],
+    [F1 score, inference speed, interpretability],
 
     [Fallback],
     [Keyword dictionary when confidence < 0.6],
     [Keyword dictionary when confidence < 0.6],
-    [Same fallback mechanism for both],
+    [Keyword dictionary when confidence < 0.6],
   )
 
-  The scoring formula will incorporate population-specific regression weights derived from the Stage 2 quantitative survey. Multiple linear regression analysis will yield standardized coefficients representing the relative contribution of each construct to behavioral intention:
+  *Model Architecture Refinement for Step 3 (TTM Stage Classification).* DistilBERT or BERT-small will be fine-tuned on the TTM-annotated corpus, where open-ended responses are paired with stage labels from standard TTM staging questions @greene1994stages. The model will take the user's recent conversation window (up to 512 tokens) and output a probability distribution across the five stages. When confidence falls below threshold, the system will fall back on rule-based heuristics.
 
-  #v(5pt)
-  #align(center)[
-    $ "BI" = beta_0 + beta_1 A + beta_2 "SN" + beta_3 "PBC" + epsilon $ <eq:regression>
-  ]
-  #v(5pt)
+  *Model Architecture Refinement for Step 3 (TTM Stage Classification).* DistilBERT or BERT-small will be fine-tuned on the TTM-annotated corpus, where open-ended responses are paired with stage labels from standard TTM staging questions @greene1994stages. The model will take the user's recent conversation window (up to 512 tokens) and output a probability distribution across the five stages. When confidence falls below threshold, the system will fall back on rule-based pattern matching using linguistic markers @horwath2013transtheoretical @wyker2010behavioral.
 
-  These coefficients ($w_i$) will be used to calibrate the importance of each theme within its associated construct, ensuring that the computational model reflects empirically observed relationships rather than arbitrary assumptions.
+  *Confidence Threshold Calibration.* For Step 2, when model confidence for any construct falls below 0.6, the system will flag the need for clarification. For Step 3: high confidence ($P_"max" >= 0.7$) accepts classification and proceeds; medium confidence ($0.5 <= P_"max" < 0.7$) accepts but flags for monitoring; low confidence ($P_"max" < 0.5$) triggers a clarification question. These thresholds are set conservatively based on preliminary validation during Iteration 1, where analysis of model outputs showed that predictions below 0.6 confidence for TPB constructs and 0.7 for TTM stages exhibited substantially higher error rates. The 0.6 threshold for TPB reflects the multi-label nature of theme classification where multiple constructs may be relevant simultaneously, requiring a lower bar to avoid excessive clarification requests. The 0.7 threshold for TTM reflects the mutually exclusive nature of stage classification where higher certainty is needed before committing to a specific intervention mode. These initial thresholds will be empirically refined during Iteration 2 testing based on precision-recall tradeoffs observed in validation data, balancing the need for accurate inferences against user experience concerns about excessive clarification questions.
 
-  *Model Architecture Refinement for Step 3 (TTM Stage Classification).* The TTM stage classifier will employ a two-tier approach. DistilBERT or BERT-small will be fine-tuned on the TTM-annotated corpus from the preliminary survey, where open-ended responses are paired with stage labels from standard TTM staging questions. The model will take the user's recent conversation window (up to 512 tokens) as input and output a probability distribution across the five stages:
+  *Validation Protocols.* Models will be evaluated using 80/10/10 train/validation/test splits. Metrics include: precision, recall, and F1-score for theme classification (target: F1 > 0.80); Mean Absolute Error (MAE), Root Mean Square Error (RMSE), and R² for TPB construct scoring (target: MAE < 0.5); and accuracy, precision, recall, and weighted F1-score for TTM stage classification (target: F1 > 0.80). Pearson correlation $r$ between inferred and survey-measured scores will be tracked.
 
-  #v(5pt)
-  #align(center)[
-    $ P("stage" = s | text) = "softmax"(W dot.op h + b) $ <eq:stage-prob>
-  ]
-  #v(5pt)
-
-  The predicted stage is the one with highest probability. When confidence falls below threshold, the system will fall back on rule-based pattern matching using linguistic markers identified in the literature @horwath2013transtheoretical @wyker2010behavioral.
-
-  *Confidence Threshold Calibration.* Confidence thresholds will be defined based on validation performance to optimize the trade-off between precision and coverage. For Step 2, when model confidence for any construct falls below 0.6, or when themes are detected but mapping weights are ambiguous, the system will flag the need for clarification. For Step 3, high confidence ($P_"max" >= 0.7$) accepts classification and proceeds; medium confidence ($0.5 <= P_"max" < 0.7$) accepts but flags for monitoring; low confidence ($P_"max" < 0.5$) triggers a clarification question.
-
-  *Validation Protocols.* Rigorous validation protocols will be established with 80/10/10 train/validation/test splits. Model performance will be evaluated using precision, recall, and F1-score for theme classification (target: F1 > 0.80), Mean Absolute Error (MAE), Root Mean Square Error (RMSE), and R² for TPB construct scoring (target: MAE < 0.5), and accuracy, precision, recall, and weighted F1-score for TTM stage classification (target: F1 > 0.80). Pearson correlation $r$ between inferred and survey-measured scores will be tracked as a key quality metric.
-
-  *Longitudinal Tracking Mechanisms.* The system will maintain a rolling window of recent inferences to track changes across sessions, capturing TPB constructs and TTM stages as they naturally evolve during the user's behavior change journey.
-
-  For each session, TPB construct scores will be computed at the turn level and then aggregated using exponential smoothing, a standard technique in EMA data analysis for balancing recent observations with historical trends:
+  *Longitudinal Tracking Mechanisms.* The system will maintain a rolling window of recent inferences to track changes across sessions. TPB construct scores will be aggregated using exponential smoothing:
 
   #v(5pt)
   #align(center)[
@@ -640,10 +630,8 @@ The second iteration will incorporate the preliminary survey data collected from
   ]
   #v(5pt)
 
-  where λ = 0.4 gives less weight to recent utterances in order to preserve historical context @bassett-gunterOhBabyMotivation2013. This exponential moving average (EMA) formula will allow the system to detect gradual shifts in psychological constructs while filtering out momentary fluctuations that do not represent true change. TTM stage classifications will be tracked across sessions to detect forward movement, backsliding, or stalling, with session-level stage estimates computed as the mode across turns within each session. Stage transitions will be detected when the current session stage differs from the previous session stage, enabling the system to adapt intervention strategies based on user progress.
+  where λ = 0.4 balances recent observations with historical trends @bassett-gunterOhBabyMotivation2013. TTM stage classifications will be tracked across sessions to detect forward movement, backsliding, or stalling, with session-level stage estimates computed as the mode across turns within each session. Stage transitions are confirmed only when the new stage persists across at least 2 consecutive sessions to filter out temporary fluctuations or misclassifications. For example, if a user is classified as Contemplation in Session 1, then Preparation in Session 2, the system will tentatively note the transition but continue monitoring; only when Session 3 also indicates Preparation (or a further forward stage) will the transition be confirmed and intervention strategies adjusted accordingly. This conservative approach prevents the system from prematurely shifting intervention modes based on momentary changes in user language that may not reflect genuine psychological shifts.
 
-
-  //change something about the smoothing as
   #figure(
     fletcher.diagram(
       node-stroke: 1pt,
@@ -699,8 +687,11 @@ The second iteration will incorporate the preliminary survey data collected from
 
 ][*Testing*
 
+  // OBJECTIVE 2: TPB construct inference validation - measuring accuracy of psychological barrier identification
+  // OBJECTIVE 3: TTM stage classification validation - measuring accuracy of readiness detection
   The testing phase will conduct both technical validation and initial pilot testing to assess the system's performance with real models and real users. Technical validation will measure precision, recall, and F1-score for theme classification, with a target of F1 > 0.80 to ensure reliable theme detection. Mean Absolute Error (MAE), Root Mean Square Error (RMSE), and R² will be calculated for TPB construct scoring, with a target of MAE < 0.5 to ensure scores closely match ground truth values from the survey. Stage classification accuracy and weighted F1-score will be evaluated with a target of F1 > 0.80, accounting for class imbalance across the five TTM stages. Confidence threshold logic will be tested with validation data to verify that low-confidence cases trigger appropriate clarification mechanisms. Performance will be compared against Iteration 1 baseline metrics to quantify improvements from model fine-tuning.
 
+  // OBJECTIVE 1: Conversational naturalness evaluation - pilot testing conversation quality
   Initial pilot testing will be conducted with a small user group of 10-15 participants recruited from the target population (Filipino young adults, ages 18-40, Davao City). Each participant will complete 2-3 conversation sessions with the system, allowing observation of multi-session interactions and stage progression. Conversational logs will be collected for analysis, examining conversation flow, construct coverage, and system responses. Qualitative feedback will be gathered on conversation naturalness and relevance, identifying areas where the system feels robotic or where responses miss the mark.
 
 
@@ -715,24 +706,22 @@ The second iteration will incorporate the preliminary survey data collected from
 
 === Iteration 3:
 
-The third iteration will focus on polishing the system based on insights from pilot testing, addressing edge cases, and preparing for comprehensive evaluation and deployment. A key enhancement in this iteration is the implementation of dynamic weight reestimation, which allows the system to continuously learn from accumulated user data and adapt intervention targeting strategies based on observed effectiveness across the user population.
+The third iteration will focus on polishing the system based on insights from pilot testing, addressing edge cases, and preparing for comprehensive evaluation. A key enhancement is the implementation of dynamic weight reestimation, which allows the system to continuously learn from accumulated user data and adapt intervention targeting strategies.
 
 #enum(numbering: "A)", spacing: 1.5em)[
   *Design*
 
-  Building on the refinements of the first and second iterations, Iteration 3 will focus on final integration and optimization, incorporating all accumulated feedback and emerging insights from pilot testing in Iteration 2. The design phase will address four major areas of enhancement.
+  Iteration 3 will focus on final integration and optimization, incorporating feedback from pilot testing in Iteration 2. The design phase will address four major areas.
 
-  Fallback strategy enhancement will be prioritized to handle edge cases and low-confidence scenarios more gracefully. Fallback strategy designs will be created for low-confidence scenarios using decision trees that systematically determine the best course of action when primary models fail. The BCT-to-recipe adaptation logic will be enhanced based on user feedback from Iteration 2, ensuring that recipe recommendations better align with the selected behavior change technique. Clarification dialogue patterns will be refined for ambiguous user inputs, making the system more adept at handling unclear or contradictory statements. Tone and empathy guidelines will be developed for response generation, ensuring that the system maintains a supportive, non-judgmental voice even when delivering corrective feedback or addressing sensitive topics.
+  *Fallback Strategy Enhancement.* Decision trees will be created for low-confidence scenarios to systematically determine the best course of action when primary models fail. The BCT-to-recipe adaptation logic will be enhanced based on user feedback. Clarification dialogue patterns will be refined for ambiguous inputs. Tone and empathy guidelines will be developed for response generation.
 
-  User experience improvements will be prioritized based on feedback collected during Iteration 2 pilot testing. Conversation flow will be refined to address areas where users report confusion or feel the interaction is unnatural. Response timing and pacing will be adjusted based on observations of when users disengage or seem overwhelmed. The system's ability to handle topic shifts and tangential conversations will be improved, allowing for more natural dialogue that doesn't feel rigidly scripted. Error messages and clarification requests will be rewritten to be more user-friendly and less technical. The overall interaction design will be polished to reduce friction points identified during pilot testing, such as repetitive questions or overly long system responses.
+  *User Experience Improvements.* Based on Iteration 2 pilot testing feedback, conversation flow will be refined to address confusion points. Response timing and pacing will be adjusted. The system's ability to handle topic shifts and tangential conversations will be improved. Error messages and clarification requests will be rewritten to be more user-friendly.
 
-  Longitudinal tracking mechanisms will be enhanced to support sustained behavior change over time. Sophisticated tracking will be implemented to detect TPB and TTM changes across sessions, enabling the system to recognize gradual shifts in user psychology. The enhanced system will maintain comprehensive longitudinal records including conversation history (appended turns for context preservation), smoothed TPB scores using exponential smoothing to track gradual psychological changes, and persistent TTM stage monitoring where stage changes are confirmed only when they persist across 2+ sessions to avoid noise from temporary fluctuations. An early warning system will be developed for relapse risk based on declining PBC scores, allowing the system to proactively intervene when users show signs of losing confidence or control. This longitudinal data will feed back into Step 1 for future sessions, creating a closed-loop design that enables continuous monitoring and adaptation based on user progress over time.
+  *Longitudinal Tracking Mechanisms.* Enhanced tracking will detect TPB and TTM changes across sessions. The system will maintain: conversation history for context preservation, smoothed TPB scores using exponential smoothing, and persistent TTM stage monitoring where stage changes are confirmed only when they persist across 2+ sessions. An early warning system will be developed for relapse risk based on declining PBC scores.
 
-  Dynamic weight reestimation will be implemented to enable the system to continuously learn from accumulated user data and adapt intervention targeting strategies based on observed effectiveness. The system tracks TPB construct scores (Attitude, Subjective Norm, Perceived Behavioral Control) across user sessions using EMA smoothing with λ = 0.4, as established in Iteration 2. Each session produces smoothed scores for all three constructs, and TTM stage transitions (forward movement, stalling, or backsliding) are recorded per session. This rich longitudinal data will enable group-level learning that improves intervention targeting over time.
+  *Dynamic Weight Reestimation.* The system will continuously learn from accumulated user data. Every 50 new sessions accumulated across all users, the system will run a regression analysis where the outcome variable is TTM stage progression encoded as: +1 for forward movement, 0 for stalling, and -1 for backsliding. The predictor variables will be the per-session delta values of each smoothed TPB construct: ΔAttitude, ΔSubjective Norm, and ΔPBC.
 
-  *Group-Level Weight Reestimation Mechanism.* Every 50 new sessions accumulated across all users, the system will run a regression analysis where the outcome variable is TTM stage progression encoded as: +1 for forward movement (e.g., Contemplation → Preparation), 0 for stalling (remaining in the same stage), and -1 for backsliding (e.g., Action → Preparation). The predictor variables will be the per-session delta values of each smoothed TPB construct: ΔAttitude, ΔSubjective Norm, and ΔPBC, computed as the difference between the current session's smoothed score and the previous session's smoothed score for each construct.
-
-  The regression model will take the form:
+  The regression model:
 
   #v(5pt)
   #align(center)[
@@ -742,9 +731,9 @@ The third iteration will focus on polishing the system based on insights from pi
   ]
   #v(5pt)
 
-  The resulting regression coefficients ($beta_1$, $beta_2$, $beta_3$) will represent the empirically observed relationship between changes in each TPB construct and stage progression across the user population. These coefficients will become the updated intervention targeting weights, determining which TPB construct the system prioritizes for intervention in Step 5 of the pipeline. Constructs with larger positive coefficients will be weighted more heavily, as they demonstrate stronger associations with successful behavior change progression.
+  The resulting coefficients ($beta_1$, $beta_2$, $beta_3$) will become the updated intervention targeting weights, determining which TPB construct the system prioritizes in Step 5. Constructs with larger positive coefficients will be weighted more heavily.
 
-  *Cold Start and Weight Smoothing.* Before sufficient data exists for reliable estimation (fewer than 50 sessions), the system will use the static preliminary survey regression weights from Iteration 2 as defaults. This ensures that the system can operate effectively from the start while gradually transitioning to data-driven weights as evidence accumulates. When new weights are estimated, they will not replace the old weights abruptly to avoid instability from sampling variance. Instead, exponential moving average (EMA) smoothing will be applied to the weights themselves:
+  *Cold Start and Weight Smoothing.* Before sufficient data exists (fewer than 50 sessions), the system will use static preliminary survey regression weights from Iteration 2. When new weights are estimated, exponential moving average smoothing will be applied:
 
   #v(5pt)
   #align(center)[
@@ -795,56 +784,34 @@ The third iteration will focus on polishing the system based on insights from pi
     caption: [Dynamic Weight Reestimation: Continuous Learning Cycle],
   ) <fig:dynamic-weights>
 
-  A more conservative update rate of λ = 0.3 will be used here compared to the λ = 0.4 applied to individual TPB score smoothing, reflecting the greater stability required when updating shared population-level weights which prevents big shifts in intervention strategy based on potentially noisy estimates from small batches of data. The smoothed weights will feed into Step 5 of the pipeline (TPB-Targeted Intervention Choice), adjusting how the weakest determinant is identified and prioritized for intervention. This creates a continuous learning loop where the system's intervention targeting strategy evolves based on what actually works for the user population, rather than relying solely on static assumptions from preliminary survey data.
+  A more conservative update rate of λ = 0.3 will be used here compared to the λ = 0.4 applied to individual TPB score smoothing, preventing large shifts in intervention strategy based on potentially noisy estimates. The smoothed weights will feed into Step 5, adjusting how the weakest determinant is identified and prioritized. This creates a continuous learning loop where the system's intervention targeting strategy evolves based on what actually works for the user population.
 
 ][*Development*
 
-  During the development phase, the enhancements outlined in the design will be systematically implemented across the pipeline. Fallback mechanisms will be created for low-confidence scenarios in Steps 2 and 3, providing alternative pathways when primary models cannot make confident predictions. Rule-based pattern matching for stage classification will be expanded and refined, incorporating additional linguistic markers identified during pilot testing. User experience improvements will be implemented based on Iteration 2 feedback, including refinements to conversation pacing, response length optimization, and more natural handling of topic shifts. Sophisticated clarification strategies will be implemented in Step 1, enabling the system to ask more targeted and natural follow-up questions when user responses are ambiguous. Response generation prompts will be optimized for better tone and empathy in Step 7, fine-tuning the language model to produce more supportive and engaging responses. Session-to-session tracking will be added for TPB construct scores and TTM stage, enabling the system to detect changes over time and adapt its approach accordingly.
-
+  The enhancements outlined in the design will be systematically implemented. Fallback mechanisms will be created for low-confidence scenarios in Steps 2 and 3. Rule-based pattern matching for stage classification will be expanded. User experience improvements will be implemented based on Iteration 2 feedback, including conversation pacing refinements, response length optimization, and natural handling of topic shifts. Sophisticated clarification strategies will be implemented in Step 1. Response generation prompts will be optimized for better tone and empathy in Step 7. Session-to-session tracking will be added for TPB construct scores and TTM stage.
 ][*Testing*
 
-  The testing phase in this final iteration will evaluate the system's overall performance using both automated benchmarks and human assessments, representing the most comprehensive evaluation of the entire development process.
+  The testing phase will evaluate the system's overall performance using both automated benchmarks and human assessments.
 
-  Technical validation will test fallback mechanisms with edge case scenarios, deliberately providing ambiguous or contradictory inputs to verify that the system handles them gracefully. User experience improvements will be validated through usability testing, ensuring that changes made based on Iteration 2 feedback actually improve the interaction quality. System usability will be measured with the target population using the System Usability Scale (SUS), a standardized questionnaire that assesses perceived ease of use and satisfaction. Engagement metrics will be tracked including session duration, conversation length, and dropout rates, providing quantitative indicators of user engagement and system stickiness.
+  Technical validation will test fallback mechanisms with edge case scenarios, deliberately providing ambiguous or contradictory inputs to verify graceful handling. User experience improvements will be validated through usability testing. System usability will be measured using the System Usability Scale (SUS), a standardized questionnaire assessing perceived ease of use and satisfaction. Engagement metrics will be tracked including session duration, conversation length, and dropout rates.
 
-  Expert evaluation will be done by registered nutritionists and linguistic experts to review system outputs. At least 2 nutritionists will review 100 randomly sampled system responses, rating each response on nutritional safety, appropriateness, and relevance using a 1-5 scale. The target will be set at ≥85% of responses rated as nutritionally safe (score ≥ 3), ensuring that the system does not provide harmful or misleading nutritional advice. Linguistic experts will review conversation naturalness and appropriateness, assessing whether the system's language feels authentic and maintains proper tone throughout interactions.
+  Expert evaluation will be conducted by registered nutritionists and linguistic experts. At least 2 nutritionists will review 100 randomly sampled system responses, rating each on nutritional safety, appropriateness, and relevance using a 1-5 scale. The target will be ≥85% of responses rated as nutritionally safe (score ≥ 3).
 
-  Comprehensive user testing will be conducted with a larger sample of 30-50 participants selected from the target population. Each participant will complete 5-7 conversation sessions over 2-3 weeks, allowing observation of sustained engagement and longitudinal behavior change. Pre/post surveys will be administered measuring TPB constructs and TTM stage, enabling quantitative assessment of psychological and behavioral changes. System Usability Scale (SUS) scores will be collected with a target of SUS > 68 (above average), benchmarking the system against established usability standards. Behavioral outcomes will be tracked including stage progression (did users move forward through TTM stages?) and changes in TPB scores (did attitudes, norms, or PBC improve?).
+  Conversational naturalness will be assessed through multiple methods. Linguistic experts will rate 50 randomly sampled conversation transcripts on a 5-point scale across four dimensions: (1) fluency and coherence (responses flow naturally and make sense in context), (2) appropriateness (tone and language match the conversational situation), (3) engagement quality (responses encourage continued dialogue without feeling interrogative), and (4) empathy and supportiveness (responses acknowledge user concerns non-judgmentally). The target will be an average rating ≥ 3.5 across all dimensions. Additionally, user perception of naturalness will be captured through post-session questionnaires asking participants to rate on a 5-point scale: "The conversation felt natural and human-like" and "The system's responses felt relevant to what I said." Qualitative feedback will be collected through open-ended questions asking users to describe moments where the conversation felt awkward or robotic.
+
+  Comprehensive user testing will be conducted with 30-50 participants from the target population using a quasi-experimental design to assess system effectiveness. Participants will be randomly assigned to either the intervention group (using AliMind) or a comparison group (using a generic nutrition chatbot without TPB/TTM integration). The comparison chatbot will provide general nutrition information and recipe suggestions based on stated preferences but will not assess psychological constructs or deliver stage-matched interventions. This design allows evaluation of whether theory-driven personalization produces measurably better outcomes than generic conversational support.
+
+  Each participant will complete 5-7 conversation sessions over 2-3 weeks, allowing observation of sustained engagement and longitudinal behavior change. Pre/post surveys will be administered measuring TPB constructs and TTM stage. System Usability Scale scores will be collected with a target of SUS > 68 (above average). Behavioral outcomes will be tracked including stage progression and changes in TPB scores. Between-group comparisons will assess whether the intervention group shows greater improvements in TPB scores, higher rates of TTM stage progression, and better engagement metrics compared to the comparison group. While this preliminary comparison cannot establish definitive causal claims about effectiveness, it provides initial evidence of whether theory-driven personalization offers advantages over generic conversational support.
 
 ][*Review*
 
-  The final review phase will entail a thorough analysis of the system, capturing all lessons learned and verifying that the tool meets the highest standards of accuracy and usability. Performance assessment will address several critical questions. Does the system meet all technical performance thresholds established in earlier iterations? Are ≥85% of responses rated as nutritionally safe by expert nutritionists? Is the SUS score > 68, indicating above-average usability? Are there demonstrable shifts in TPB scores or TTM stage progression among users, suggesting actual behavior change? Do users report positive experiences and therapeutic alliance, indicating that the system successfully builds rapport and trust?
+  The final review phase will analyze the system thoroughly, capturing lessons learned and verifying that the tool meets standards of accuracy and usability. Performance assessment will address: Does the system meet all technical performance thresholds? Are ≥85% of responses rated as nutritionally safe? Is the SUS score > 68? Are there demonstrable shifts in TPB scores or TTM stage progression? Do users report positive experiences and therapeutic alliance?
 
-  Documentation efforts will finalize all aspects of the system for potential deployment. The final system architecture and design decisions will be documented, providing a complete technical specification for future developers or researchers. User guidelines and disclosure statements will be created, ensuring that end-users understand the system's capabilities, limitations, and appropriate use cases. Deployment protocols will be prepared for larger-scale validation, outlining the steps necessary to move from research prototype to production system. Limitations and future improvement opportunities will be documented, honestly acknowledging where the system falls short and where future research could enhance its effectiveness.
+  Documentation efforts will finalize all aspects for potential deployment. The final system architecture and design decisions will be documented. User guidelines and disclosure statements will be created. Deployment protocols will be prepared for larger-scale validation. Limitations and future improvement opportunities will be documented.
 
-  The outputs of Iteration 3 will include a production-ready prototype with refined fallback mechanisms that handle edge cases gracefully, improved user experience based on pilot testing feedback, optimized response generation that maintains empathy and theoretical fidelity, comprehensive evaluation reports covering technical performance, expert validation, and user outcomes, and final system documentation suitable for deployment or further research.
+  Outputs: production-ready prototype with refined fallback mechanisms, improved user experience, optimized response generation, comprehensive evaluation reports, and final system documentation.
 
 ]
-
-== Summary of Iterative Development
-
-#table(
-  columns: (auto, auto, auto, auto),
-  stroke: 0.5pt,
-  align: (left, left, left, left),
-
-  [*Iteration*], [*Primary Focus*], [*Data Source*], [*Key Outputs*],
-
-  [1: Prototyping],
-  [System architecture and pipeline connectivity],
-  [Synthetic dialogues (openCHA, MHC-Coach)],
-  [Functional prototype, baseline metrics, architecture documentation],
-
-  [2: Model Training],
-  [Fine-tuning inference models on real data],
-  [Preliminary survey (qualitative + quantitative)],
-  [Trained models, theme taxonomy, validation metrics, pilot feedback],
-
-  [3: Refinement],
-  [Fallbacks, cultural adaptation, comprehensive evaluation],
-  [Pilot testing logs, expert reviews, user testing],
-  [Production-ready system, evaluation reports, deployment documentation],
-)
 
 #v(10pt)
 
@@ -1010,3 +977,13 @@ If during the course of the study, a participant discloses information suggestin
 This research protocol will undergo expert review by a registered nutritionist-dietitian before deployment to ensure that all nutritional guidance, recipe recommendations, and dietary advice provided by the system are safe, evidence-based, and appropriate for the target population. The nutritionist will review the system's intervention logic, behavior change technique mappings, and sample outputs to verify alignment with established nutritional principles and dietary guidelines.
 
 During the pilot testing phase, the nutritionist will conduct ongoing review of system responses, rating a random sample of at least 100 interactions for nutritional safety and appropriateness. Any recommendations flagged as potentially unsafe or inappropriate will trigger immediate system refinement. The nutritionist will also validate that the system appropriately handles edge cases, such as users who may have underlying health conditions, by ensuring the system directs such individuals to consult healthcare professionals rather than providing specific medical advice.
+
+=== Algorithmic Risks and Mitigation Strategies
+
+Several algorithmic and system-level risks require consideration. Algorithmic bias may emerge if the NLP models trained on survey data systematically misclassify TPB constructs or TTM stages for certain demographic subgroups. For example, users from lower socioeconomic backgrounds may express barriers differently than those from higher-income groups, potentially leading to misidentification of their primary psychological determinants. To mitigate this, model performance will be evaluated across demographic subgroups during validation, and the training dataset will be reviewed for representation balance. The fallback mechanisms (keyword dictionaries and rule-based heuristics) provide additional safeguards when model confidence is low.
+
+Dependency risk exists if users become overly reliant on the system instead of developing autonomous self-regulation skills or seeking professional help when needed. The system is designed to promote gradual autonomy by providing educational content alongside recommendations and encouraging users to reflect on their own progress. Clear disclaimers will inform users that AliMind is a research prototype for behavior change support, not a substitute for professional medical or nutritional counseling. Users reporting symptoms of eating disorders or medical conditions will be directed to appropriate healthcare resources.
+
+System failure modes must be anticipated and managed. If the TPB inference models produce inaccurate construct scores, the system may target the wrong barrier, leading to ineffective interventions. If TTM stage classification is incorrect, users may receive interventions mismatched to their readiness level, potentially causing frustration or disengagement. To address these risks, the system implements confidence thresholds that trigger fallback mechanisms when uncertainty is high. Additionally, the conversational interface allows users to provide corrective feedback, and the system includes periodic check-ins to validate that interventions feel relevant and helpful. During pilot testing, the research team will monitor conversation logs for signs of systematic misclassification and refine models accordingly.
+
+Safety monitoring at scale presents challenges beyond the pilot phase. While 100 reviewed interactions provide initial validation, production deployment would require ongoing quality assurance mechanisms. Future implementations should incorporate automated safety checks, such as flagging responses that contain medical advice or extreme dietary restrictions, and periodic human review of flagged interactions. User feedback mechanisms should enable reporting of inappropriate or unhelpful responses, with a clear process for investigating and addressing such reports.

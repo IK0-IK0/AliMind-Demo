@@ -4,5 +4,14 @@
   "[typst]": {
     "editor.defaultFormatter": "myriad-dreamin.tinymist",
     "editor.formatOnSave": true
-  }
+  },
+  "runOnSave.commands": [
+    {
+      "match": ".*\\\\chapters\\\\(introduction|methods)\\.typ$",
+      "command": "typst compile --root . chapters/main.typ",
+      "runIn": "backend",
+      "runningStatusMessage": "Compiling main.typ...",
+      "finishStatusMessage": "main.typ compiled"
+    }
+  ]
 }

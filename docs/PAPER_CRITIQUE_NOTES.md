@@ -412,43 +412,36 @@ With 3 students, previously impossible scope becomes achievable:
    - Literature on qualitative assessment of TPB? Thematic analysis for construct measurement?
 
 #### METHODS
-4. ⚠️ **TTM tracking - be more specific**
-   - How exactly is stage tracked across sessions?
-   - What linguistic markers indicate each stage?
-   - When is stage transition confirmed vs. noise?
-   - Add more detail to longitudinal tracking mechanism
+4. ✅ **TTM tracking - be more specific** - DONE
+   - Added linguistic markers in Step 1 table
+   - Added stage transition confirmation logic (2 consecutive sessions required)
+   - Added detailed longitudinal tracking mechanism
 
-5. ⚠️ **Preliminary survey - add TTM details**
-   - How does the survey capture TTM stage?
-   - What specific questions/instruments used?
-   - How are open-ended responses paired with stage labels?
+5. ✅ **Preliminary survey - add TTM details** - DONE
+   - Specified URICA and standard staging questions
+   - Explained how open-ended responses are paired with stage labels
 
-6. ⚠️ **Step 1: Add dietary restrictions and allergies collection**
-   - Current: Step 1 focuses only on TPB/TTM construct elicitation
-   - Missing: Practical constraints needed for recipe filtering (Step 6)
-   - Add: After TPB/TTM questions are sufficiently covered, system should ask about:
-     - Dietary restrictions (vegetarian, vegan, halal, etc.)
-     - Food allergies (nuts, shellfish, dairy, etc.)
-     - Medical dietary needs (diabetes, hypertension, etc.)
-   - Integration: These constraints feed into Step 6 recipe filtering
-   - Timing: Ask after construct coverage threshold is met, before moving to intervention
-   - Format: Can be conversational ("Do you have any food allergies I should know about?") or structured checklist
+6. ✅ **Step 1: Add dietary restrictions and allergies collection** - DONE
+   - Added Practical Constraints Collection phase
+   - Timing: After TPB/TTM coverage reaches 70% and TTM confidence > 0.6
+   - Format: Hybrid approach (open-ended + checklist confirmation)
+   - Integration: Hard filters for Step 6 recipe filtering
 
-7. ⚠️ **Condense methods sections**
-   - Some parts are verbose/repetitive
-   - Tighten up descriptions while keeping essential details
-   - Focus on what's novel, not restating theory
+7. ✅ **Condense methods sections** - DONE
+   - CASM section condensed (5 paragraphs → 3 paragraphs)
+   - Iteration 1 Design condensed (~60% reduction)
+   - Iteration 2 Design condensed (~50% reduction)
+   - Iteration 3 Design condensed (~60% reduction)
+   - All Development, Testing, Review sections streamlined
 
 #### TECHNICAL
-8. ⚠️ **BCT-to-recipe mapping** - Add brief explanation of how BCTs influence recipe selection (even 2-3 examples)
-9. ⚠️ **Dish recommendation integration - clarify the complete flow**
-   - Current: Step 6 described in isolation, unclear how it connects to intervention strategy
-   - Need to clarify:
-     - **Input flow**: How does Step 5 (BCT selection) inform Step 6 (recipe retrieval)?
-     - **BCT translation**: How are abstract BCTs translated to concrete recipe features?
-       - Example: BCT 1.4 "Action Planning" → recipes with step-by-step instructions, prep lists
-       - Example: BCT 5.1 "Health Consequences" → recipes with nutritional highlights, health benefits
-       - Example: BCT 8.7 "Graded Tasks" → recipes sorted by difficulty, starting with easiest
+8. ✅ **BCT-to-recipe mapping** - DONE
+   - Added table showing BCT → Recipe Features mapping in Step 6
+
+9. ✅ **Dish recommendation integration - clarify the complete flow** - DONE
+   - Added BCT-driven recipe feature prioritization
+   - Clarified constraint integration layers
+   - Specified 3 recipes per session recommendation       - Example: BCT 8.7 "Graded Tasks" → recipes sorted by difficulty, starting with easiest
      - **Constraint integration**: How do dietary restrictions (from Step 1) combine with BCT-driven selection?
      - **Personalization layers**: 
        1. Hard filters (allergies, restrictions) - must satisfy
@@ -463,21 +456,23 @@ With 3 students, previously impossible scope becomes achievable:
    - Clarify: Are recipes personalized per session or do they evolve across sessions?
 
 10. ⚠️ **Technical concerns** - Address Step 1-7 issues (see Technical Concerns section)
-11. ⚠️ **Specify TTM staging instrument** - Name the exact validated tool you'll use
-12. ⚠️ **Define "HealthScore"** in Equation 5 - What does this measure?
+11. ✅ **Specify TTM staging instrument** - DONE
+    - Specified URICA and standard staging questions in Preliminary Survey section
+12. ✅ **Define "HealthScore"** in Equation 5 - DONE
+    - Defined as composite nutritional quality metric with 4 components
 13. ⚠️ **Step 7 safety checks** - Specify how quality assurance is implemented
 
 ### MEDIUM PRIORITY (Should Address)
-12. 📝 **Ethical considerations** - Add 1-2 paragraphs on algorithmic bias, dependency risk, failure modes
-13. 📝 **Comparison baseline** - Consider adding simple control condition
-14. 📝 **Conversational naturalness measurement** - Specify how this will be evaluated
-15. 📝 **Confidence threshold justification** - Brief note on how 0.6/0.7 thresholds were chosen
+14. 📝 **Ethical considerations** - Add 1-2 paragraphs on algorithmic bias, dependency risk, failure modes
+15. 📝 **Comparison baseline** - Consider adding simple control condition
+16. 📝 **Conversational naturalness measurement** - Specify how this will be evaluated
+17. 📝 **Confidence threshold justification** - Brief note on how 0.6/0.7 thresholds were chosen
 
 ### LOW PRIORITY (Nice to Have)
-16. ✏️ Remove placeholder comment ("gonzales is a sussy baka")
-17. ✏️ Terminology consistency (pick: "conversational AI" vs "chatbot" vs "system")
-18. ✏️ Simplify Equation 3 (argmin is trivial)
-19. ✏️ Cultural adaptation details (if relevant to research focus)
+18. ✅ Remove placeholder comment ("gonzales is a sussy baka") - ALREADY REMOVED
+19. ✏️ Terminology consistency (pick: "conversational AI" vs "chatbot" vs "system")
+20. ✏️ Simplify Equation 3 (argmin is trivial)
+21. ✏️ Cultural adaptation details (if relevant to research focus)
 
 ### RESOLVED (No Action Needed)
 - ✅ Team structure documentation (in title/front matter)

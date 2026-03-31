@@ -1,5 +1,7 @@
 == Budget Request Proposal
 
+#set par(leading: 0.4em)
+
 #table(
   columns: (auto, 4fr, auto, auto, auto),
   align: (center, left, center, right, right),

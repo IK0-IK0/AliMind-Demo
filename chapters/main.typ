@@ -29,7 +29,7 @@
 
 #set text(size: 11pt)
 #align(center + horizon)[
-  #v(-5em)
+  #v(-10em)
   *From Behavioral Inference to Stage-Specific
   Nutrition Support: \ A Theory of Planned Behavior- and Transtheoretical Model- Informed System*
 
@@ -42,7 +42,7 @@
 ]
 
 1 Faculty Researcher, College of Computer Studies
-#v(-7pt)
+#v(-10pt)
 2 Student Researcher, College of Computer Studies
 
 #show heading.where(level: 1): it => [
@@ -66,5 +66,4 @@
 #include "methods.typ"
 #bibliography("../src/refs.bib")
 #include "projectworkplan.typ"
-#v(30em)
 #include "budgetplan.typ"

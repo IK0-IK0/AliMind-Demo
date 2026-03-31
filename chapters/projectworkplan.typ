@@ -11,6 +11,7 @@
 
 == Project Workplan
 
+#set par(leading: 0.4em)
 
 #table(
   columns: (auto, 5fr, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto),
