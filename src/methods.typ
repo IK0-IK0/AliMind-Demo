@@ -266,7 +266,7 @@ The proposed system implements a modular pipeline architecture consisting of sev
   [User chats about eating habits, preferences, barriers, schedule, budget, cooking skills, and food access],
   [Provides rich text + context for inferring psychological constructs and practical constraints @schueller2024digital],
   [Llama 3 / 3.1 (8B, 70B), Mistral 7B, Gemma 2 for conversational interface; fine-tune with Unsloth or LoRA for efficiency @sharma2025llm @unsloth2024],
-  [Primary conversational logs collected during pilot testing; synthetic dialogue generation from openCHA framework demo scripts for initial prototyping @zhang2024opencha],
+  [Primary conversational logs collected during pilot testing; synthetic dialogue generation from openCHA framework demo scripts for initial prototyping @abbasian2025opencha],
 
   // Row 2
   [2],
@@ -327,7 +327,7 @@ By leveraging advances in natural language processing (NLP) and large language m
 - Open-ended explanations collected during the Preliminary Survey, paired with their corresponding TPB Likert-scale scores and TTM stage classifications
 - Corresponding weighted scores and demographic metadata
 - Annotated conversational logs from pilot testing phases
-- Synthetic dialogue data generated using the openCHA framework or MHC-Coach synthetic datasets for initial prototyping @zhang2024opencha @mantena2025mhccoach
+- Synthetic dialogue data generated using the openCHA framework or MHC-Coach synthetic datasets for initial prototyping @abbasian2025opencha @mantena2025mhccoach
 
 The study focuses on Filipino young adults and adults aged 18â€“40. Participants will be recruited from Davao City. This age range captures the transition from early adulthood through established adulthood, a period where dietary habits are both malleable and consequential for long-term health outcomes.
 
@@ -377,7 +377,7 @@ Output: A structured conversation object containing:
 
 To handle ambiguous or incomplete responses, the system employs a confidence-based clarification mechanism. When the dialogue state tracker detects that a construct has not been adequately addressed (e.g., no mention of cooking confidence after several turns), or when an NER extraction yields low confidence, the system asks a targeted follow-up question. For instance, if the user says â€œI try to eat healthy but itâ€™s hard,â€ the system might respond: â€œWhat part feels hardest for you, finding time, cooking skills, or something else?â€ This approach is inspired by the work of Dragoni et al. [@DRAGONI2020101840] on explainable AI for behavior change, where clarifying dialogue improves the systemâ€™s understanding and the userâ€™s trust.
 
-Following guidelines from health coaching conversational agents [@sharma2025llm; @zhang2024opencha], the system adopts a supportive, non-judgmental tone. It uses empathetic phrasing (e.g., â€œThat sounds really challenging, many people feel that wayâ€) to build rapport and encourage continued disclosure. The system also avoids leading questions that could bias responses, instead favoring open-ended probes (e.g., â€œTell me more about thatâ€) to let the userâ€™s own language drive the conversation.
+Following guidelines from health coaching conversational agents [@sharma2025llm; @abbasian2025opencha], the system adopts a supportive, non-judgmental tone. It uses empathetic phrasing (e.g., â€œThat sounds really challenging, many people feel that wayâ€) to build rapport and encourage continued disclosure. The system also avoids leading questions that could bias responses, instead favoring open-ended probes (e.g., â€œTell me more about thatâ€) to let the userâ€™s own language drive the conversation.
 
 The structured conversation object produced in Step 1 serves as the primary input for Step 2 (TPB Construct Inference). By capturing natural language that mirrors the qualitative survey data used for training, this step ensures that the subsequent NLP models operate on data with similar distribution and richness, thereby improving inference accuracy [@rahman2023tpbnlp; @li2023nlp].
 
@@ -485,7 +485,7 @@ The illustrative themes listed above are examples only. Actual themes will be de
 
   [Health Coaching Framework],
   [openCHA],
-  [Open-source conversational health agent framework with behavioral theory integration; provides reference architecture for health coaching applications @zhang2024opencha],
+  [Open-source conversational health agent framework with behavioral theory integration; provides reference architecture for health coaching applications @abbasian2025opencha],
 
   [Health Coaching Dialogues],
   [MHC-Coach Dataset],
@@ -621,7 +621,7 @@ During system development and pilot testing, inferred construct scores will be p
 
   [Validation Dataset], [Held-out survey responses (10%)], [Model evaluation and threshold tuning],
 
-  [Synthetic Augmentation], [openCHA framework], [Additional training examples for rare themes @zhang2024opencha],
+  [Synthetic Augmentation], [openCHA framework], [Additional training examples for rare themes @abbasian2025opencha],
 
   [Keyword Dictionaries], [Custom-built from thematic analysis], [Rule-based fallback],
 )
@@ -1167,7 +1167,7 @@ Rather than using a single static prompt, the system assembles a custom prompt f
 The primary response generator is Llama 3 8B, fine-tuned on health coaching dialogues using LoRA for parameter-efficient adaptation [@hu2023finetuning]. The fine-tuning dataset includes:
 
 - MHC-Coach synthetic health coaching conversations [@mantena2025mhccoach]
-- openCHA framework demonstration scripts [@zhang2024opencha]
+- openCHA framework demonstration scripts [@abbasian2025opencha]
 - Expert-written coaching responses paired with user queries from pilot testing
 - For deployment scenarios with limited computational resources, a smaller distilled model (e.g., Llama 3.2 3B) may be substituted with minimal performance degradation.
 
@@ -1300,7 +1300,7 @@ Table 9.1: Dynamic Prompt Template Structure
 
   [Fine-tuning Dataset], [MHC-Coach @mantena2025mhccoach], [Synthetic health coaching conversations],
 
-  [Fine-tuning Dataset], [openCHA framework demos @zhang2024opencha], [Reference implementations for health agents],
+  [Fine-tuning Dataset], [openCHA framework demos @abbasian2025opencha], [Reference implementations for health agents],
 
   [Safety Classifier],
   [BERT-based toxic comment classifier (fine-tuned on health contexts)],
@@ -1312,7 +1312,7 @@ Table 9.1: Dynamic Prompt Template Structure
 
   [Hallucination Detection], [Custom NER + fact-checking against recipe database], [Prevent fabricated recommendations],
 
-  [Pipeline Orchestration], [openCHA framework @zhang2024opencha], [Coordinate steps 1-7 in production],
+  [Pipeline Orchestration], [openCHA framework @abbasian2025opencha], [Coordinate steps 1-7 in production],
 )
 
 #v(10pt)

@@ -44,17 +44,13 @@ AliMind – a conversational AI that integrates behavioral science (TPB + TTM) t
 
 ### Slide 4a: The Problem – Global Dietary Crisis
 
-Unhealthy diets are a major risk factor for the global disease burden, contributing to millions of deaths annually from non-communicable diseases.
+**According to the World Health Organization's Healthy Diet and Noncommunicable Diseases Fact Sheets:**
 
-*(Show key statistics as large text/visual elements:)*
-- **11 million deaths annually** attributable to dietary risks (GBD 2017)
-- **NCDs account for 71%** of all global deaths (WHO)
-- **Unhealthy diet** is one of four major modifiable behavioral risk factors for NCDs, alongside tobacco, physical inactivity, and harmful alcohol use (WHO)
+Consuming a healthy diet throughout the life-course helps to prevent malnutrition in all its forms as well as a range of noncommunicable diseases (NCDs) and conditions. However, change in food production and food systems, rapid urbanization and changing lifestyles have led to a shift in dietary patterns, with people now consuming more highly processed foods high in unhealthy fats, free sugars and salt/sodium. Unhealthy diets are a major risk factor for disease and disability, with NCDs killing at least 43 million people in 2021 (75% of non-pandemic-related deaths globally), and tobacco use, physical inactivity, harmful use of alcohol, unhealthy diets and air pollution all increasing the risk of dying from an NCD.
 
 **Sources:**
-- 11 million deaths: [GBD 2017 Diet Collaborators, The Lancet (2019)](https://www.sciencedaily.com/releases/2019/04/190403193702.htm)
-- 71% NCDs: [WHO - Noncommunicable Diseases](https://www.afro.who.int/health-topics/noncommunicable-diseases/)
-- Major risk factor: [WHO - NCDs Risk Factors](https://www.who.int/news-room/fact-sheets/detail/noncommunicable-diseases)
+- WHO. (2025). Noncommunicable Diseases Fact Sheet. https://www.who.int/news-room/fact-sheets/detail/noncommunicable-diseases
+- WHO. (2025). Healthy Diet Fact Sheet. https://www.who.int/westernpacific/newsroom/fact-sheets/detail/healthy-diet
 
 ### Slide 4b: The Problem – National Nutrition Challenge
 

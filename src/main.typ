@@ -22,11 +22,11 @@ $$#import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
 Maintaining healthy eating habits remains a challenge worldwide. The World Health Organization reports that unhealthy diets are a major risk factor for the global burden of disease, contributing to millions of deaths annually from non-communicable diseases (NCDs) such as cardiovascular conditions and diabetes @who2020healthy. Despite widespread awareness of dietary guidelines, a significant gap persists between knowledge and sustained behavioral change across diverse populations @kelly2023barriers.
 
-In the Philippines, this global challenge manifests in alarming local statistics. The 2018-2019 Expanded National Nutrition Survey (ENNS) by the Department of Science and Technology's Food and Nutrition Research Institute (DOST-FNRI) revealed that only 12.7% of Filipino households met recommended vegetable consumption levels, while fruit consumption was even lower at 8.9% @fnri2020enns. This nutritional inadequacy contributes to the country's dual burden of malnutrition, where undernutrition coexists with rising rates of overweight and obesity, particularly in urban centers @patalen2022nutrition.
+In the Philippines, this global challenge manifests in alarming local statistics. The 2018-2019 Expanded National Nutrition Survey (ENNS) by the Department of Science and Technology's Food and Nutrition Research Institute (DOST-FNRI) revealed that only 12.7% of Filipino households met recommended vegetable consumption levels, while fruit consumption was even lower at 8.9% @fnri2022enns. This nutritional inadequacy contributes to the country's dual burden of malnutrition, where undernutrition coexists with rising rates of overweight and obesity, particularly in urban centers @patalen2022nutrition.
 
 Consider Carlos, a 24-year-old call center agent in Davao City. He knows the importance of eating vegetables, but his 10-hour night shifts, limited budget, and the convenience of street food near his workplace make healthy eating feel impossible. His story is not unique. In Davao City, rapid urbanization and the rise of the business process outsourcing (BPO) industry have created a demographic of young adults facing similar struggles. A local study by Gonzales and colleagues found that over 60% of young professionals in Davao City reported significant barriers to healthy eating, including time scarcity, high cost of fresh produce, and lack of cooking facilities in boarding houses @gonzales2021dietary. Understanding and addressing these challenges in this specific population is the central motivation for this research.
 
-Practical barriers present significant obstacles to healthy eating. The cost of fresh produce often exceeds the budgets of low-income households, while demanding work schedules leave little time for meal preparation @darmon2008does. Beyond finances and time, the food environment itself can be limiting and many communities lack accessible grocery stores or affordable healthy options, leaving residents dependent on convenience stores stocked predominantly with processed foods. Social pressures further adds to these challenges: family members may resist dietary changes, cultural food traditions may center less on nutritious staples, and peer eating habits can quietly undermine personal health goals @cruwys2021social. In regards to personal barriers, many individuals doubt their own cooking abilities, assume that healthy food is inherently bland or unsatisfying, or simply feel too exhausted after demanding days to invest effort in meal preparation @horton2022time.
+Practical barriers present significant obstacles to healthy eating. The cost of fresh produce often exceeds the budgets of low-income households, while demanding work schedules leave little time for meal preparation @darmon2008does. Beyond finances and time, the food environment itself can be limiting and many communities lack accessible grocery stores or affordable healthy options, leaving residents dependent on convenience stores stocked predominantly with processed foods. Social pressures further adds to these challenges: family members may resist dietary changes, cultural food traditions may center less on nutritious staples, and peer eating habits can quietly undermine personal health goals @cruwys2015social. In regards to personal barriers, many individuals doubt their own cooking abilities, assume that healthy food is inherently bland or unsatisfying, or simply feel too exhausted after demanding days to invest effort in meal preparation @jabs2006time.
 
 Even when people successfully formulate intentions to improve their diets, maintaining those intentions over an extended period proves exceptionally challenging. Eating healthy is not a singular choice but rather a long process, influenced by external factors, cravings, and conflicting obligations @sheeran2016intention. Consequently, understanding the temporal evolution of motivation and obstacles is essential. However, most current interventions conceptualize behavior change as a one time occurrence rather than a continuous progression. Figure 1 shows this contrast between intention and actual conduct, emphasizing the psychological and practical influences that intervene.
 
@@ -185,7 +185,7 @@ Table 1 summarizes the landscape of current digital nutrition tools, their capab
 
     No theoretical grounding by default\
 
-    Gemini showed >50% of diet plans deviating from targets by >20% @pires2025ai
+    Gemini showed >50% of diet plans deviating from targets by >20% @wang2025
   ],
 
   /* --- Specialized Research-Backed Apps --- */
@@ -199,7 +199,7 @@ Table 1 summarizes the landscape of current digital nutrition tools, their capab
 
     Strong personalization\
 
-    User-centered design through participatory methods @zhang2024diaita @halskov2015participatory
+    User-centered design through participatory methods @diaita2024 @halskov2015participatory
   ],
   [
 
@@ -216,9 +216,9 @@ Table 1 summarizes the landscape of current digital nutrition tools, their capab
 As Table 1 illustrates, current tools cluster at opposite ends of a spectrum. At one end are commercially successful apps that prioritize usability and scale but ignore psychological theory. At the other end are research-backed prototypes that incorporate expert knowledge but remain inaccessible to most users. Neither approach has successfully integrated real-time psychological assessment with scalable deployment.
 
 
-Recent evaluations reveal significant technical limitations even in advanced AI tools. A 2025 study comparing five major AI models (ChatGPT-4, ChatGPT-4o, Mistral, Claude, and Llama) found substantial variability in diet plan generation. When asked to create 1500 kcal meal plans, actual energy values ranged from 1357 kcal to 2273 kcal across models, with protein intake varying by up to 65 grams @pires2025ai. Micronutrient content showed similar inconsistencies, with calcium, iron, and vitamin D levels varying widely. These discrepancies suggest limitations not only in the AI tools' capabilities but also in their interpretation of user intent and their underlying food composition databases.
+Recent evaluations reveal significant technical limitations even in advanced AI tools. A 2025 study comparing five major AI models (ChatGPT-4, ChatGPT-4o, Mistral, Claude, and Llama) found substantial variability in diet plan generation. When asked to create 1500 kcal meal plans, actual energy values ranged from 1357 kcal to 2273 kcal across models, with protein intake varying by up to 65 grams @wang2025. Micronutrient content showed similar inconsistencies, with calcium, iron, and vitamin D levels varying widely. These discrepancies suggest limitations not only in the AI tools' capabilities but also in their interpretation of user intent and their underlying food composition databases.
 
-Another study evaluating ChatGPT-4o, Microsoft Copilot, and Gemini found that while all achieved satisfactory overall diet quality scores (DQI-I > 70), they consistently performed poorly on macronutrient and fatty acid balance. Gemini showed particular instability, with over 50% of its diet plans deviating from target calories by more than 20% @pires2025ai. These findings demonstrate that current AI tools cannot be relied upon for precise nutritional guidance without human oversight. Research on AI-moderated conversational surveys demonstrates that chatbots can elicit more thoughtful, detailed responses than traditional questionnaires @xiao2020tell. Participants engage more naturally, provide richer information, and report greater satisfaction with conversational interfaces. Yet this approach has not been systematically applied to build real-time, theory-based coaching models that adapt to users' evolving psychological states.
+Another study evaluating ChatGPT-4o, Microsoft Copilot, and Gemini found that while all achieved satisfactory overall diet quality scores (DQI-I > 70), they consistently performed poorly on macronutrient and fatty acid balance. Gemini showed particular instability, with over 50% of its diet plans deviating from target calories by more than 20% @wang2025. These findings demonstrate that current AI tools cannot be relied upon for precise nutritional guidance without human oversight. Research on AI-moderated conversational surveys demonstrates that chatbots can elicit more thoughtful, detailed responses than traditional questionnaires @xiao2020tell. Participants engage more naturally, provide richer information, and report greater satisfaction with conversational interfaces. Yet this approach has not been systematically applied to build real-time, theory-based coaching models that adapt to users' evolving psychological states.
 
 The consequences of these limitations are evident in user engagement data. A study of the PROTEIN personalized nutrition app, developed through a European Union H2020 project, found that mHealth apps are often subject to dropout rates of up to 80 percent, with only 3.9 percent of participants using the apps for more than 15 days @kapsis2022proteina. Research on chatbot-based nutrition education similarly reports attrition rates of 36 percent over relatively short study periods @chew2024effects. These engagement failures are not merely technical problems; they reflect a fundamental mismatch between what apps offer and what users need. People download nutrition apps with enthusiasm, use them for a few weeks, and then abandon them when the advice feels irrelevant to their actual lives. The apps give recommendations that sound good in theory but prove impossible to follow, a nutritionally perfect recipe that requires expensive ingredients, specialized equipment, or advanced cooking skills that the user does not possess @yangValidatingAccuracyInternetBased2022.
 
@@ -511,7 +511,7 @@ The proposed system implements a modular pipeline architecture consisting of sev
   [User chats about eating habits, preferences, barriers, schedule, budget, cooking skills, and food access],
   [Provides rich text + context for inferring psychological constructs and practical constraints @schueller2024digital],
   [Llama 3 / 3.1 (8B, 70B), Mistral 7B, Gemma 2 for conversational interface; fine-tune with Unsloth or LoRA for efficiency @sharma2025llm @unsloth2024],
-  [Primary conversational logs collected during pilot testing; synthetic dialogue generation from openCHA framework demo scripts for initial prototyping @zhang2024opencha],
+  [Primary conversational logs collected during pilot testing; synthetic dialogue generation from openCHA framework demo scripts for initial prototyping @abbasian2025opencha],
 
   // Row 2
   [2],
@@ -572,7 +572,7 @@ By leveraging advances in natural language processing (NLP) and large language m
 - Open-ended explanations collected during the Preliminary Survey, paired with their corresponding TPB Likert-scale scores and TTM stage classifications
 - Corresponding weighted scores and demographic metadata
 - Annotated conversational logs from pilot testing phases
-- Synthetic dialogue data generated using the openCHA framework or MHC-Coach synthetic datasets for initial prototyping @zhang2024opencha @mantena2025mhccoach
+- Synthetic dialogue data generated using the openCHA framework or MHC-Coach synthetic datasets for initial prototyping @abbasian2025opencha @mantena2025mhccoach
 
 The study focuses on Filipino young adults and adults aged 18–40. Participants will be recruited from Davao City. This age range captures the transition from early adulthood through established adulthood, a period where dietary habits are both malleable and consequential for long-term health outcomes.
 
@@ -622,7 +622,7 @@ Output: A structured conversation object containing:
 
 To handle ambiguous or incomplete responses, the system employs a confidence-based clarification mechanism. When the dialogue state tracker detects that a construct has not been adequately addressed (e.g., no mention of cooking confidence after several turns), or when an NER extraction yields low confidence, the system asks a targeted follow-up question. For instance, if the user says “I try to eat healthy but it’s hard,” the system might respond: “What part feels hardest for you, finding time, cooking skills, or something else?” This approach is inspired by the work of Dragoni et al. [@DRAGONI2020101840] on explainable AI for behavior change, where clarifying dialogue improves the system’s understanding and the user’s trust.
 
-Following guidelines from health coaching conversational agents [@sharma2025llm; @zhang2024opencha], the system adopts a supportive, non-judgmental tone. It uses empathetic phrasing (e.g., “That sounds really challenging, many people feel that way”) to build rapport and encourage continued disclosure. The system also avoids leading questions that could bias responses, instead favoring open-ended probes (e.g., “Tell me more about that”) to let the user’s own language drive the conversation.
+Following guidelines from health coaching conversational agents [@sharma2025llm; @abbasian2025opencha], the system adopts a supportive, non-judgmental tone. It uses empathetic phrasing (e.g., “That sounds really challenging, many people feel that way”) to build rapport and encourage continued disclosure. The system also avoids leading questions that could bias responses, instead favoring open-ended probes (e.g., “Tell me more about that”) to let the user’s own language drive the conversation.
 
 The structured conversation object produced in Step 1 serves as the primary input for Step 2 (TPB Construct Inference). By capturing natural language that mirrors the qualitative survey data used for training, this step ensures that the subsequent NLP models operate on data with similar distribution and richness, thereby improving inference accuracy [@rahman2023tpbnlp; @li2023nlp].
 
@@ -730,7 +730,7 @@ The illustrative themes listed above are examples only. Actual themes will be de
 
   [Health Coaching Framework],
   [openCHA],
-  [Open-source conversational health agent framework with behavioral theory integration; provides reference architecture for health coaching applications @zhang2024opencha],
+  [Open-source conversational health agent framework with behavioral theory integration; provides reference architecture for health coaching applications @abbasian2025opencha],
 
   [Health Coaching Dialogues],
   [MHC-Coach Dataset],
@@ -866,7 +866,7 @@ During system development and pilot testing, inferred construct scores will be p
 
   [Validation Dataset], [Held-out survey responses (10%)], [Model evaluation and threshold tuning],
 
-  [Synthetic Augmentation], [openCHA framework], [Additional training examples for rare themes @zhang2024opencha],
+  [Synthetic Augmentation], [openCHA framework], [Additional training examples for rare themes @abbasian2025opencha],
 
   [Keyword Dictionaries], [Custom-built from thematic analysis], [Rule-based fallback],
 )
@@ -1412,7 +1412,7 @@ Rather than using a single static prompt, the system assembles a custom prompt f
 The primary response generator is Llama 3 8B, fine-tuned on health coaching dialogues using LoRA for parameter-efficient adaptation [@hu2023finetuning]. The fine-tuning dataset includes:
 
 - MHC-Coach synthetic health coaching conversations [@mantena2025mhccoach]
-- openCHA framework demonstration scripts [@zhang2024opencha]
+- openCHA framework demonstration scripts [@abbasian2025opencha]
 - Expert-written coaching responses paired with user queries from pilot testing
 - For deployment scenarios with limited computational resources, a smaller distilled model (e.g., Llama 3.2 3B) may be substituted with minimal performance degradation.
 
@@ -1545,7 +1545,7 @@ Table 9.1: Dynamic Prompt Template Structure
 
   [Fine-tuning Dataset], [MHC-Coach @mantena2025mhccoach], [Synthetic health coaching conversations],
 
-  [Fine-tuning Dataset], [openCHA framework demos @zhang2024opencha], [Reference implementations for health agents],
+  [Fine-tuning Dataset], [openCHA framework demos @abbasian2025opencha], [Reference implementations for health agents],
 
   [Safety Classifier],
   [BERT-based toxic comment classifier (fine-tuned on health contexts)],
@@ -1557,7 +1557,7 @@ Table 9.1: Dynamic Prompt Template Structure
 
   [Hallucination Detection], [Custom NER + fact-checking against recipe database], [Prevent fabricated recommendations],
 
-  [Pipeline Orchestration], [openCHA framework @zhang2024opencha], [Coordinate steps 1-7 in production],
+  [Pipeline Orchestration], [openCHA framework @abbasian2025opencha], [Coordinate steps 1-7 in production],
 )
 
 #v(10pt)

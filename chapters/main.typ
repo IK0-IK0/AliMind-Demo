@@ -29,9 +29,8 @@
 
 #set text(size: 11pt)
 #align(center + horizon)[
-  #v(-10em)
-  *From Behavioral Inference to Stage-Specific
-  Nutrition Support: \ A Theory of Planned Behavior- and Transtheoretical Model- Informed System*
+  #v(-6.7em)
+  *AliMind: From Behavioral Inference to Stage-Specific Nutrition Support \ Through A Theory of Planned Behavior- and Transtheoretical Model-Informed System*
 
   #v(-5pt)
   Chris John David Manero#super[1],

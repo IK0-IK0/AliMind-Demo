@@ -1,0 +1,151 @@
+# Implementation Plan
+
+- [ ] 1. Fix citation metadata errors with online verification
+
+  - [ ] 1.1 Correct fnri2022enns (reference [3]) - FNRI Survey Citation
+    - Verify correct title: "Philippine Nutrition Facts and Figures: 2018-2019 Expanded National Nutrition Survey (ENNS)"
+    - Correct year from 2020 to 2022
+    - Correct month to May
+    - Verify URL: https://enutrition.fnri.dost.gov.ph/uploads/2018-2019%20ENNS%20FACTS%20AND%20FIGURES_JULY182023.pdf
+    - Verify statistics cited in manuscript match the source document
+    - Document verification source used
+    - _Bug_Condition: isBugCondition(citation) where citation.key = 'fnri2022enns'_
+    - _Expected_Behavior: citation contains accurate metadata matching published source and is verifiable online_
+    - _Preservation: Non-buggy citations remain unchanged_
+    - _Requirements: 1.1, 2.1, 2.10, 2.11, 2.12, 2.13_
+
+  - [ ] 1.2 Correct 2023dietdoh (reference [4]) - DOH Policy Brief Title
+    - Add missing title component: "Knowledge, Attitudes and Practices towards Diet across the Philippines"
+    - Verify URL: https://www.idinsight.org/wp-content/uploads/2025/01/DOH-HPLS-Nutrition-Diet-Policy-Brief.pdf
+    - Confirm authors: Department of Health Philippines and IDinsight
+    - Verify year 2023 is correct
+    - Document verification source used
+    - _Bug_Condition: isBugCondition(citation) where citation.key = '2023dietdoh'_
+    - _Expected_Behavior: citation contains complete accurate title and is verifiable online_
+    - _Preservation: Non-buggy citations remain unchanged_
+    - _Requirements: 1.2, 2.2, 2.10, 2.11, 2.12, 2.13_
+
+  - [ ] 1.3 Correct cruwys2015social (reference [7]) - Cruwys et al. Citation
+    - Correct year from 2021 to 2015
+    - Correct volume from 162 to 86
+    - Correct page range to match published article
+    - Verify DOI: 10.1016/j.appet.2014.08.035 via doi.org
+    - Verify journal: Appetite
+    - Document verification sources used (DOI resolution, journal website, academic database)
+    - _Bug_Condition: isBugCondition(citation) where citation.key = 'cruwys2015social'_
+    - _Expected_Behavior: citation contains correct year, volume, pages and is verifiable via DOI_
+    - _Preservation: Non-buggy citations remain unchanged_
+    - _Requirements: 1.3, 2.3, 2.10, 2.11, 2.12, 2.13_
+
+  - [ ] 1.4 Correct jabs2006time (reference [8]) - Fix Completely Wrong Source
+    - Search for correct source online using title and author keywords
+    - Verify correct authors: Jabs, Jennifer and Devine, Carol M.
+    - Verify correct journal: Appetite
+    - Verify correct year: 2006
+    - Verify correct volume: 47
+    - Verify correct issue: 2
+    - Verify correct pages: 196-204
+    - Verify DOI: 10.1016/j.appet.2006.02.014 via doi.org
+    - Document verification sources used (DOI resolution, PubMed, Google Scholar)
+    - _Bug_Condition: isBugCondition(citation) where citation.key = 'jabs2006time'_
+    - _Expected_Behavior: citation contains correct source attribution and is verifiable online_
+    - _Preservation: Non-buggy citations remain unchanged_
+    - _Requirements: 1.4, 2.4, 2.10, 2.11, 2.12, 2.13_
+
+  - [ ] 1.5 Correct diaita2024 (reference [30]) - Add Blog Post Access Date
+    - Add access date: "Accessed: March 31, 2026"
+    - Verify URL is accessible: https://blog.bestiario.org/introducing-diaita-an-ai-driven-diet-assistant-designed-to-support-cancer-patients-and-caregivers-along-their-recovery-journey
+    - Confirm proper framing as blog post in note field
+    - Document verification source used
+    - _Bug_Condition: isBugCondition(citation) where citation.key = 'diaita2024'_
+    - _Expected_Behavior: citation includes access date and proper blog post framing_
+    - _Preservation: Non-buggy citations remain unchanged_
+    - _Requirements: 1.5, 2.5, 2.10, 2.12, 2.13_
+
+  - [ ] 1.6 Verify wang2025 (reference [32]) - Gemini Claim Verification
+    - Search the Wang et al. 2025 paper for "Gemini" and "50% deviation" claim
+    - If claim not found, document that manuscript text needs correction
+    - Verify all other metadata (authors, title, journal, volume, pages, DOI) is correct via online sources
+    - If source doesn't support the claim, search for alternative sources that do
+    - Document verification sources used and findings
+    - If alternative source needed, provide recommendation for replacement
+    - _Bug_Condition: isBugCondition(citation) where citation.key = 'wang2025'_
+    - _Expected_Behavior: manuscript claim is verifiable in cited source OR alternative source provided_
+    - _Preservation: Non-buggy citations remain unchanged_
+    - _Requirements: 1.6, 2.6, 2.10, 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17_
+
+  - [ ] 1.7 Correct abbasian2025opencha (reference [53]) - Fix All Metadata
+    - Search for correct source online using DOI or title keywords
+    - Verify correct authors: Abbasian, Mohammadmahdi et al.
+    - Verify correct journal: JAMIA Open
+    - Verify correct volume: 8
+    - Verify correct issue: 4
+    - Verify correct article number: ooaf067
+    - Verify correct title: "Conversational Health Agents: A Personalized LLM-Powered Agent Framework"
+    - Verify DOI: 10.1093/jamiaopen/ooaf067 via doi.org
+    - Document verification sources used (DOI resolution, journal website, PubMed)
+    - _Bug_Condition: isBugCondition(citation) where citation.key = 'abbasian2025opencha'_
+    - _Expected_Behavior: citation contains correct metadata and is verifiable via DOI_
+    - _Preservation: Non-buggy citations remain unchanged_
+    - _Requirements: 1.7, 2.7, 2.10, 2.11, 2.12, 2.13_
+
+  - [ ] 1.8 Verify mantena2025mhccoach (reference [54]) - Preprint Claims
+    - Confirm this is a medRxiv preprint (not peer-reviewed)
+    - Verify DOI: 10.1101/2025.02.19.25322559 via doi.org
+    - Search for MHC-Coach dataset connection in the paper
+    - Add note about preprint status if not already present
+    - If MHC-Coach connection unverified, add caveat or flag for review
+    - Document verification sources used and findings
+    - _Bug_Condition: isBugCondition(citation) where citation.key = 'mantena2025mhccoach'_
+    - _Expected_Behavior: citation includes preprint status and verified claims_
+    - _Preservation: Non-buggy citations remain unchanged_
+    - _Requirements: 1.8, 2.8, 2.10, 2.12, 2.13, 2.17_
+
+  - [ ] 1.9 Correct feuerriegel2025nlp (reference [57]) - Fix DOI and Add Missing Info
+    - Correct DOI format from malformed to: 10.1038/s44159-024-00392-z
+    - Verify DOI via doi.org resolution
+    - Add volume: 4
+    - Add issue: 2
+    - Add pages: 96-111
+    - Verify all metadata via DOI resolution matches Nature Reviews Psychology publication
+    - Document verification sources used (DOI resolution, journal website)
+    - _Bug_Condition: isBugCondition(citation) where citation.key = 'feuerriegel2025nlp'_
+    - _Expected_Behavior: citation contains properly formatted DOI and complete metadata_
+    - _Preservation: Non-buggy citations remain unchanged_
+    - _Requirements: 1.9, 2.9, 2.10, 2.11, 2.12, 2.13_
+
+  - [ ] 3.10 Verify BibTeX syntax and file structure
+    - Parse corrected refs.bib file with BibTeX parser to verify no syntax errors
+    - Verify topic section comments are preserved
+    - Verify citation keys remain unchanged
+    - Verify file encoding and line endings preserved
+    - _Bug_Condition: All 9 problematic citations corrected_
+    - _Expected_Behavior: Valid BibTeX syntax maintained_
+    - _Preservation: File structure and organization preserved_
+    - _Requirements: 3.3, 3.4, 3.5_
+
+  - [ ] 3.11 Verify bug condition exploration test now passes
+    - **Property 1: Expected Behavior** - Citation Metadata Accuracy
+    - **IMPORTANT**: Re-run the SAME test from task 1 - do NOT write a new test
+    - The test from task 1 encodes the expected behavior
+    - When this test passes, it confirms the expected behavior is satisfied
+    - Run bug condition exploration test from step 1
+    - **EXPECTED OUTCOME**: Test PASSES (confirms bug is fixed)
+    - Verify all 9 citations can now be verified online with correct metadata
+    - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 2.10, 2.11, 2.12, 2.13_
+
+  - [ ] 3.12 Verify preservation tests still pass
+    - **Property 2: Preservation** - Non-Buggy Citation Integrity
+    - **IMPORTANT**: Re-run the SAME tests from task 2 - do NOT write new tests
+    - Run preservation property tests from step 2
+    - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)
+    - Confirm all non-buggy citations remain unchanged
+    - Confirm BibTeX file structure preserved
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
+
+- [ ] 4. Checkpoint - Ensure all tests pass and document verification sources
+  - Ensure all tests pass
+  - Review documentation of verification sources for each corrected citation
+  - Verify all corrected citations can be independently verified online
+  - If any citations flagged for user review, document clearly with verification attempts
+  - Ask the user if questions arise
