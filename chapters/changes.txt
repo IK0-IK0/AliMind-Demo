@@ -1,0 +1,73 @@
+[3] Department of Science and Technology - Food and Nutrition Research Institute 
+(DOST-FNRI), "Philippine Nutrition Facts and Figures: 2018-2019 Expanded National 
+Nutrition Survey (ENNS)," Technical Report, May 2022. [Online]. Available: 
+https://enutrition.fnri.dost.gov.ph/uploads/2018-2019%20ENNS%20FACTS%20AND%20
+FIGURES_JULY182023.pdf
+
+> **Comment:** Title corrected from "Expanded National Nutrition Survey (ENNS): 2018–2019 Results" to "Philippine Nutrition Facts and Figures: 2018-2019 Expanded National Nutrition Survey (ENNS)." Publication year corrected from 2020 to **May 2022**. Publisher name updated to full form "Department of Science and Technology - Food and Nutrition Research Institute (DOST-FNRI)." The specific statistics cited in the paper (12.7% vegetable and 8.9% fruit household compliance) **must be verified by opening the PDF directly** — these figures could not be confirmed from available online excerpts and may appear in the Food Consumption Survey component of the report.
+//done
+
+[4] Department of Health Philippines and IDinsight, "Knowledge, Attitudes and 
+Practices towards Diet across the Philippines," Policy Brief, 2023. [Online]. 
+Available: https://www.idinsight.org/wp-content/uploads/2025/01/
+DOH-HPLS-Nutrition-Diet-Policy-Brief.pdf
+```
+> **Comment:** Title corrected from "Healthy Philippines Lifestyle Survey (HPLS) Nutrition and Diet Policy Brief" to **"Knowledge, Attitudes and Practices towards Diet across the Philippines."** All data points cited in the paper are confirmed accurate: 83.8% finding healthy eating easy, 85.4% consuming high-sugar foods, 55.8% consuming high-salt foods, and the 16.2% barrier breakdown (money 57.3%, time 16.6%, access 15.0%). No other changes needed.
+
+
+[7] T. Cruwys, K. E. Bevelander, and R. C. J. Hermans, "Social modeling of eating: 
+A review of when and why social influence affects food intake and choice," Appetite, 
+vol. 86, pp. 3–18, 2015, doi: 10.1016/j.appet.2014.08.035.
+```
+> **Comment:** Three errors corrected: (1) year changed from **2021 → 2015**, (2) volume changed from **162 → 86**, (3) article number "p. 105169" replaced with correct pages **pp. 3–18**. Author names also formatted properly — the original had "T. Cruwys and others" which should list the three actual authors. The DOI remains unchanged and is correct.
+
+//done ^^^
+
+[8] J. Jabs and C. M. Devine, "Time scarcity and food choices: An overview," 
+Appetite, vol. 47, no. 2, pp. 196–204, 2006, doi: 10.1016/j.appet.2006.02.014.
+```
+> **Comment:** This citation was completely wrong in the original — the author "S. Horton," journal (*Nutrition Reviews*), volume (80), pages (785–800), and year (2022) were all unverifiable and likely fabricated or misattributed. The correct source on this topic is Jabs & Devine (2006) in *Appetite*, which is the canonical reference on time scarcity and food choices and is linked in the document notes. **Additionally, note a content alignment concern:** The sentence this citation supports discusses personal barriers including doubting cooking abilities, perceiving healthy food as bland, and feeling too exhausted to cook. Jabs & Devine (2006) primarily addresses time constraints driving convenience food choices — it does not directly discuss cooking self-efficacy or taste perceptions. **Consider adding or substituting a source that more directly addresses those personal/psychological barriers** (e.g., Hartmann et al. on cooking skills, or a self-efficacy in cooking source).
+
+///done ^^^
+
+[30] Bestiario and Fundación Alícia, "DIAITA: An AI-Driven Diet Assistant for 
+Cancer Patients," [Online]. Available: https://blog.bestiario.org/introducing-diaita-
+an-ai-driven-diet-assistant-designed-to-support-cancer-patients-and-caregivers-
+along-their-recovery-journey [Accessed: <insert access date>].
+```
+> **Comment:** This source is a **blog post**, not a peer-reviewed publication. Whether it is acceptable depends on your venue's citation standards. If retained, you should: (1) add an access date, and (2) clearly frame it in-text as a product/tool description rather than empirical evidence (e.g., "According to its developers…"). If your venue requires peer-reviewed sources, search for any associated academic publication about DIAITA, or replace the claim with a different cited AI dietary tool that has a peer-reviewed source.
+
+//target eliminated ^^^^
+
+[32] X. Wang, Z. Sun, H. Xue, and R. An, "Artificial Intelligence Applications to 
+Personalized Dietary Recommendations: A Systematic Review," Healthcare, vol. 13, 
+no. 12, p. 1417, 2025, doi: 10.3390/healthcare13121417.
+```
+> **Comment:** The citation itself is confirmed accurate — all authors, journal, volume, article number, year, and DOI are correct. However, the specific claim it is used to support — *"over 50% of Gemini's diet plans deviating from target calories by more than 20%"* — **could not be verified as coming from this source.** Wang et al. (2025) is a systematic review of AI-generated dietary interventions focused on machine learning for chronic conditions (diabetes, IBS); it does not appear to benchmark Gemini specifically. **You must locate the original source of the Gemini statistic** — it is likely a different paper (possibly a benchmarking or evaluation study of LLM-generated diet plans) — and replace or add the correct citation for that specific claim.
+
+//done ^^
+
+[53] M. Abbasian, A. Khatibi, S. Ma, T. Bhatt, Z. Cai, S. Ghahramani, R. Azimi, 
+C. Shi, S. Sadeghi, F. Ghazvini, A. Motiei, J. Ghasemzadeh, D. Beigi, and 
+R. Rawassizadeh, "Conversational Health Agents: A Personalized LLM-Powered Agent 
+Framework," JAMIA Open, vol. 8, no. 4, p. ooaf067, 2025, 
+doi: 10.1093/jamiaopen/ooaf067.
+```
+> **Comment:** The original citation was entirely wrong — wrong authors (Zhang, Liu, Wang, Chen, Li, Zhou), wrong journal (*JMIR* instead of *JAMIA Open*), wrong article number (e51234 instead of ooaf067), and wrong title ("openCHA: An Open-Source Conversational Health Agent Framework with Behavioral Theory Integration" — the actual title contains no reference to "Behavioral Theory Integration"). The paper is authored by Abbasian et al. and published in *JAMIA Open* in 2025. An arXiv preprint version also exists (arXiv:2310.02374) if you prefer to cite that instead. Additionally, note that the description of this source in the paper as providing "structured examples of health coaching conversations" is broadly accurate — the openCHA framework includes health coaching demos — but it is **not** specifically an MHC-Coach dataset. The paper describes an LLM-powered framework with demos, not a curated dialogue dataset. Ensure the in-text description matches what the source actually provides.
+
+//done ^^^
+
+[54] S. Mantena, A. Johnson, M. Oppezzo, N. Schuetz, A. Tolas, and others, 
+"Fine-tuning Large Language Models in Behavioral Psychology for Scalable Physical 
+Activity Coaching," medRxiv, 2025, doi: 10.1101/2025.02.19.25322559.
+```
+> **Comment:** The DOI format is consistent with medRxiv and the source is considered confirmed as a preprint. The citation format is acceptable as-is. However, note that this is **an unreviewed preprint** — if your target venue requires peer-reviewed sources only, flag this. Also note: in the paper, [54] is used alongside [53] to describe the "MHC-Coach health coaching dialogues." Verify that this Mantena et al. preprint is indeed the source of the MHC-Coach dataset, as the connection between a physical activity coaching fine-tuning paper and a named dialogue dataset called "MHC-Coach" is not immediately obvious from the title alone.
+
+
+[57] S. Feuerriegel et al., "Using natural language processing to analyse text data 
+in behavioural science," Nature Reviews Psychology, vol. 4, no. 2, pp. 96–111, 
+2025, doi: 10.1038/s44159-024-00392-z.
+```
+> **Comment:** Source fully confirmed. The only correction needed is the **DOI formatting** — the original had `10.1038/s4415902400392z` (missing hyphens), which should be `10.1038/s44159-024-00392-z`. Also added the volume number (vol. 4), issue number (no. 2), and page range (pp. 96–111) which were missing from the original entry (shown as "vol. 4, p. ,"). No other changes needed.
+Updated source with comments.txt
+9 KB

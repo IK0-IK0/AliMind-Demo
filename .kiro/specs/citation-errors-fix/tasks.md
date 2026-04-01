@@ -114,7 +114,7 @@
     - _Preservation: Non-buggy citations remain unchanged_
     - _Requirements: 1.9, 2.9, 2.10, 2.11, 2.12, 2.13_
 
-  - [ ] 3.10 Verify BibTeX syntax and file structure
+  - [ ] 1.10 Verify BibTeX syntax and file structure
     - Parse corrected refs.bib file with BibTeX parser to verify no syntax errors
     - Verify topic section comments are preserved
     - Verify citation keys remain unchanged
@@ -124,27 +124,7 @@
     - _Preservation: File structure and organization preserved_
     - _Requirements: 3.3, 3.4, 3.5_
 
-  - [ ] 3.11 Verify bug condition exploration test now passes
-    - **Property 1: Expected Behavior** - Citation Metadata Accuracy
-    - **IMPORTANT**: Re-run the SAME test from task 1 - do NOT write a new test
-    - The test from task 1 encodes the expected behavior
-    - When this test passes, it confirms the expected behavior is satisfied
-    - Run bug condition exploration test from step 1
-    - **EXPECTED OUTCOME**: Test PASSES (confirms bug is fixed)
-    - Verify all 9 citations can now be verified online with correct metadata
-    - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 2.10, 2.11, 2.12, 2.13_
-
-  - [ ] 3.12 Verify preservation tests still pass
-    - **Property 2: Preservation** - Non-Buggy Citation Integrity
-    - **IMPORTANT**: Re-run the SAME tests from task 2 - do NOT write new tests
-    - Run preservation property tests from step 2
-    - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)
-    - Confirm all non-buggy citations remain unchanged
-    - Confirm BibTeX file structure preserved
-    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
-
-- [ ] 4. Checkpoint - Ensure all tests pass and document verification sources
-  - Ensure all tests pass
+- [ ] 2. Checkpoint - Document verification sources
   - Review documentation of verification sources for each corrected citation
   - Verify all corrected citations can be independently verified online
   - If any citations flagged for user review, document clearly with verification attempts
