@@ -127,6 +127,8 @@ A study of 394 millennials (ages 19-37) in Davao City found that motivations for
 - Average 10 hours 27 minutes online per day
 - 71% smartphone adoption in 2023
 
+**Source:** Philippine Digital Statistics 2023
+
 **They Want Health Support:**
 - Young adults are primary adopters of health apps
 - Download nutrition trackers, meal planners, fitness coaches with enthusiasm
@@ -244,17 +246,21 @@ To develop and evaluate AliMind, a conversational AI system that integrates the 
 
 *(Show Figure: TTM stages as a progression arrow from Pre-contemplation → Contemplation → Preparation → Action → Maintenance, with intervention types labeled for each stage)*
 
-### Slide 14: Theoretical Framework – Cognitive Aspects of Survey Methodology (CASM)
+### Slide 14: Theoretical Framework – NLP-Based Construct Inference
 
 **The Bridge Between Questionnaires and Conversation**
 
-**CASM explains how people generate survey responses through four cognitive stages:**
+**Two Complementary Theoretical Foundations:**
+
+**1. Cognitive Aspects of Survey Methodology (CASM)**
+
+CASM explains how people generate survey responses through four cognitive stages:
 1. **Comprehension** – understanding the question
 2. **Retrieval** – accessing relevant memories and experiences
 3. **Judgment** – forming an evaluation or opinion
-4. **Response Mapping** – translating judgment into the response format (e.g., selecting a Likert scale option)
+4. **Response Mapping** – translating judgment into the response format
 
-**Critical Insight for AliMind:**
+**Critical Insight:**
 The first three stages (Comprehension → Retrieval → Judgment) are **identical** whether someone is:
 - Answering a structured Likert-scale questionnaire, OR
 - Speaking naturally in conversation
@@ -263,15 +269,22 @@ The first three stages (Comprehension → Retrieval → Judgment) are **identica
 - Questionnaire: Map judgment to "1-Strongly Disagree" through "5-Strongly Agree"
 - Conversation: Express judgment in natural language ("I really struggle with cooking")
 
-**Why This Matters:**
-- Natural conversation contains the same underlying psychological constructs as structured assessments
-- We can use NLP to infer TPB constructs (attitude, subjective norm, PBC) from conversational text
+**2. Distributional Semantics (Harris, 1954)**
+
+The distributional hypothesis holds that words appearing in similar contexts carry similar meanings. This enables:
+- Vector representations to capture semantic relationships
+- Language model embeddings to encode psychological constructs
+- Semantic similarity in text to correspond to similarity in psychological meaning
+- NLP models to map natural language expressions to the same latent constructs measured by validated instruments
+
+**Why This Matters for AliMind:**
+- **CASM** validates that conversational responses contain the same psychological constructs as structured assessments
+- **Distributional semantics** enables computational extraction of these constructs from text
+- Together, they justify using NLP to infer TPB constructs (attitude, subjective norm, PBC) and TTM stages from natural conversation
 - This eliminates the assessment burden that drives user attrition in traditional apps
 - Users engage more naturally and provide richer, more detailed responses
 
-**Justification:** CASM provides the theoretical foundation for using conversational AI to infer psychological constructs without requiring users to complete lengthy questionnaires.
-
-*(Show Figure: CASM process diagram showing the four stages, with stages 1-3 labeled "Same for questionnaires and conversation" and stage 4 labeled "Different format, same content")*
+*(Show Figure: Split diagram - Left side shows CASM's four stages with stages 1-3 labeled "Same for questionnaires and conversation" and stage 4 labeled "Different format, same content". Right side shows distributional semantics concept with word embeddings capturing semantic similarity)*
 
 ### Slide 15: Conceptual Framework – Integrating TPB & TTM
 
