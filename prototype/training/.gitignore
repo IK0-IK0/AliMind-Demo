@@ -1,0 +1,30 @@
+# Environment variables
+.env
+.env.local
+
+# Training artifacts
+datasets/
+models/
+*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+logs/
+*.log
+
+# Model checkpoints
+checkpoint-*/
+runs/

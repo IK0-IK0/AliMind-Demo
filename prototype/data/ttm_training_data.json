@@ -1,0 +1,352 @@
+{
+  "metadata": {
+    "description": "TTM (Transtheoretical Model) training dataset with sample answers for each stage of change",
+    "stages": [
+      "preContemplation",
+      "contemplation",
+      "preparation",
+      "action",
+      "maintenance"
+    ],
+    "stageDescriptions": {
+      "preContemplation": "Not yet considering change",
+      "contemplation": "Thinking about making changes",
+      "preparation": "Getting ready to take action",
+      "action": "Actively making changes",
+      "maintenance": "Maintaining healthy habits"
+    },
+    "samplesPerStage": 10
+  },
+  "questions": [
+    {
+      "id": "ttm-1",
+      "question": "Are you currently thinking about changing your eating habits?",
+      "samples": {
+        "preContemplation": [
+          "No, I'm not interested in changing",
+          "Not thinking about it at all",
+          "I don't want to change my diet",
+          "Not ready to make any changes",
+          "I'm fine with how I eat now",
+          "No plans to change anything",
+          "Not interested, I'm happy as is",
+          "I don't see a need to change",
+          "No, maybe later but not now",
+          "Not thinking about healthy eating"
+        ],
+        "contemplation": [
+          "I'm thinking about it, not sure yet",
+          "Maybe, I'm considering the idea",
+          "I've been wondering if I should",
+          "Thinking about it but haven't decided",
+          "I'm contemplating making changes",
+          "Not sure, weighing the pros and cons",
+          "I know I should, just thinking",
+          "Considering it but not committed",
+          "Maybe someday, I'm thinking",
+          "I'm aware I should change, just thinking"
+        ],
+        "preparation": [
+          "Yes, I'm planning to start next week",
+          "I'm getting ready to make changes",
+          "About to start, just preparing",
+          "Planning to begin very soon",
+          "I'm preparing and will start shortly",
+          "Getting everything ready to start",
+          "I'm committed and starting soon",
+          "Next month I'll begin for sure",
+          "I'm organizing to start changing",
+          "Preparing to take action soon"
+        ],
+        "action": [
+          "Yes, I just started this week",
+          "I'm currently changing my eating habits",
+          "I've been working on it for a few weeks",
+          "I'm actively making changes now",
+          "Started recently and doing it",
+          "I'm in the process of changing",
+          "Currently eating healthier",
+          "I began making changes last week",
+          "I'm actively working on it now",
+          "Yes, I'm doing it right now"
+        ],
+        "maintenance": [
+          "I've been eating healthy for months",
+          "Yes, it's been my lifestyle for years",
+          "I've maintained healthy habits for a long time",
+          "It's been over 6 months of healthy eating",
+          "I've been doing this for a year now",
+          "It's a habit I've kept for months",
+          "I've maintained this for a long time",
+          "Been eating healthy consistently for years",
+          "It's my routine for many months now",
+          "I've sustained healthy eating for over a year"
+        ]
+      }
+    },
+    {
+      "id": "ttm-2",
+      "question": "When do you plan to start eating healthier (if not already)?",
+      "samples": {
+        "preContemplation": [
+          "I don't have any plans to start",
+          "Not planning to start anytime soon",
+          "No plans, not interested",
+          "I'm not going to start",
+          "Maybe never, I don't know",
+          "No timeline, not thinking about it",
+          "I don't plan to change",
+          "Not planning on it",
+          "No intention to start",
+          "I'm not making any plans"
+        ],
+        "contemplation": [
+          "Someday, not sure when",
+          "Eventually, but no specific date",
+          "In the future, haven't decided",
+          "Maybe in a few months",
+          "Not sure when, thinking about it",
+          "Possibly later this year",
+          "Eventually, when I'm ready",
+          "Someday soon, but uncertain",
+          "In the future, no concrete plans",
+          "Maybe next year, still thinking"
+        ],
+        "preparation": [
+          "Next week I'm starting",
+          "In a few days, I'm ready",
+          "Next Monday for sure",
+          "Within the next two weeks",
+          "Very soon, next month",
+          "I'm starting in a week",
+          "Planning to begin next week",
+          "In the next few days",
+          "Next month, I'm prepared",
+          "Soon, within a couple weeks"
+        ],
+        "action": [
+          "I already started this week",
+          "I've already begun",
+          "I started a few weeks ago",
+          "Already eating healthier now",
+          "I began last week",
+          "I'm currently doing it",
+          "Started recently",
+          "I've already taken action",
+          "Already in progress",
+          "I started a month ago"
+        ],
+        "maintenance": [
+          "I've been doing it for months already",
+          "Already eating healthy for years",
+          "I started a long time ago",
+          "Been doing this for over a year",
+          "I've been at it for many months",
+          "Already maintaining for a long time",
+          "Started years ago, still going",
+          "Been eating healthy for months",
+          "I've been doing this for a while now",
+          "Already established this habit long ago"
+        ]
+      }
+    },
+    {
+      "id": "ttm-3",
+      "question": "Have you taken any steps toward eating healthier?",
+      "samples": {
+        "preContemplation": [
+          "No, I haven't taken any steps",
+          "Not started anything yet",
+          "No steps at all",
+          "Haven't done anything",
+          "No, not interested in starting",
+          "I haven't made any changes",
+          "No action taken",
+          "Nothing yet, no plans",
+          "No steps toward change",
+          "Haven't started anything"
+        ],
+        "contemplation": [
+          "Just thinking about it, no action yet",
+          "Not yet, still considering",
+          "Only thinking, no concrete steps",
+          "Just researching a bit",
+          "Thinking but haven't acted",
+          "No real steps, just contemplating",
+          "Only in my mind so far",
+          "Just wondering, no action",
+          "Considering but not acting yet",
+          "Only thought about it"
+        ],
+        "preparation": [
+          "Yes, I'm researching recipes",
+          "I'm planning my meals",
+          "Gathering information and preparing",
+          "I'm making a grocery list",
+          "Learning about nutrition",
+          "Getting ready, organizing",
+          "I'm preparing to start",
+          "Setting goals and planning",
+          "Researching and getting ready",
+          "Making plans and preparing"
+        ],
+        "action": [
+          "Yes, I've started cooking healthier",
+          "I'm actively making changes",
+          "I've begun eating more vegetables",
+          "I'm tracking my meals now",
+          "Started meal prepping",
+          "I'm making healthier choices daily",
+          "Yes, I'm eating better now",
+          "I've changed my eating habits",
+          "Currently taking action",
+          "I'm actively working on it"
+        ],
+        "maintenance": [
+          "Yes, I've been doing it for months",
+          "It's been my routine for a long time",
+          "I've maintained healthy eating for years",
+          "It's a habit I've kept for months",
+          "Yes, it's my lifestyle now",
+          "I've been consistently eating healthy",
+          "It's automatic for me now",
+          "I've sustained this for a long time",
+          "Yes, it's been my way of life",
+          "I've maintained this habit for years"
+        ]
+      }
+    },
+    {
+      "id": "ttm-4",
+      "question": "How would you describe your current eating habits?",
+      "samples": {
+        "preContemplation": [
+          "Unhealthy and I'm fine with it",
+          "Not great but I don't care",
+          "Pretty bad, not planning to change",
+          "Unhealthy, but that's okay",
+          "Not healthy and I'm not worried",
+          "Poor eating habits, no plans to change",
+          "Unhealthy and I'm satisfied",
+          "Not good, but I'm happy",
+          "Bad habits, not interested in changing",
+          "Unhealthy and I accept it"
+        ],
+        "contemplation": [
+          "Not great, I know I should improve",
+          "Unhealthy, thinking about changing",
+          "Could be better, considering changes",
+          "Not ideal, I'm aware of it",
+          "Needs improvement, I'm thinking",
+          "Not healthy, but I'm contemplating change",
+          "Could use work, I realize that",
+          "Not the best, thinking about it",
+          "Unhealthy, I know I need to change",
+          "Not good, considering improvements"
+        ],
+        "preparation": [
+          "Not great yet, but I'm planning to improve",
+          "Still unhealthy, but I'm getting ready to change",
+          "Needs work, I'm preparing to fix it",
+          "Not ideal, but I'm about to start improving",
+          "Currently poor, but I'm planning changes",
+          "Not healthy yet, preparing to change",
+          "Needs improvement, getting ready to act",
+          "Still working on it, preparing",
+          "Not where I want, but planning to improve",
+          "Transitioning, getting ready to change"
+        ],
+        "action": [
+          "Improving, I'm working on it",
+          "Getting better, making changes",
+          "Healthier than before, still improving",
+          "Making progress, eating better",
+          "Changing for the better",
+          "Improving steadily",
+          "Better than before, actively changing",
+          "Getting healthier, work in progress",
+          "Making positive changes",
+          "Improving, taking action"
+        ],
+        "maintenance": [
+          "Healthy and consistent",
+          "Very healthy, it's my lifestyle",
+          "Excellent, I've maintained good habits",
+          "Healthy eating is routine for me",
+          "Very good, sustained over time",
+          "Healthy and stable",
+          "Great habits, maintained for long",
+          "Consistently healthy",
+          "Very healthy, it's automatic now",
+          "Excellent, maintained for years"
+        ]
+      }
+    },
+    {
+      "id": "ttm-5",
+      "question": "How long have you been eating healthy (if applicable)?",
+      "samples": {
+        "preContemplation": [
+          "I haven't been eating healthy",
+          "Not applicable, I don't eat healthy",
+          "Never, not eating healthy",
+          "I'm not eating healthy at all",
+          "Not applicable",
+          "Haven't started eating healthy",
+          "Zero time, not doing it",
+          "Not eating healthy",
+          "Doesn't apply to me",
+          "I'm not eating healthy"
+        ],
+        "contemplation": [
+          "I haven't started yet",
+          "Not applicable, just thinking about it",
+          "Haven't begun, only considering",
+          "Not started, still thinking",
+          "Zero time, only contemplating",
+          "Not applicable, just thinking",
+          "Haven't started eating healthy yet",
+          "Not begun, only considering it",
+          "No time yet, just thinking",
+          "Not applicable, still deciding"
+        ],
+        "preparation": [
+          "About to start, not yet",
+          "Haven't started but will soon",
+          "Not yet, starting next week",
+          "Zero time, but starting soon",
+          "Not applicable yet, starting shortly",
+          "About to begin",
+          "Not started, but prepared to",
+          "Will start very soon",
+          "Not yet, but ready to start",
+          "About to begin my journey"
+        ],
+        "action": [
+          "A few weeks now",
+          "About a month",
+          "Just started, maybe 2 weeks",
+          "Recently, about 3 weeks",
+          "A couple of weeks",
+          "Just over a month",
+          "About 4 weeks",
+          "Recently started, few weeks",
+          "A month or so",
+          "Just a few weeks"
+        ],
+        "maintenance": [
+          "Over 6 months",
+          "About a year now",
+          "Many months, almost a year",
+          "For years",
+          "Over a year",
+          "Several months, close to a year",
+          "A long time, over 6 months",
+          "More than a year",
+          "Many months, it's a habit",
+          "Years, it's my lifestyle"
+        ]
+      }
+    }
+  ]
+}

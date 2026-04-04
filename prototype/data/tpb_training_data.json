@@ -1,0 +1,1017 @@
+{
+  "metadata": {
+    "description": "TPB (Theory of Planned Behavior) training dataset with sample answers for each construct and scale level",
+    "constructs": ["attitude", "subjectiveNorm", "perceivedControl"],
+    "scale": "1-5 (1=Very Low, 2=Low, 3=Moderate, 4=High, 5=Very High)",
+    "samplesPerLevel": 10,
+    "totalQuestions": 15,
+    "questionsPerConstruct": 5
+  },
+  "questions": [
+    {
+      "id": "tpb-att-1",
+      "construct": "attitude",
+      "question": "How do you feel about eating healthy food?",
+      "samples": {
+        "1": [
+          "I hate healthy food, it's disgusting",
+          "Healthy food is terrible and tasteless",
+          "I absolutely dislike eating healthy",
+          "It's awful, I can't stand it",
+          "Healthy eating is the worst thing ever",
+          "I have a very negative view of it",
+          "It's bad and I don't want to do it",
+          "I feel terrible about the idea",
+          "Not interested at all, it's gross",
+          "I strongly dislike healthy food"
+        ],
+        "2": [
+          "I don't really like it much",
+          "It's not great, kind of boring",
+          "Not a fan, it's pretty bland",
+          "I'm skeptical about healthy food",
+          "It's difficult and not enjoyable",
+          "I find it challenging and unpleasant",
+          "Not really my thing",
+          "It's hard to enjoy healthy meals",
+          "I'm not enthusiastic about it",
+          "It feels like a chore"
+        ],
+        "3": [
+          "It's okay, nothing special",
+          "I feel neutral about it",
+          "It's fine, I guess",
+          "Not sure how I feel, it's alright",
+          "Sometimes good, sometimes not",
+          "It's decent enough",
+          "I'm indifferent about healthy eating",
+          "It's acceptable",
+          "Maybe it's worth trying",
+          "I have mixed feelings"
+        ],
+        "4": [
+          "I like healthy food, it's good",
+          "I enjoy eating nutritious meals",
+          "It's beneficial and I appreciate it",
+          "I have a positive view of it",
+          "Healthy eating is nice",
+          "I think it's helpful and good",
+          "I'm interested in eating healthier",
+          "It makes me feel good",
+          "I like the benefits it brings",
+          "It's enjoyable most of the time"
+        ],
+        "5": [
+          "I love healthy food, it's amazing",
+          "I'm passionate about eating well",
+          "Healthy eating is excellent and wonderful",
+          "I absolutely adore nutritious meals",
+          "It's fantastic, I'm excited about it",
+          "I feel great about eating healthy",
+          "It's the best thing for my body",
+          "I'm enthusiastic and love it",
+          "Healthy food is delicious and satisfying",
+          "I have a very positive attitude toward it"
+        ]
+      }
+    },
+    {
+      "id": "tpb-att-2",
+      "construct": "attitude",
+      "question": "Do you believe healthy eating would improve your energy and wellbeing?",
+      "samples": {
+        "1": [
+          "No, definitely not",
+          "I don't believe it will help at all",
+          "Not at all, it won't make a difference",
+          "I'm certain it won't improve anything",
+          "Absolutely not, it's pointless",
+          "I don't think it matters",
+          "No way, it won't change how I feel",
+          "I doubt it will do anything",
+          "Definitely won't help my energy",
+          "I'm convinced it's useless"
+        ],
+        "2": [
+          "Probably not, I'm skeptical",
+          "I doubt it would help much",
+          "Not really convinced it will work",
+          "Unlikely to make a difference",
+          "I'm not sure it's worth it",
+          "Questionable benefits in my opinion",
+          "I don't see how it would help",
+          "Not really, maybe a little",
+          "I'm doubtful about the benefits",
+          "Probably won't improve things"
+        ],
+        "3": [
+          "Maybe, I'm not sure",
+          "It might help, possibly",
+          "Could be beneficial, uncertain",
+          "Perhaps it would make some difference",
+          "I'm undecided about it",
+          "It's possible but not certain",
+          "Might improve things somewhat",
+          "Not sure, could go either way",
+          "Maybe it would help a bit",
+          "Possibly, but I'm uncertain"
+        ],
+        "4": [
+          "Yes, I think it would help",
+          "Probably, it should improve my energy",
+          "I believe it would be beneficial",
+          "Likely to make me feel better",
+          "Yes, it should help my wellbeing",
+          "I think it would make a difference",
+          "It would probably improve things",
+          "I agree it would be helpful",
+          "Yes, it should boost my energy",
+          "I believe it would work"
+        ],
+        "5": [
+          "Absolutely, I'm certain it will help",
+          "Definitely yes, without a doubt",
+          "I'm completely sure it will improve everything",
+          "Of course, it will definitely boost my energy",
+          "100% certain it will enhance my wellbeing",
+          "Absolutely convinced it will make a huge difference",
+          "Without question, it will help tremendously",
+          "I'm totally sure it will improve my health",
+          "Definitely, it will transform how I feel",
+          "Certainly, I have no doubt about the benefits"
+        ]
+      }
+    },
+    {
+      "id": "tpb-att-3",
+      "construct": "attitude",
+      "question": "How important is healthy eating to you personally?",
+      "samples": {
+        "1": [
+          "Not important at all",
+          "I don't care about it",
+          "It doesn't matter to me",
+          "Completely irrelevant",
+          "Not a priority whatsoever",
+          "I have no interest in it",
+          "It's meaningless to me",
+          "Not important in the slightest",
+          "I don't value it at all",
+          "It's at the bottom of my list"
+        ],
+        "2": [
+          "Not very important",
+          "Low priority for me",
+          "Not much of a concern",
+          "It's a minor thing",
+          "I don't think about it much",
+          "Not really on my radar",
+          "It's not a big deal",
+          "Somewhat unimportant",
+          "I don't prioritize it",
+          "It's not significant to me"
+        ],
+        "3": [
+          "Somewhat important",
+          "Moderately important to me",
+          "It's okay, average priority",
+          "Normal level of importance",
+          "Fair amount of importance",
+          "It matters a bit",
+          "Decent priority",
+          "Moderately on my mind",
+          "Average importance",
+          "It's alright, not critical"
+        ],
+        "4": [
+          "Important to me",
+          "It matters quite a bit",
+          "Significant priority",
+          "I care about it",
+          "It's a priority",
+          "I value healthy eating",
+          "Pretty important",
+          "It's on my mind often",
+          "Matters to me personally",
+          "High on my priority list"
+        ],
+        "5": [
+          "Very important, top priority",
+          "Extremely important to me",
+          "Crucial and essential",
+          "Critical priority in my life",
+          "Vital and paramount",
+          "Absolutely essential",
+          "My number one priority",
+          "Extremely significant",
+          "The most important thing",
+          "Fundamentally important to me"
+        ]
+      }
+    },
+    {
+      "id": "tpb-att-4",
+      "construct": "attitude",
+      "question": "How would you describe healthy food?",
+      "samples": {
+        "1": [
+          "Disgusting and gross",
+          "Terrible, I hate it",
+          "Awful and tasteless",
+          "It's the worst",
+          "Nasty and unappetizing",
+          "Horrible, can't stand it",
+          "Revolting and bland",
+          "Gross and unpalatable",
+          "Terrible taste, hate it",
+          "Disgusting, won't eat it"
+        ],
+        "2": [
+          "Bland and boring",
+          "Not great, pretty plain",
+          "Uninteresting and dull",
+          "Not very tasty",
+          "Kind of boring",
+          "Not appealing to me",
+          "Meh, nothing special",
+          "Plain and unexciting",
+          "Not enjoyable",
+          "Boring and tasteless"
+        ],
+        "3": [
+          "Okay, nothing special",
+          "Fine, I guess",
+          "Acceptable",
+          "Not bad, not great",
+          "Decent enough",
+          "Alright, average",
+          "It's fine",
+          "Okay taste",
+          "Acceptable quality",
+          "Average, nothing more"
+        ],
+        "4": [
+          "Good and enjoyable",
+          "Nice and pleasant",
+          "Tasty and appetizing",
+          "Fresh and good",
+          "Enjoyable to eat",
+          "Decent and flavorful",
+          "Good quality",
+          "Pleasant taste",
+          "Nice and nutritious",
+          "Good, I like it"
+        ],
+        "5": [
+          "Delicious and amazing",
+          "Wonderful and tasty",
+          "Absolutely delicious",
+          "Flavorful and satisfying",
+          "Yummy and fantastic",
+          "Love it, so tasty",
+          "Amazing flavor",
+          "Incredibly delicious",
+          "Wonderful and fulfilling",
+          "Delicious, I adore it"
+        ]
+      }
+    },
+    {
+      "id": "tpb-att-5",
+      "construct": "attitude",
+      "question": "Do you think the benefits of healthy eating outweigh the effort?",
+      "samples": {
+        "1": [
+          "No, definitely not worth it",
+          "Not worth the effort at all",
+          "Too hard, not worth it",
+          "Definitely not, waste of time",
+          "The effort is too much",
+          "Not worth it whatsoever",
+          "No way, too much work",
+          "Absolutely not worth the hassle",
+          "Not worth the trouble",
+          "No, it's pointless effort"
+        ],
+        "2": [
+          "Probably not worth it",
+          "Not really, too much effort",
+          "Doubt it's worth the work",
+          "Questionable if it's worth it",
+          "Too much effort for little gain",
+          "Not convinced it's worth it",
+          "Probably not worth the hassle",
+          "I don't think so",
+          "Unlikely to be worth it",
+          "Not really worth the time"
+        ],
+        "3": [
+          "Maybe, not sure",
+          "Could be worth it, depends",
+          "Possibly worth the effort",
+          "Not certain either way",
+          "Sometimes yes, sometimes no",
+          "Might be worth it",
+          "Undecided about it",
+          "Could go either way",
+          "Perhaps worth it",
+          "Maybe, I'm uncertain"
+        ],
+        "4": [
+          "Yes, worth it",
+          "I think the benefits outweigh effort",
+          "Probably worth the work",
+          "Yes, it's worth doing",
+          "The benefits are worth it",
+          "I believe it's worth the effort",
+          "Yes, good return on effort",
+          "Worth the time and work",
+          "I think so, yes",
+          "Likely worth the effort"
+        ],
+        "5": [
+          "Absolutely, totally worth it",
+          "Definitely yes, for sure",
+          "Without question worth the effort",
+          "100% worth it",
+          "Completely worth every bit of effort",
+          "Absolutely worth the work",
+          "Definitely worth it, no doubt",
+          "Totally worth the time and effort",
+          "Without a doubt worth it",
+          "Absolutely, best investment"
+        ]
+      }
+    },
+    {
+      "id": "tpb-sn-1",
+      "construct": "subjectiveNorm",
+      "question": "Do your family and friends support you eating healthier?",
+      "samples": {
+        "1": [
+          "No, they actively discourage me",
+          "They're against it completely",
+          "My family doesn't support me at all",
+          "They make it very difficult",
+          "No one supports this idea",
+          "They're negative about it",
+          "My friends mock me for trying",
+          "They don't want me to change",
+          "Everyone is against healthy eating",
+          "They actively sabotage my efforts"
+        ],
+        "2": [
+          "Not really, they don't care much",
+          "They're mostly indifferent",
+          "Not much support from them",
+          "They rarely encourage me",
+          "Minimal support, if any",
+          "They don't really help",
+          "Not very supportive overall",
+          "They don't understand why I'd want to",
+          "Little to no encouragement",
+          "They're not interested in supporting me"
+        ],
+        "3": [
+          "Sometimes they support, sometimes not",
+          "It's mixed, depends on the day",
+          "Some family members do, others don't",
+          "They're neutral about it",
+          "Okay support, nothing special",
+          "Half of them support me",
+          "It varies from person to person",
+          "They're indifferent mostly",
+          "Some encouragement, not consistent",
+          "Mixed reactions from everyone"
+        ],
+        "4": [
+          "Yes, they're supportive",
+          "My family encourages me",
+          "They help me with healthy eating",
+          "Most of them are positive about it",
+          "They support my goals",
+          "My friends encourage healthy choices",
+          "They're generally supportive",
+          "They help me stay on track",
+          "Good support from family",
+          "They're positive and encouraging"
+        ],
+        "5": [
+          "Absolutely, they're very supportive",
+          "My family fully supports and encourages me",
+          "Everyone is extremely supportive",
+          "They help me constantly",
+          "Amazing support from everyone",
+          "They're always encouraging me",
+          "My family and friends are 100% behind me",
+          "They actively help me eat healthier",
+          "Incredible support system",
+          "They're enthusiastic about supporting me"
+        ]
+      }
+    },
+    {
+      "id": "tpb-sn-2",
+      "construct": "subjectiveNorm",
+      "question": "Do people important to you eat healthy themselves?",
+      "samples": {
+        "1": [
+          "No, nobody does",
+          "None of them eat healthy",
+          "Not at all, no one",
+          "Never, they all eat junk",
+          "No one I know eats healthy",
+          "Nobody around me does",
+          "Not a single person",
+          "No, everyone eats poorly",
+          "None of them care about health",
+          "Not at all, zero people"
+        ],
+        "2": [
+          "Not many, very few",
+          "Hardly anyone does",
+          "Rarely see anyone eating healthy",
+          "Not really, just a couple",
+          "Very few people",
+          "Not many at all",
+          "Hardly any of them",
+          "Only one or two maybe",
+          "Not really, most don't",
+          "Very few, if any"
+        ],
+        "3": [
+          "Some do, some don't",
+          "A few people do",
+          "Mixed, about half",
+          "Sometimes I see people",
+          "Occasionally some do",
+          "Half and half",
+          "Some of them eat healthy",
+          "A few here and there",
+          "Mixed bag, varies",
+          "Some people, not many"
+        ],
+        "4": [
+          "Yes, many do",
+          "Most people I know",
+          "Several of them eat healthy",
+          "Quite a few people",
+          "Yes, the majority do",
+          "Many of my friends and family",
+          "Most of them do",
+          "Yes, several people",
+          "Many people around me",
+          "Most of the important people"
+        ],
+        "5": [
+          "Yes, everyone does",
+          "All of them eat healthy",
+          "Definitely, all the important people",
+          "Everyone around me eats well",
+          "Yes, all of them",
+          "Absolutely everyone",
+          "All my family and friends do",
+          "Everyone I look up to",
+          "Yes, all the people I care about",
+          "Definitely, everyone important to me"
+        ]
+      }
+    },
+    {
+      "id": "tpb-sn-3",
+      "construct": "subjectiveNorm",
+      "question": "Would your family be willing to eat healthy meals with you?",
+      "samples": {
+        "1": [
+          "No, they refuse",
+          "Definitely not, they won't",
+          "They're against it",
+          "No way, they'd never",
+          "Absolutely not willing",
+          "They refuse to eat healthy",
+          "No, they're completely opposed",
+          "They won't do it",
+          "Never, they're not interested",
+          "No, they'd reject the idea"
+        ],
+        "2": [
+          "Probably not",
+          "Unlikely they would",
+          "I doubt it",
+          "Not really willing",
+          "They're hesitant",
+          "Probably wouldn't want to",
+          "Not very likely",
+          "I don't think so",
+          "Doubtful they'd agree",
+          "Not really interested"
+        ],
+        "3": [
+          "Maybe, not sure",
+          "Possibly, depends",
+          "Might, uncertain",
+          "Could go either way",
+          "Not sure if they would",
+          "Maybe, depends on the meal",
+          "Possibly willing",
+          "Might be open to it",
+          "Uncertain, maybe",
+          "Could be, not certain"
+        ],
+        "4": [
+          "Yes, probably",
+          "I think they would",
+          "Likely willing",
+          "Yes, they'd be open to it",
+          "Probably yes",
+          "I think so",
+          "They'd be willing",
+          "Yes, most likely",
+          "They would probably agree",
+          "Yes, I believe they would"
+        ],
+        "5": [
+          "Absolutely, they'd love to",
+          "Definitely yes, for sure",
+          "They'd be very willing",
+          "Yes, they'd be excited",
+          "Absolutely willing",
+          "For sure, they'd love it",
+          "Definitely, no hesitation",
+          "Yes, they'd be enthusiastic",
+          "Absolutely, they'd be happy to",
+          "Without a doubt, yes"
+        ]
+      }
+    },
+    {
+      "id": "tpb-sn-4",
+      "construct": "subjectiveNorm",
+      "question": "How do people around you react when you talk about eating healthier?",
+      "samples": {
+        "1": [
+          "They mock and laugh at me",
+          "Very negative, they criticize",
+          "They make fun of me",
+          "Hostile reactions",
+          "They discourage me strongly",
+          "They're very negative about it",
+          "They tease and ridicule me",
+          "Very dismissive and rude",
+          "They actively discourage it",
+          "Negative and critical"
+        ],
+        "2": [
+          "They're dismissive",
+          "Not interested, ignore me",
+          "Skeptical and negative",
+          "They don't care",
+          "Pretty negative overall",
+          "They're not supportive",
+          "Indifferent or negative",
+          "They don't take it seriously",
+          "Somewhat negative",
+          "They brush it off"
+        ],
+        "3": [
+          "Neutral, don't say much",
+          "Mixed reactions",
+          "Okay, indifferent",
+          "They're neutral about it",
+          "Some positive, some negative",
+          "Varies, mixed responses",
+          "They don't react strongly",
+          "Indifferent mostly",
+          "Okay reactions, nothing special",
+          "Mixed, depends on who"
+        ],
+        "4": [
+          "Positive and interested",
+          "They're supportive",
+          "Good reactions, encouraging",
+          "They're happy for me",
+          "Positive and supportive",
+          "They encourage me",
+          "Good responses overall",
+          "They're interested and positive",
+          "Supportive reactions",
+          "Positive and helpful"
+        ],
+        "5": [
+          "Very enthusiastic and excited",
+          "Extremely positive and supportive",
+          "They love it and encourage me",
+          "Very excited for me",
+          "Incredibly supportive",
+          "They're thrilled about it",
+          "Extremely encouraging",
+          "Very positive, they love the idea",
+          "Enthusiastic and helpful",
+          "Amazing support and excitement"
+        ]
+      }
+    },
+    {
+      "id": "tpb-sn-5",
+      "construct": "subjectiveNorm",
+      "question": "Do you have role models or people you look up to who eat healthy?",
+      "samples": {
+        "1": [
+          "No, nobody at all",
+          "Not at all, no one",
+          "No role models for this",
+          "Never see anyone",
+          "No one I look up to does",
+          "Not a single person",
+          "No, none whatsoever",
+          "Nobody I admire eats healthy",
+          "Not at all, zero people",
+          "No role models in this area"
+        ],
+        "2": [
+          "Not really, very few",
+          "Hardly any",
+          "Not many people",
+          "Rarely see role models",
+          "Very few, if any",
+          "Don't know many",
+          "Not really, just one maybe",
+          "Hardly anyone I look up to",
+          "Very few role models",
+          "Not many at all"
+        ],
+        "3": [
+          "Maybe one or two",
+          "A few people",
+          "Some, not many",
+          "Occasionally see people",
+          "A couple of people",
+          "Not many, a few",
+          "Some role models",
+          "A few here and there",
+          "One or two maybe",
+          "Some people, not lots"
+        ],
+        "4": [
+          "Yes, some people",
+          "A few role models",
+          "Yes, several people",
+          "I know some people who do",
+          "Yes, quite a few",
+          "Several role models",
+          "Yes, many friends do",
+          "Some people I look up to",
+          "Yes, a good number",
+          "Several people I admire"
+        ],
+        "5": [
+          "Yes, many people",
+          "Lots of role models",
+          "Definitely, many people",
+          "Yes, all around me",
+          "So many role models",
+          "Yes, everyone I look up to",
+          "Many people I admire",
+          "Definitely, lots of people",
+          "Yes, surrounded by them",
+          "Absolutely, many role models"
+        ]
+      }
+    },
+    {
+      "id": "tpb-pc-1",
+      "construct": "perceivedControl",
+      "question": "How confident are you that you can prepare healthy meals?",
+      "samples": {
+        "1": [
+          "Not confident at all, I can't do it",
+          "I have no idea how to cook healthy",
+          "Completely unable to prepare meals",
+          "I'm totally lost in the kitchen",
+          "Zero confidence, it's impossible",
+          "I can't cook at all",
+          "No skills whatsoever",
+          "I'm hopeless at meal preparation",
+          "Absolutely no confidence",
+          "I don't know where to start"
+        ],
+        "2": [
+          "Not very confident, it's difficult",
+          "I struggle with cooking healthy",
+          "Low confidence, it's challenging",
+          "I find it hard to prepare meals",
+          "Not confident, I often fail",
+          "It's tough and I'm not good at it",
+          "I'm unsure about my cooking abilities",
+          "Challenging for me to do",
+          "I lack confidence in the kitchen",
+          "It's difficult and I'm not skilled"
+        ],
+        "3": [
+          "Somewhat confident, I'm learning",
+          "Moderately confident, getting there",
+          "Okay confidence, still improving",
+          "I can manage some basic meals",
+          "Decent confidence, not expert",
+          "I'm learning and it's okay",
+          "Average confidence level",
+          "I can do it with some effort",
+          "Moderate skills, working on it",
+          "Fair confidence, room to grow"
+        ],
+        "4": [
+          "Confident, I can do it",
+          "I'm able to prepare healthy meals",
+          "Good confidence in my cooking",
+          "I know how to make nutritious food",
+          "Comfortable with meal preparation",
+          "I can handle cooking healthy",
+          "Pretty confident in my abilities",
+          "I'm capable of making good meals",
+          "Strong confidence in cooking",
+          "I can prepare meals well"
+        ],
+        "5": [
+          "Very confident, I'm an expert",
+          "Extremely confident in my cooking skills",
+          "I can easily prepare any healthy meal",
+          "Total confidence, I'm great at it",
+          "I'm highly skilled at meal prep",
+          "Absolutely confident, no problem",
+          "I'm excellent at cooking healthy food",
+          "Complete confidence in my abilities",
+          "I'm a pro at preparing nutritious meals",
+          "Totally confident, I've mastered it"
+        ]
+      }
+    },
+    {
+      "id": "tpb-pc-2",
+      "construct": "perceivedControl",
+      "question": "Do you have the time, money, and resources to eat healthier?",
+      "samples": {
+        "1": [
+          "No, I have nothing",
+          "Can't afford it at all",
+          "No time, no money, no resources",
+          "Absolutely no resources",
+          "Impossible, I lack everything",
+          "No time or money whatsoever",
+          "I have zero resources",
+          "Can't afford healthy food",
+          "No time and no money",
+          "Completely lacking resources"
+        ],
+        "2": [
+          "Not much, struggling",
+          "Very limited resources",
+          "Barely any time or money",
+          "Not enough resources",
+          "Scarce resources",
+          "Limited time and money",
+          "Struggling with resources",
+          "Not much available",
+          "Difficult, very limited",
+          "Barely managing resources"
+        ],
+        "3": [
+          "Some, but limited",
+          "Okay, tight but possible",
+          "Manage with what I have",
+          "Limited but manageable",
+          "Barely enough",
+          "Okay resources, not great",
+          "Tight budget and time",
+          "Some resources available",
+          "Manage, but it's tight",
+          "Limited but can work with it"
+        ],
+        "4": [
+          "Yes, I have enough",
+          "Sufficient resources",
+          "I can manage it",
+          "Yes, available to me",
+          "Enough time and money",
+          "I have what I need",
+          "Good resources available",
+          "Yes, I can afford it",
+          "Sufficient time and money",
+          "I have adequate resources"
+        ],
+        "5": [
+          "Yes, I have everything I need",
+          "Plenty of resources",
+          "Fully equipped with time and money",
+          "All resources available",
+          "Definitely have everything",
+          "Abundant resources",
+          "Yes, more than enough",
+          "Plenty of time and money",
+          "All the resources I need",
+          "Fully resourced and ready"
+        ]
+      }
+    },
+    {
+      "id": "tpb-pc-3",
+      "construct": "perceivedControl",
+      "question": "How easy or difficult is it for you to access healthy food?",
+      "samples": {
+        "1": [
+          "Very difficult, impossible",
+          "Can't access it at all",
+          "Extremely difficult",
+          "No access whatsoever",
+          "Impossible to find",
+          "Unavailable in my area",
+          "Very hard, can't get it",
+          "Completely inaccessible",
+          "Impossible to access",
+          "No way to get healthy food"
+        ],
+        "2": [
+          "Difficult and challenging",
+          "Hard to access",
+          "Not easy at all",
+          "Struggle to find it",
+          "Limited access",
+          "Challenging to get",
+          "Hard to find healthy options",
+          "Difficult in my area",
+          "Not easily accessible",
+          "Struggle with access"
+        ],
+        "3": [
+          "Okay, moderate difficulty",
+          "Sometimes easy, sometimes not",
+          "Depends on the day",
+          "Mixed, varies",
+          "Moderate access",
+          "Okay, not too hard",
+          "Manageable access",
+          "Depends where I go",
+          "Moderate difficulty",
+          "Okay, could be better"
+        ],
+        "4": [
+          "Easy to access",
+          "Not hard to find",
+          "Accessible in my area",
+          "I can find it easily",
+          "Available nearby",
+          "Easy enough",
+          "Manageable and accessible",
+          "Not difficult",
+          "Pretty easy to get",
+          "Accessible most places"
+        ],
+        "5": [
+          "Very easy, no problem",
+          "Extremely easy to access",
+          "Readily available everywhere",
+          "No problem at all",
+          "Everywhere I go",
+          "Very accessible",
+          "Extremely easy to find",
+          "Available all around me",
+          "Super easy access",
+          "No difficulty whatsoever"
+        ]
+      }
+    },
+    {
+      "id": "tpb-pc-4",
+      "construct": "perceivedControl",
+      "question": "Do you feel you have control over what you eat?",
+      "samples": {
+        "1": [
+          "No control at all",
+          "Others decide for me",
+          "I can't control it",
+          "Completely helpless",
+          "No control whatsoever",
+          "I have zero control",
+          "Others control my diet",
+          "No say in what I eat",
+          "Absolutely no control",
+          "I'm powerless over it"
+        ],
+        "2": [
+          "Not much control",
+          "Little control over it",
+          "Rarely have control",
+          "Limited control",
+          "Struggling to control it",
+          "Not really in control",
+          "Difficult to control",
+          "Minimal control",
+          "Not much say",
+          "Limited ability to control"
+        ],
+        "3": [
+          "Some control, sometimes",
+          "Partial control",
+          "Depends on the situation",
+          "Mixed control",
+          "Sometimes I control it",
+          "Varies, some control",
+          "Moderate control",
+          "Some say in it",
+          "Depends on circumstances",
+          "Partial control over diet"
+        ],
+        "4": [
+          "Yes, I have control",
+          "Mostly in control",
+          "Usually control what I eat",
+          "Generally have control",
+          "I control my diet",
+          "Yes, most of the time",
+          "Good control over it",
+          "I have say in what I eat",
+          "Usually in control",
+          "I control my food choices"
+        ],
+        "5": [
+          "Full control, always",
+          "Complete control over my diet",
+          "Total control",
+          "Absolutely in control",
+          "Entirely my decision",
+          "100% control",
+          "Always in control",
+          "Complete control always",
+          "Total control over what I eat",
+          "Absolutely full control"
+        ]
+      }
+    },
+    {
+      "id": "tpb-pc-5",
+      "construct": "perceivedControl",
+      "question": "How capable do you feel in overcoming barriers to healthy eating?",
+      "samples": {
+        "1": [
+          "Can't overcome anything",
+          "Unable to handle barriers",
+          "Impossible for me",
+          "Too hard, I give up",
+          "Hopeless at overcoming barriers",
+          "I can't do it",
+          "Completely incapable",
+          "Too difficult, can't manage",
+          "Unable to overcome obstacles",
+          "I feel helpless"
+        ],
+        "2": [
+          "Struggling to overcome barriers",
+          "Difficult, not very capable",
+          "Hard to overcome obstacles",
+          "Not very capable",
+          "Challenging, often fail",
+          "Overwhelmed by barriers",
+          "Not confident in overcoming them",
+          "Difficult for me",
+          "Struggle with obstacles",
+          "Not very able to overcome"
+        ],
+        "3": [
+          "Somewhat capable, trying",
+          "Learning to overcome barriers",
+          "Okay, working on it",
+          "Decent capability",
+          "Trying, getting better",
+          "Moderate capability",
+          "Working on overcoming them",
+          "Okay at handling barriers",
+          "Learning and improving",
+          "Decent, still learning"
+        ],
+        "4": [
+          "Capable of overcoming barriers",
+          "I can handle obstacles",
+          "Able to manage barriers",
+          "I can overcome them",
+          "Good at handling challenges",
+          "Capable and able",
+          "I manage barriers well",
+          "Able to overcome obstacles",
+          "Good capability",
+          "I can handle challenges"
+        ],
+        "5": [
+          "Very capable, can overcome anything",
+          "Extremely capable and strong",
+          "I can overcome any barrier",
+          "Highly capable and determined",
+          "Absolutely capable",
+          "Can handle any obstacle",
+          "Extremely capable",
+          "Strong and determined",
+          "Can overcome all barriers",
+          "Totally capable of anything"
+        ]
+      }
+    }
+  ]
+}
