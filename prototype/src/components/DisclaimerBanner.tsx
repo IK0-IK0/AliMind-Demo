@@ -97,7 +97,7 @@ export function DisclaimerBanner() {
         </DialogTitle>
         <DialogContent sx={{ mt: 2, p: { xs: 2, sm: 3 } }}>
           <Typography variant="body1" sx={{ mb: 2, color: '#555', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
-            This is a demonstration version of NutriBot with the following limitations:
+            This is a demonstration version of AliMind with the following limitations:
           </Typography>
           <List>
             <ListItem sx={{ py: 0.5, px: { xs: 0, sm: 2 } }}>

@@ -1,4 +1,4 @@
-// Filipino Recipe Database for NutriBot Demo
+// Filipino Recipe Database for AliMind Demo
 
 export interface Recipe {
   id: string;

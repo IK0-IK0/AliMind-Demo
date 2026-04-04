@@ -42,7 +42,7 @@ const TPB_ATTITUDE_QUESTIONS: Question[] = [
   {
     id: 'tpb-att-1',
     type: 'tpb-attitude',
-    text: 'How do you feel about eating healthy food?',
+    text: 'Let\'s start with something simple - how do you feel about eating healthy food?',
     keywords: {
       veryHigh: ['love', 'excellent', 'amazing', 'wonderful', 'excited', 'passionate', 'great', 'fantastic', 'adore'],
       high: ['like', 'good', 'positive', 'enjoy', 'interested', 'beneficial', 'helpful', 'nice'],
@@ -54,7 +54,7 @@ const TPB_ATTITUDE_QUESTIONS: Question[] = [
   {
     id: 'tpb-att-2',
     type: 'tpb-attitude',
-    text: 'Do you believe healthy eating would improve your energy and wellbeing?',
+    text: 'Do you think eating healthier would improve your energy and overall wellbeing?',
     keywords: {
       veryHigh: ['definitely', 'absolutely', 'certainly', 'sure', 'of course', 'without doubt', 'completely'],
       high: ['yes', 'probably', 'likely', 'think so', 'believe', 'would help', 'should', 'agree'],
@@ -66,7 +66,7 @@ const TPB_ATTITUDE_QUESTIONS: Question[] = [
   {
     id: 'tpb-att-3',
     type: 'tpb-attitude',
-    text: 'How important is healthy eating to you personally?',
+    text: 'On a personal level, how important is healthy eating to you?',
     keywords: {
       veryHigh: ['very important', 'extremely', 'crucial', 'essential', 'top priority', 'critical', 'vital'],
       high: ['important', 'matters', 'significant', 'care about', 'value', 'priority'],
@@ -78,7 +78,7 @@ const TPB_ATTITUDE_QUESTIONS: Question[] = [
   {
     id: 'tpb-att-4',
     type: 'tpb-attitude',
-    text: 'How would you describe healthy food?',
+    text: 'When you think about healthy food, what comes to mind? How would you describe it?',
     keywords: {
       veryHigh: ['delicious', 'tasty', 'amazing', 'wonderful', 'love it', 'flavorful', 'satisfying', 'yummy'],
       high: ['good', 'nice', 'enjoyable', 'pleasant', 'decent', 'appetizing', 'fresh'],
@@ -90,7 +90,7 @@ const TPB_ATTITUDE_QUESTIONS: Question[] = [
   {
     id: 'tpb-att-5',
     type: 'tpb-attitude',
-    text: 'Do you think the benefits of healthy eating outweigh the effort?',
+    text: 'In your opinion, do the benefits of healthy eating outweigh the effort it takes?',
     keywords: {
       veryHigh: ['absolutely', 'definitely yes', 'totally worth it', 'for sure', 'without question'],
       high: ['yes', 'worth it', 'benefits outweigh', 'think so', 'probably', 'agree'],
@@ -105,7 +105,7 @@ const TPB_SUBJECTIVE_NORM_QUESTIONS: Question[] = [
   {
     id: 'tpb-sn-1',
     type: 'tpb-subjective-norm',
-    text: 'Do your family and friends support you eating healthier?',
+    text: 'Now let\'s talk about your social circle. Do your family and friends support you in eating healthier?',
     keywords: {
       veryHigh: ['very supportive', 'fully support', 'encourage', 'help me', 'always support', 'great support'],
       high: ['yes', 'support', 'supportive', 'help', 'encourage me', 'positive', 'backing me'],
@@ -117,7 +117,7 @@ const TPB_SUBJECTIVE_NORM_QUESTIONS: Question[] = [
   {
     id: 'tpb-sn-2',
     type: 'tpb-subjective-norm',
-    text: 'Do people important to you eat healthy themselves?',
+    text: 'What about the people who matter most to you - do they eat healthy themselves?',
     keywords: {
       veryHigh: ['yes all', 'everyone', 'most people', 'all of them', 'definitely', 'always'],
       high: ['yes', 'many', 'most', 'several', 'quite a few', 'majority'],
@@ -129,7 +129,7 @@ const TPB_SUBJECTIVE_NORM_QUESTIONS: Question[] = [
   {
     id: 'tpb-sn-3',
     type: 'tpb-subjective-norm',
-    text: 'Would your family be willing to eat healthy meals with you?',
+    text: 'If you decided to eat healthier, would your family be willing to join you for healthy meals?',
     keywords: {
       veryHigh: ['definitely yes', 'absolutely', 'for sure', 'they would love to', 'very willing'],
       high: ['yes', 'probably', 'think so', 'willing', 'would', 'open to it'],
@@ -141,7 +141,7 @@ const TPB_SUBJECTIVE_NORM_QUESTIONS: Question[] = [
   {
     id: 'tpb-sn-4',
     type: 'tpb-subjective-norm',
-    text: 'How do people around you react when you talk about eating healthier?',
+    text: 'When you mention eating healthier to people around you, how do they usually react?',
     keywords: {
       veryHigh: ['enthusiastic', 'excited', 'very positive', 'supportive', 'encouraging', 'love it'],
       high: ['positive', 'good', 'supportive', 'interested', 'encouraging', 'happy for me'],
@@ -153,7 +153,7 @@ const TPB_SUBJECTIVE_NORM_QUESTIONS: Question[] = [
   {
     id: 'tpb-sn-5',
     type: 'tpb-subjective-norm',
-    text: 'Do you have role models or people you look up to who eat healthy?',
+    text: 'Are there any role models or people you admire who eat healthy?',
     keywords: {
       veryHigh: ['yes many', 'lots', 'several', 'many people', 'definitely', 'all around me'],
       high: ['yes', 'some', 'a few', 'have', 'know people', 'friends do'],
@@ -168,7 +168,7 @@ const TPB_PERCEIVED_CONTROL_QUESTIONS: Question[] = [
   {
     id: 'tpb-pc-1',
     type: 'tpb-perceived-control',
-    text: 'How confident are you that you can prepare healthy meals?',
+    text: 'Let\'s talk about your abilities. How confident do you feel about preparing healthy meals?',
     keywords: {
       veryHigh: ['very confident', 'extremely confident', 'totally confident', 'absolutely', 'expert'],
       high: ['confident', 'can do', 'able', 'capable', 'know how', 'comfortable'],
@@ -180,7 +180,7 @@ const TPB_PERCEIVED_CONTROL_QUESTIONS: Question[] = [
   {
     id: 'tpb-pc-2',
     type: 'tpb-perceived-control',
-    text: 'Do you have the time, money, and resources to eat healthier?',
+    text: 'Thinking practically, do you have the time, money, and resources needed to eat healthier?',
     keywords: {
       veryHigh: ['yes definitely', 'have everything', 'plenty', 'all resources', 'fully equipped'],
       high: ['yes', 'have', 'enough', 'sufficient', 'can manage', 'available'],
@@ -192,7 +192,7 @@ const TPB_PERCEIVED_CONTROL_QUESTIONS: Question[] = [
   {
     id: 'tpb-pc-3',
     type: 'tpb-perceived-control',
-    text: 'How easy or difficult is it for you to access healthy food?',
+    text: 'In your area, how easy or difficult is it to access healthy food options?',
     keywords: {
       veryHigh: ['very easy', 'extremely easy', 'no problem', 'readily available', 'everywhere'],
       high: ['easy', 'accessible', 'available', 'can find', 'not hard', 'manageable'],
@@ -204,7 +204,7 @@ const TPB_PERCEIVED_CONTROL_QUESTIONS: Question[] = [
   {
     id: 'tpb-pc-4',
     type: 'tpb-perceived-control',
-    text: 'Do you feel you have control over what you eat?',
+    text: 'Generally speaking, do you feel like you have control over what you eat?',
     keywords: {
       veryHigh: ['full control', 'complete control', 'totally', 'absolutely', 'always', 'entirely'],
       high: ['yes', 'control', 'mostly', 'usually', 'generally', 'have control'],
@@ -216,7 +216,7 @@ const TPB_PERCEIVED_CONTROL_QUESTIONS: Question[] = [
   {
     id: 'tpb-pc-5',
     type: 'tpb-perceived-control',
-    text: 'How capable do you feel in overcoming barriers to healthy eating?',
+    text: 'When you face obstacles to eating healthy, how capable do you feel in overcoming them?',
     keywords: {
       veryHigh: ['very capable', 'extremely capable', 'can overcome anything', 'strong', 'determined'],
       high: ['capable', 'can do', 'able', 'manage', 'handle', 'overcome'],
@@ -231,7 +231,7 @@ const TTM_QUESTIONS: Question[] = [
   {
     id: 'ttm-1',
     type: 'ttm',
-    text: 'Are you currently thinking about changing your eating habits?',
+    text: 'Almost there! Are you currently thinking about changing your eating habits?',
     keywords: {
       veryHigh: ['already changed', 'been doing', 'for months', 'for years', 'maintaining', 'lifestyle now'],
       high: ['yes doing', 'currently changing', 'started', 'actively', 'working on', 'in progress'],
@@ -243,7 +243,7 @@ const TTM_QUESTIONS: Question[] = [
   {
     id: 'ttm-2',
     type: 'ttm',
-    text: 'When do you plan to start eating healthier (if not already)?',
+    text: 'If you\'re not already eating healthy, when do you think you might start?',
     keywords: {
       veryHigh: ['already eating', 'been eating', 'for months', 'long time', 'already healthy'],
       high: ['already started', 'this week', 'now', 'currently', 'just started', 'recently'],
@@ -255,7 +255,7 @@ const TTM_QUESTIONS: Question[] = [
   {
     id: 'ttm-3',
     type: 'ttm',
-    text: 'Have you taken any steps toward eating healthier?',
+    text: 'Have you already taken any concrete steps toward eating healthier?',
     keywords: {
       veryHigh: ['yes for long time', 'been doing', 'routine', 'habit', 'lifestyle', 'months', 'years'],
       high: ['yes', 'started', 'taking steps', 'actively', 'doing', 'making changes'],
@@ -267,7 +267,7 @@ const TTM_QUESTIONS: Question[] = [
   {
     id: 'ttm-4',
     type: 'ttm',
-    text: 'How would you describe your current eating habits?',
+    text: 'If you had to describe your current eating habits right now, what would you say?',
     keywords: {
       veryHigh: ['healthy', 'very healthy', 'excellent', 'great', 'consistent', 'good habits'],
       high: ['improving', 'getting better', 'working on', 'changing', 'making progress', 'better'],
@@ -279,7 +279,7 @@ const TTM_QUESTIONS: Question[] = [
   {
     id: 'ttm-5',
     type: 'ttm',
-    text: 'How long have you been eating healthy (if applicable)?',
+    text: 'Last question! If you\'re already eating healthy, how long have you been doing it?',
     keywords: {
       veryHigh: ['months', 'years', 'long time', 'over 6 months', 'year', 'always', 'lifetime'],
       high: ['weeks', 'month', 'recently started', 'few weeks', 'just started', 'new'],
@@ -324,8 +324,131 @@ export function initializeQuestionnaire(): QuestionnaireState {
   };
 }
 
+/**
+ * Detect if an answer is low-quality/gibberish
+ */
+function isLowQualityAnswer(text: string): boolean {
+  const lowerText = text.toLowerCase().trim();
+  
+  console.log('Checking answer quality for:', text);
+  
+  // Too short
+  if (lowerText.length < 2) {
+    console.log('  -> Low quality: too short');
+    return true;
+  }
+  
+  // Single letter
+  if (/^[a-z]$/.test(lowerText)) {
+    console.log('  -> Low quality: single letter');
+    return true;
+  }
+  
+  // No vowels (likely gibberish)
+  if (!/[aeiou]/i.test(lowerText)) {
+    console.log('  -> Low quality: no vowels');
+    return true;
+  }
+  
+  // Repeated characters (aaaa, 1111, etc.)
+  if (/(.)\1{3,}/.test(lowerText)) {
+    console.log('  -> Low quality: repeated characters');
+    return true;
+  }
+  
+  // No letters at all (just numbers/symbols)
+  if (!/[a-z]/i.test(lowerText)) {
+    console.log('  -> Low quality: no letters');
+    return true;
+  }
+  
+  // Random keyboard mashing patterns (expanded)
+  const keyboardPatterns = [
+    /asdf/i, /qwer/i, /zxcv/i, /hjkl/i, /uiop/i, /jkl/i, /fgh/i, // keyboard rows
+    /(asd|sdf|dfg|fgh|ghj|hjk|jkl|qwe|wer|ert|rty|tyu|yui|uio|iop|zxc|xcv|cvb|vbn|bnm){2,}/i, // repeated keyboard sequences
+    /[a-z]{10,}[0-9]{3,}/i, // long string followed by numbers
+    /^[0-9]+$/  // only numbers
+  ];
+  if (keyboardPatterns.some(pattern => pattern.test(lowerText))) {
+    console.log('  -> Low quality: keyboard pattern');
+    return true;
+  }
+  
+  // Very high consonant-to-vowel ratio (gibberish indicator)
+  const consonants = (lowerText.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length;
+  const vowels = (lowerText.match(/[aeiou]/gi) || []).length;
+  if (vowels > 0 && consonants / vowels > 5) {
+    console.log('  -> Low quality: high consonant ratio');
+    return true;
+  }
+  
+  // Excessive repeated patterns (lalala, hahaha, asdasd)
+  if (/(\w{2,})\1{2,}/.test(lowerText)) {
+    console.log('  -> Low quality: repeated pattern');
+    return true;
+  }
+  
+  // Check for alternating character patterns (ababab, adadad, etc.)
+  if (/^([a-z]{1,3})\1{3,}$/i.test(lowerText)) {
+    console.log('  -> Low quality: alternating pattern');
+    return true;
+  }
+  
+  // Very low vowel diversity (only one vowel repeated)
+  const uniqueVowels = new Set(lowerText.match(/[aeiou]/gi) || []);
+  if (lowerText.length > 5 && uniqueVowels.size === 1) {
+    console.log('  -> Low quality: single vowel type');
+    return true;
+  }
+  
+  // Check for very low character diversity (using same few characters)
+  const uniqueChars = new Set(lowerText.split(''));
+  if (lowerText.length > 8 && uniqueChars.size < 4) {
+    console.log('  -> Low quality: low character diversity');
+    return true;
+  }
+  
+  // No spaces and very long (likely keyboard mashing)
+  if (lowerText.length > 15 && !lowerText.includes(' ')) {
+    const charFrequency = new Map<string, number>();
+    for (const char of lowerText) {
+      charFrequency.set(char, (charFrequency.get(char) || 0) + 1);
+    }
+    // If any character appears more than 40% of the time, it's suspicious
+    const maxFreq = Math.max(...Array.from(charFrequency.values()));
+    if (maxFreq / lowerText.length > 0.4) {
+      console.log('  -> Low quality: high character frequency');
+      return true;
+    }
+  }
+  
+  console.log('  -> Quality OK');
+  return false;
+}
+
 export function inferScoreFromText(text: string, keywords: KeywordMapping): number {
   const lowerText = text.toLowerCase().trim();
+  
+  // Don't penalize score for low-quality answers, just return neutral
+  // Confidence will be reduced separately
+  if (isLowQualityAnswer(text)) {
+    return 50; // Neutral score
+  }
+  
+  // Check for negation words that flip the meaning
+  const negationWords = [
+    'not', 'no', 'never', 'don\'t', 'dont', 'doesn\'t', 'doesnt', 
+    'didn\'t', 'didnt', 'won\'t', 'wont', 'wouldn\'t', 'wouldnt',
+    'can\'t', 'cant', 'cannot', 'isn\'t', 'isnt', 'aren\'t', 'arent',
+    'wasn\'t', 'wasnt', 'weren\'t', 'werent', 'hardly', 'barely',
+    'neither', 'nor', 'none', 'nobody', 'nothing', 'nowhere'
+  ];
+  
+  const hasNegation = negationWords.some(neg => {
+    // Check if negation word exists as a separate word (not part of another word)
+    const regex = new RegExp(`\\b${neg}\\b`, 'i');
+    return regex.test(lowerText);
+  });
   
   // Simple prototype: check which sample answer category the user's answer is closest to
   // We'll use keyword matching as a simple similarity measure
@@ -353,6 +476,21 @@ export function inferScoreFromText(text: string, keywords: KeywordMapping): numb
     if (matchCount > bestMatch.matchCount) {
       bestMatch = { score: level.score, matchCount };
     }
+  }
+  
+  // If negation detected and score is high/very high, flip to low/very low
+  // If negation detected and score is low/very low, flip to high/very high
+  if (hasNegation && bestMatch.matchCount > 0) {
+    if (bestMatch.score === 100) {
+      bestMatch.score = 0; // "not excellent" -> very low
+    } else if (bestMatch.score === 75) {
+      bestMatch.score = 25; // "not confident" -> low
+    } else if (bestMatch.score === 0) {
+      bestMatch.score = 100; // "not terrible" -> very high
+    } else if (bestMatch.score === 25) {
+      bestMatch.score = 75; // "not difficult" -> high
+    }
+    // Moderate (50) stays moderate even with negation
   }
   
   return bestMatch.score;
@@ -418,7 +556,15 @@ function calculateTPBScoresFromAnswers(answers: Map<string, { text: string; scor
     perceivedControlScores.reduce((sum, score) => sum + score, 0) / perceivedControlScores.length
   );
 
-  const confidence = Math.round((attitude + subjectiveNorm + perceivedControl) / 3);
+  // Calculate base confidence
+  let confidence = Math.round((attitude + subjectiveNorm + perceivedControl) / 3);
+  
+  // Reduce confidence for low-quality answers
+  const lowQualityCount = Array.from(answers.values()).filter(a => isLowQualityAnswer(a.text)).length;
+  console.log('Low quality answers detected:', lowQualityCount);
+  const qualityPenalty = lowQualityCount * 8; // Reduce confidence by 8% per low-quality answer
+  confidence = Math.max(10, confidence - qualityPenalty);
+  console.log('Final TPB confidence:', confidence, '(penalty:', qualityPenalty, ')');
 
   return {
     attitude,
@@ -437,7 +583,14 @@ function calculateTTMStageFromAnswers(answers: Map<string, { text: string; score
   const avgStage = ttmScores.reduce((sum, score) => sum + score, 0) / ttmScores.length;
   const variance = ttmScores.reduce((sum, score) => sum + Math.pow(score - avgStage, 2), 0) / ttmScores.length;
   const stdDev = Math.sqrt(variance);
-  const confidence = Math.round(Math.max(50, 100 - (stdDev * 12.5)));
+  
+  // Base confidence from variance
+  let confidence = Math.round(Math.max(50, 100 - (stdDev * 12.5)));
+  
+  // Reduce confidence for low-quality answers
+  const lowQualityCount = Array.from(answers.values()).filter(a => isLowQualityAnswer(a.text)).length;
+  const qualityPenalty = lowQualityCount * 8; // Reduce confidence by 8% per low-quality answer
+  confidence = Math.max(10, confidence - qualityPenalty);
 
   const stageMap: Array<{ stage: TTMStage['stage']; description: string }> = [
     { stage: 'preContemplation', description: 'Not yet considering change' },
@@ -502,7 +655,12 @@ export function calculateInterimScores(state: QuestionnaireState): {
     ? Math.round(perceivedControlAnswers.reduce((sum, score) => sum + score, 0) / perceivedControlAnswers.length)
     : 50;
 
-  const confidence = Math.round((attitude + subjectiveNorm + perceivedControl) / 3);
+  let confidence = Math.round((attitude + subjectiveNorm + perceivedControl) / 3);
+  
+  // Reduce confidence for low-quality answers in real-time
+  const lowQualityCount = Array.from(state.answers.values()).filter(a => isLowQualityAnswer(a.text)).length;
+  const qualityPenalty = lowQualityCount * 8;
+  confidence = Math.max(10, confidence - qualityPenalty);
 
   const tpbScores: TPBScores = {
     attitude,
@@ -523,7 +681,10 @@ export function calculateInterimScores(state: QuestionnaireState): {
     const avgStage = ttmScores.reduce((sum, score) => sum + score, 0) / ttmScores.length;
     const variance = ttmScores.reduce((sum, score) => sum + Math.pow(score - avgStage, 2), 0) / ttmScores.length;
     const stdDev = Math.sqrt(variance);
-    const confidence = Math.round(Math.max(50, 100 - (stdDev * 12.5)));
+    let ttmConfidence = Math.round(Math.max(50, 100 - (stdDev * 12.5)));
+    
+    // Reduce TTM confidence for low-quality answers in real-time
+    ttmConfidence = Math.max(10, ttmConfidence - qualityPenalty);
 
     const stageMap: Array<{ stage: TTMStage['stage']; description: string }> = [
       { stage: 'preContemplation', description: 'Not yet considering change' },
@@ -538,7 +699,7 @@ export function calculateInterimScores(state: QuestionnaireState): {
 
     ttmStage = {
       stage,
-      confidence,
+      confidence: ttmConfidence,
       description
     };
   }

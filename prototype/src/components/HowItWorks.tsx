@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Box, Container, Typography, Grid, Paper, Grow } from '@mui/material';
 import {
   Chat as ChatIcon,
@@ -36,7 +36,7 @@ export function HowItWorks() {
               mb: 2
             }}>
             
-            How NutriBot Works
+            How AliMind Works
           </Typography>
           <Typography
             variant="h6"
@@ -70,10 +70,11 @@ export function HowItWorks() {
           container
           spacing={4}
           justifyContent="center"
-          alignItems="stretch">
+          alignItems="stretch"
+          sx={{ maxWidth: '100%' }}>
           
           {/* Step 1 */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }} sx={{ display: 'flex' }}>
             <Box
               onMouseEnter={() => setActiveStep(0)}
               onMouseLeave={() => setActiveStep(null)}
@@ -83,7 +84,8 @@ export function HowItWorks() {
                 alignItems: 'center',
                 textAlign: 'center',
                 cursor: 'pointer',
-                height: '100%'
+                height: '100%',
+                width: '100%'
               }}>
               
               <Paper
@@ -135,13 +137,14 @@ export function HowItWorks() {
                 elevation={activeStep === 0 ? 4 : 0}
                 sx={{
                   p: 3,
-                  borderRadius: 3,
+                  borderRadius: 2,
                   bgcolor: activeStep === 0 ? 'white' : 'transparent',
                   transition: 'all 0.35s ease',
                   flex: 1,
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  width: '100%'
                 }}>
                 
                 <Typography
@@ -184,7 +187,7 @@ export function HowItWorks() {
           </Grid>
 
           {/* Step 2 */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }} sx={{ display: 'flex' }}>
             <Box
               onMouseEnter={() => setActiveStep(1)}
               onMouseLeave={() => setActiveStep(null)}
@@ -194,7 +197,8 @@ export function HowItWorks() {
                 alignItems: 'center',
                 textAlign: 'center',
                 cursor: 'pointer',
-                height: '100%'
+                height: '100%',
+                width: '100%'
               }}>
               
               <Paper
@@ -246,13 +250,14 @@ export function HowItWorks() {
                 elevation={activeStep === 1 ? 4 : 0}
                 sx={{
                   p: 3,
-                  borderRadius: 3,
+                  borderRadius: 2,
                   bgcolor: activeStep === 1 ? 'white' : 'transparent',
                   transition: 'all 0.35s ease',
                   flex: 1,
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  width: '100%'
                 }}>
                 
                 <Typography
@@ -295,7 +300,7 @@ export function HowItWorks() {
           </Grid>
 
           {/* Step 3 */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }} sx={{ display: 'flex' }}>
             <Box
               onMouseEnter={() => setActiveStep(2)}
               onMouseLeave={() => setActiveStep(null)}
@@ -305,7 +310,8 @@ export function HowItWorks() {
                 alignItems: 'center',
                 textAlign: 'center',
                 cursor: 'pointer',
-                height: '100%'
+                height: '100%',
+                width: '100%'
               }}>
               
               <Paper
@@ -357,13 +363,14 @@ export function HowItWorks() {
                 elevation={activeStep === 2 ? 4 : 0}
                 sx={{
                   p: 3,
-                  borderRadius: 3,
+                  borderRadius: 2,
                   bgcolor: activeStep === 2 ? 'white' : 'transparent',
                   transition: 'all 0.35s ease',
                   flex: 1,
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  width: '100%'
                 }}>
                 
                 <Typography

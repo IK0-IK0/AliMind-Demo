@@ -15,6 +15,7 @@
 
 import { calculateTPBScores, identifyWeakestDeterminant, TPBScores } from './tpbInference';
 import { classifyTTMStage, getInterventionMode, TTMStage } from './ttmInference';
+import { predictAll, convertTPBScores, areBERTModelsReady } from './bertInferenceBrowser';
 import { recipes, Recipe } from '../data/recipes';
 import { filterRecipes, RecipeConstraints, DietaryRestriction } from '../utils/recipeFilters';
 
@@ -49,6 +50,7 @@ export interface ChatbotResponse {
   bct: BCTSelection;
   recommendedRecipes: Recipe[];
   disclaimer: string;
+  inferenceMethod: 'bert' | 'keyword'; // Track which inference method was used
 }
 
 /**
@@ -336,8 +338,61 @@ function getBCTMessage(bct: BCTSelection): string {
 
 /**
  * Main chatbot service function - executes the complete pipeline
+ * Uses BERT models when available, falls back to keyword-based inference
  */
-export function processChatMessage(message: string): ChatbotResponse {
+export async function processChatMessage(message: string): Promise<ChatbotResponse> {
+  let tpbScores: TPBScores;
+  let ttmStage: TTMStage;
+  let inferenceMethod: 'bert' | 'keyword' = 'keyword';
+
+  try {
+    // Try BERT inference first (more accurate)
+    const bertResult = await predictAll(message);
+    
+    // Convert BERT scores (1-5 scale) to 0-100 scale
+    tpbScores = convertTPBScores(bertResult.tpb);
+    ttmStage = bertResult.ttm;
+    inferenceMethod = 'bert';
+    
+    console.log('✓ Using BERT inference');
+  } catch (error) {
+    // Fall back to keyword-based inference
+    console.warn('BERT unavailable, using keyword inference:', error);
+    tpbScores = calculateTPBScores(message);
+    ttmStage = classifyTTMStage(message);
+    inferenceMethod = 'keyword';
+  }
+
+  // STEP 3: Select intervention mode
+  const interventionMode = getInterventionMode(ttmStage.stage);
+
+  // STEP 4: Choose BCT based on weakest determinant
+  const weakestDeterminant = identifyWeakestDeterminant(tpbScores);
+  const bct = selectBCT(weakestDeterminant, ttmStage.stage);
+
+  // STEP 5: Generate response text
+  const responseMessage = generateResponse(ttmStage, bct);
+
+  // Add disclaimer
+  const disclaimer = 'Note: This advice is for informational purposes only and is not medical guidance. Please consult with a healthcare professional or registered dietitian for personalized medical advice.';
+
+  return {
+    message: responseMessage,
+    tpbScores,
+    ttmStage,
+    interventionMode,
+    bct,
+    recommendedRecipes: [], // No recipes
+    disclaimer,
+    inferenceMethod
+  };
+}
+
+/**
+ * Synchronous version for backward compatibility
+ * Uses keyword-based inference only
+ */
+export function processChatMessageSync(message: string): ChatbotResponse {
   // STEP 1: Calculate TPB scores
   const tpbScores = calculateTPBScores(message);
 
@@ -364,6 +419,7 @@ export function processChatMessage(message: string): ChatbotResponse {
     interventionMode,
     bct,
     recommendedRecipes: [], // No recipes
-    disclaimer
+    disclaimer,
+    inferenceMethod: 'keyword'
   };
 }

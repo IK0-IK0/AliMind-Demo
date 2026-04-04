@@ -52,7 +52,7 @@ export function Footer({ onTryDemo }: FooterProps) {
                   color: 'white'
                 }}>
                 
-                NutriBot
+                AliMind
               </Typography>
             </Box>
             <Typography
@@ -186,7 +186,7 @@ export function Footer({ onTryDemo }: FooterProps) {
               }}>
               
               Join thousands of others who have transformed their diets with
-              NutriBot.
+              AliMind.
             </Typography>
             <Button
               variant="contained"
@@ -200,7 +200,7 @@ export function Footer({ onTryDemo }: FooterProps) {
                 }
               }}>
               
-              Try NutriBot Free
+              Try AliMind Free
             </Button>
           </Grid>
         </Grid>
@@ -227,7 +227,7 @@ export function Footer({ onTryDemo }: FooterProps) {
               color: '#A5D6A7'
             }}>
             
-            © {new Date().getFullYear()} NutriBot. All rights reserved.
+            © {new Date().getFullYear()} AliMind. All rights reserved.
           </Typography>
           <Typography
             variant="body2"

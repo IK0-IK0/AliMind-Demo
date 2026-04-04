@@ -74,13 +74,13 @@ export function HelpDialog({ open, onClose, onResetSession }: HelpDialogProps) {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <PsychologyIcon sx={{ fontSize: { xs: 20, sm: 24 } }} />
-          <Typography variant="h6" sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem' } }}>About NutriBot Demo</Typography>
+          <Typography variant="h6" sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem' } }}>About AliMind Demo</Typography>
         </Box>
       </DialogTitle>
 
       <DialogContent sx={{ mt: 2, p: { xs: 2, sm: 3 } }}>
         <Typography variant="body1" sx={{ mb: 3, color: '#555', fontSize: { xs: '0.875rem', sm: '1rem' } }}>
-          NutriBot is a conversational AI nutrition assistant that uses psychological frameworks to provide personalized dietary guidance based on your readiness for change and behavioral barriers.
+          AliMind is a conversational AI nutrition assistant that uses psychological frameworks to provide personalized dietary guidance based on your readiness for change and behavioral barriers.
         </Typography>
 
         {/* Seven-Step Pipeline */}
@@ -106,7 +106,7 @@ export function HelpDialog({ open, onClose, onResetSession }: HelpDialogProps) {
           </AccordionSummary>
           <AccordionDetails sx={{ px: { xs: 2, sm: 2 } }}>
             <Typography variant="body2" sx={{ mb: 2, color: '#666', fontSize: { xs: '0.8rem', sm: '0.875rem' } }}>
-              NutriBot processes your messages through a seven-step computational pipeline:
+              AliMind processes your messages through a seven-step computational pipeline:
             </Typography>
             <List dense>
               <ListItem sx={{ py: 0.5, px: 0 }}>

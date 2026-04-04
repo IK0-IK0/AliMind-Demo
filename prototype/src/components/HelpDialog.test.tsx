@@ -5,12 +5,12 @@ import { HelpDialog } from './HelpDialog';
 describe('HelpDialog', () => {
   it('renders when open is true', () => {
     render(<HelpDialog open={true} onClose={vi.fn()} />);
-    expect(screen.getByText('About NutriBot Demo')).toBeInTheDocument();
+    expect(screen.getByText('About AliMind Demo')).toBeInTheDocument();
   });
 
   it('does not render when open is false', () => {
     render(<HelpDialog open={false} onClose={vi.fn()} />);
-    expect(screen.queryByText('About NutriBot Demo')).not.toBeInTheDocument();
+    expect(screen.queryByText('About AliMind Demo')).not.toBeInTheDocument();
   });
 
   it('calls onClose when Got it button is clicked', () => {

@@ -4,6 +4,7 @@ import { ArrowBack as ArrowBackIcon, Help as HelpIcon } from '@mui/icons-materia
 import { ChatbotShowcase } from '../components/ChatbotShowcase';
 import { DisclaimerBanner } from '../components/DisclaimerBanner';
 import { HelpDialog } from '../components/HelpDialog';
+import { ShapeGrid } from '../components/ShapeGrid';
 
 type DemoPageProps = {
   onBack: () => void;
@@ -31,8 +32,31 @@ export function DemoPage({ onBack }: DemoPageProps) {
         display: 'flex',
         flexDirection: 'column',
         overflow: isFullscreen ? 'hidden' : 'auto',
-        minHeight: 0
+        minHeight: 0,
+        position: 'relative'
       }}>
+      
+      {/* Triangle Grid Background */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 0,
+          pointerEvents: 'none'
+        }}>
+        <ShapeGrid
+          shape="triangle"
+          borderColor="#ffffff"
+          hoverFillColor="#ffffff"
+          squareSize={100}
+          direction="right"
+          speed={0.5}
+          hoverTrailAmount={0}
+        />
+      </Box>
       
       <Container
         maxWidth={isFullscreen ? false : "xl"}
@@ -45,7 +69,9 @@ export function DemoPage({ onBack }: DemoPageProps) {
           display: 'flex',
           flexDirection: 'column',
           overflow: isFullscreen ? 'hidden' : 'auto',
-          minHeight: 0
+          minHeight: 0,
+          position: 'relative',
+          zIndex: 1
         }}>
         
         <Collapse in={!isFullscreen} timeout={500}>
@@ -92,7 +118,7 @@ export function DemoPage({ onBack }: DemoPageProps) {
               textAlign: 'center'
             }}>
             
-            NutriBot Demo
+            AliMind Demo
           </Typography>
           <Typography
             variant="body1"
@@ -104,7 +130,7 @@ export function DemoPage({ onBack }: DemoPageProps) {
               mx: 'auto'
             }}>
             
-            Chat with NutriBot! Answer 20 questions to get personalized nutrition guidance based on your readiness and behavioral factors.
+            Chat with AliMind! Answer 20 questions to get personalized nutrition guidance based on your readiness and behavioral factors.
           </Typography>
 
           <DisclaimerBanner />

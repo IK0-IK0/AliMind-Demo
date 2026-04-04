@@ -151,7 +151,7 @@ export function ContactSection() {
                       color: '#558B2F'
                     }}>
                     
-                    hello@nutribot.app
+                    hello@alimind.app
                   </Typography>
                 </Box>
               </Paper>

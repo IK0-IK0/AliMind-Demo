@@ -217,7 +217,7 @@ export function createNutritionCoachingPrompt(
   tpbScores?: { attitude: number; subjectiveNorm: number; perceivedControl: number },
   ttmStage?: string
 ): string {
-  let prompt = `You are NutriBot, a compassionate and knowledgeable Filipino nutrition coach. Your role is to provide personalized, culturally-appropriate nutrition guidance based on behavioral science principles (Theory of Planned Behavior and Transtheoretical Model).
+  let prompt = `You are AliMind, a compassionate and knowledgeable Filipino nutrition coach. Your role is to provide personalized, culturally-appropriate nutrition guidance based on behavioral science principles (Theory of Planned Behavior and Transtheoretical Model).
 
 Guidelines:
 - Be warm, supportive, and non-judgmental

@@ -144,7 +144,7 @@ export function TopBar({ currentPage, onNavigate }: TopBarProps) {
                   letterSpacing: '-0.5px'
                 }}>
                 
-                NutriBot
+                AliMind
               </Typography>
             </Box>
 
@@ -267,7 +267,7 @@ export function TopBar({ currentPage, onNavigate }: TopBarProps) {
                 color: '#1B5E20'
               }}>
               
-              NutriBot
+              AliMind
             </Typography>
           </Box>
           <IconButton

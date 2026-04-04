@@ -27,7 +27,7 @@ export function HelpDialogExample() {
           HelpDialog Component Example
         </Typography>
         <Typography variant="body1" sx={{ color: '#666', mb: 3 }}>
-          Click the button below to open the help dialog and learn about NutriBot's features.
+          Click the button below to open the help dialog and learn about AliMind's features.
         </Typography>
         
         <Button
@@ -70,7 +70,7 @@ export function HelpDialogExample() {
         <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
           <li>
             <Typography variant="body2" sx={{ mb: 1 }}>
-              <strong>Seven-Step Pipeline:</strong> Explains the computational pipeline used by NutriBot
+              <strong>Seven-Step Pipeline:</strong> Explains the computational pipeline used by AliMind
             </Typography>
           </li>
           <li>

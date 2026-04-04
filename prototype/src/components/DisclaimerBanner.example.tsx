@@ -71,7 +71,7 @@ export function MultipleSectionsExample() {
     <Box sx={{ minHeight: '100vh', bgcolor: '#fafafa' }}>
       <Container maxWidth="md" sx={{ py: 4 }}>
         <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#2E7D32' }}>
-          NutriBot Demo
+          AliMind Demo
         </Typography>
         <Typography variant="body1" sx={{ mb: 3, textAlign: 'center', color: '#666' }}>
           Experience the power of AI-driven nutrition guidance

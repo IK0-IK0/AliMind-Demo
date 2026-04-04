@@ -1,5 +1,7 @@
 import React from 'react';
 import { Box, Container, Typography, Button, Stack } from '@mui/material';
+import { ShapeGrid } from './ShapeGrid';
+
 type HeroProps = {
   onTryDemo: () => void;
 };
@@ -16,38 +18,31 @@ export function Hero({ onTryDemo }: HeroProps) {
           xs: 10,
           md: 14
         },
-        background:
-        'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 50%, #B2DFDB 100%)',
+        background: '#D5EDD8',
         position: 'relative',
         overflow: 'hidden'
       }}>
       
-      {/* Decorative shapes */}
+      {/* Circle Grid Background */}
       <Box
         sx={{
           position: 'absolute',
-          top: '-10%',
-          right: '-5%',
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background:
-          'radial-gradient(circle, rgba(76,175,80,0.12) 0%, rgba(255,255,255,0) 70%)',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
           zIndex: 0
-        }} />
-      
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: '-20%',
-          left: '-10%',
-          width: '600px',
-          height: '600px',
-          borderRadius: '50%',
-          background:
-          'radial-gradient(circle, rgba(0,137,123,0.08) 0%, rgba(255,255,255,0) 70%)',
-          zIndex: 0
-        }} />
+        }}>
+        <ShapeGrid
+          shape="circle"
+          borderColor="#ffffff"
+          hoverFillColor="#4CAF50"
+          squareSize={100}
+          direction="right"
+          speed={0.5}
+          hoverTrailAmount={3}
+        />
+      </Box>
       
 
       <Container
@@ -95,7 +90,7 @@ export function Hero({ onTryDemo }: HeroProps) {
             lineHeight: 1.6
           }}>
           
-          Meet NutriBot — a theory-driven nutrition assistant that understands your barriers, 
+          Meet AliMind — a theory-driven nutrition assistant that understands your barriers, 
           readiness for change, and personal context through natural conversation.
         </Typography>
 

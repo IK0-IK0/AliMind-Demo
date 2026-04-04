@@ -13,5 +13,6 @@
       "runningStatusMessage": "Compiling main.typ...",
       "finishStatusMessage": "main.typ compiled"
     }
-  ]
+  ],
+  "typescript.autoClosingTags": false
 }

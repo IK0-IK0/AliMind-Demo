@@ -14,3 +14,7 @@ Thumbs.db
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
+
+# Kiro files
+.kiro/
+*.md
