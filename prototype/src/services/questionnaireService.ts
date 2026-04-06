@@ -231,7 +231,7 @@ const TTM_QUESTIONS: Question[] = [
   {
     id: 'ttm-1',
     type: 'ttm',
-    text: 'Almost there! Are you currently thinking about changing your eating habits?',
+    text: 'Are you currently thinking about changing your eating habits?',
     keywords: {
       veryHigh: ['already changed', 'been doing', 'for months', 'for years', 'maintaining', 'lifestyle now'],
       high: ['yes doing', 'currently changing', 'started', 'actively', 'working on', 'in progress'],
@@ -279,7 +279,7 @@ const TTM_QUESTIONS: Question[] = [
   {
     id: 'ttm-5',
     type: 'ttm',
-    text: 'Last question! If you\'re already eating healthy, how long have you been doing it?',
+    text: 'If you\'re already eating healthy, how long have you been doing it?',
     keywords: {
       veryHigh: ['months', 'years', 'long time', 'over 6 months', 'year', 'always', 'lifetime'],
       high: ['weeks', 'month', 'recently started', 'few weeks', 'just started', 'new'],
@@ -461,26 +461,35 @@ export function inferScoreFromText(text: string, keywords: KeywordMapping): numb
     { keywords: keywords.veryLow, score: 0 }
   ];
   
-  // Count matches for each level
-  let bestMatch = { score: 50, matchCount: 0 }; // Default to moderate
+  // Count matches for each level and track which keywords matched
+  let bestMatch = { score: 50, matchCount: 0, matchedKeywords: [] as string[] }; // Default to moderate
   
   for (const level of levels) {
     let matchCount = 0;
+    const matchedKeywords: string[] = [];
     for (const keyword of level.keywords) {
       if (lowerText.includes(keyword.toLowerCase())) {
         matchCount++;
+        matchedKeywords.push(keyword.toLowerCase());
       }
     }
     
     // If this level has more matches, use it
     if (matchCount > bestMatch.matchCount) {
-      bestMatch = { score: level.score, matchCount };
+      bestMatch = { score: level.score, matchCount, matchedKeywords };
     }
   }
   
+  // Check if the matched keyword itself contains negation (e.g., "no plans", "not interested")
+  // If so, don't flip the score - the negation is already part of the intended meaning
+  const matchedKeywordContainsNegation = bestMatch.matchedKeywords.some(keyword => 
+    negationWords.some(neg => keyword.includes(neg))
+  );
+  
   // If negation detected and score is high/very high, flip to low/very low
   // If negation detected and score is low/very low, flip to high/very high
-  if (hasNegation && bestMatch.matchCount > 0) {
+  // BUT only if the matched keyword doesn't already contain the negation
+  if (hasNegation && bestMatch.matchCount > 0 && !matchedKeywordContainsNegation) {
     if (bestMatch.score === 100) {
       bestMatch.score = 0; // "not excellent" -> very low
     } else if (bestMatch.score === 75) {
