@@ -42,7 +42,7 @@ const TPB_ATTITUDE_QUESTIONS: Question[] = [
   {
     id: 'tpb-att-1',
     type: 'tpb-attitude',
-    text: 'Let\'s start with something simple - how do you feel about eating healthy food?',
+    text: 'How do you feel about eating healthy food?',
     keywords: {
       veryHigh: ['love', 'excellent', 'amazing', 'wonderful', 'excited', 'passionate', 'great', 'fantastic', 'adore'],
       high: ['like', 'good', 'positive', 'enjoy', 'interested', 'beneficial', 'helpful', 'nice'],
@@ -105,7 +105,7 @@ const TPB_SUBJECTIVE_NORM_QUESTIONS: Question[] = [
   {
     id: 'tpb-sn-1',
     type: 'tpb-subjective-norm',
-    text: 'Now let\'s talk about your social circle. Do your family and friends support you in eating healthier?',
+    text: 'Do your family and friends support you in eating healthier?',
     keywords: {
       veryHigh: ['very supportive', 'fully support', 'encourage', 'help me', 'always support', 'great support'],
       high: ['yes', 'support', 'supportive', 'help', 'encourage me', 'positive', 'backing me'],
@@ -168,7 +168,7 @@ const TPB_PERCEIVED_CONTROL_QUESTIONS: Question[] = [
   {
     id: 'tpb-pc-1',
     type: 'tpb-perceived-control',
-    text: 'Let\'s talk about your abilities. How confident do you feel about preparing healthy meals?',
+    text: 'How confident do you feel about preparing healthy meals?',
     keywords: {
       veryHigh: ['very confident', 'extremely confident', 'totally confident', 'absolutely', 'expert'],
       high: ['confident', 'can do', 'able', 'capable', 'know how', 'comfortable'],
