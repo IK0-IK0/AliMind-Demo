@@ -234,6 +234,7 @@ export function ChatbotShowcase({ onResetSession, initialTPBScores, initialTTMSt
   const [currentTTMStage, setCurrentTTMStage] = useState<TTMStage | null>(initialTTMStage || null);
   const [questionnaireState, setQuestionnaireState] = useState<QuestionnaireState | null>(null);
   const [waitingForStart, setWaitingForStart] = useState(true);
+  const [hasPresetScores, setHasPresetScores] = useState(false); // Track if scores were pre-set in test mode
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   
@@ -261,6 +262,7 @@ export function ChatbotShowcase({ onResetSession, initialTPBScores, initialTTMSt
     setInputValue('');
     setQuestionnaireState(null);
     setWaitingForStart(true);
+    setHasPresetScores(false); // Reset the preset flag
     if (onResetSession) {
       onResetSession();
     }
@@ -322,6 +324,77 @@ export function ChatbotShowcase({ onResetSession, initialTPBScores, initialTTMSt
     };
 
     setMessages([INITIAL_MESSAGE, completionMessage]);
+    setTestDialogOpen(false);
+  };
+
+  const handleSkipToLastQuestion = () => {
+    // Create test TPB scores
+    const testTPBScores: TPBScores = {
+      attitude: testAttitude,
+      subjectiveNorm: testSubjectiveNorm,
+      perceivedControl: testPerceivedControl,
+      confidence: Math.round((testAttitude + testSubjectiveNorm + testPerceivedControl) / 3)
+    };
+
+    console.log('=== SKIP TO LAST QUESTION - INITIAL SCORES ===');
+    console.log('Test TPB Scores:', testTPBScores);
+    console.log('Test Stage:', testStage);
+
+    // Create test TTM stage
+    const stageDescriptions: Record<string, string> = {
+      'preContemplation': 'Not yet considering change',
+      'contemplation': 'Thinking about making changes',
+      'preparation': 'Getting ready to take action',
+      'action': 'Actively making changes',
+      'maintenance': 'Maintaining healthy habits'
+    };
+
+    const testTTMStage: TTMStage = {
+      stage: testStage,
+      confidence: 85,
+      description: stageDescriptions[testStage]
+    };
+
+    // Set scores and mark them as preset
+    setCurrentTPBScores(testTPBScores);
+    setCurrentTTMStage(testTTMStage);
+    setHasPresetScores(true); // Mark that scores are pre-set and should not be overwritten
+    console.log('Set initial currentTPBScores:', testTPBScores);
+    console.log('Set initial currentTTMStage:', testTTMStage);
+    console.log('hasPresetScores set to TRUE');
+
+    // Initialize questionnaire and skip to last question
+    setWaitingForStart(false);
+    const qState = initializeQuestionnaire();
+    
+    // Pre-fill all answers except the last one with dummy data
+    let modifiedState = qState;
+    for (let i = 0; i < qState.questionOrder.length - 1; i++) {
+      const question = qState.questionOrder[i];
+      modifiedState = answerQuestion(modifiedState, question.id, 'test answer');
+    }
+    
+    console.log('Pre-filled questionnaire state, remaining questions:', qState.questionOrder.length - modifiedState.currentQuestionIndex);
+    setQuestionnaireState(modifiedState);
+
+    // Trigger fullscreen if needed
+    if (onQuestionnaireStart) {
+      onQuestionnaireStart();
+    }
+
+    // Ask the last question
+    setTimeout(() => {
+      const lastQuestion = getCurrentQuestion(modifiedState);
+      if (lastQuestion) {
+        const botMessage: Message = {
+          id: Date.now().toString(),
+          text: `Scores pre-set! (Attitude: ${testTPBScores.attitude}, Social: ${testTPBScores.subjectiveNorm}, Confidence: ${testTPBScores.perceivedControl}, Stage: ${formatStageName(testTTMStage.stage)})\n\nNow answer this final question:\n\n${lastQuestion.text}`,
+          sender: 'bot'
+        };
+        setMessages([INITIAL_MESSAGE, botMessage]);
+      }
+    }, 500);
+
     setTestDialogOpen(false);
   };
 
@@ -402,39 +475,74 @@ export function ChatbotShowcase({ onResetSession, initialTPBScores, initialTTMSt
     if (questionnaireState && questionnaireState.isActive) {
       const currentQuestion = getCurrentQuestion(questionnaireState);
       if (currentQuestion) {
+        console.log('=== ANSWERING QUESTION ===');
+        console.log('Current question:', currentQuestion.id);
+        console.log('User answer:', text);
+        console.log('Current TPB scores BEFORE answer:', currentTPBScores);
+        console.log('Current TTM stage BEFORE answer:', currentTTMStage);
+        
         // Process answer
         const newState = answerQuestion(questionnaireState, currentQuestion.id, text);
         setQuestionnaireState(newState);
         
+        console.log('New state isComplete:', newState.isComplete);
+        console.log('New state TPB scores:', newState.tpbScores);
+        console.log('New state TTM stage:', newState.ttmStage);
+        
         // Update interim scores in real-time
         const interimScores = calculateInterimScores(newState);
-        if (interimScores.tpbScores) {
-          setCurrentTPBScores(interimScores.tpbScores);
-        }
-        if (interimScores.ttmStage) {
-          setCurrentTTMStage(interimScores.ttmStage);
+        console.log('Interim scores calculated:', interimScores);
+        
+        // Only update scores if they weren't pre-set in test mode
+        if (!hasPresetScores) {
+          if (interimScores.tpbScores) {
+            console.log('Setting currentTPBScores from interim:', interimScores.tpbScores);
+            setCurrentTPBScores(interimScores.tpbScores);
+          }
+          if (interimScores.ttmStage) {
+            console.log('Setting currentTTMStage from interim:', interimScores.ttmStage);
+            setCurrentTTMStage(interimScores.ttmStage);
+          }
+        } else {
+          console.log('SKIPPING interim score update - scores are pre-set');
         }
 
         setTimeout(() => {
           if (newState.isComplete) {
-            // Questionnaire complete - Show interventions
-            setCurrentTPBScores(newState.tpbScores);
-            setCurrentTTMStage(newState.ttmStage);
+            console.log('=== QUESTIONNAIRE COMPLETE ===');
+            console.log('Final TPB scores from newState:', newState.tpbScores);
+            console.log('Final TTM stage from newState:', newState.ttmStage);
+            console.log('hasPresetScores:', hasPresetScores);
             
-            // Generate personalized intervention message
-            const weakestDeterminant = newState.tpbScores ? 
-              (newState.tpbScores.attitude <= newState.tpbScores.subjectiveNorm && newState.tpbScores.attitude <= newState.tpbScores.perceivedControl ? 'attitude' :
-               newState.tpbScores.subjectiveNorm <= newState.tpbScores.perceivedControl ? 'subjectiveNorm' : 'perceivedControl') : 'attitude';
+            // Only update scores if they weren't pre-set in test mode
+            if (!hasPresetScores) {
+              // Questionnaire complete - Show interventions
+              setCurrentTPBScores(newState.tpbScores);
+              setCurrentTTMStage(newState.ttmStage);
+              
+              console.log('Set final currentTPBScores:', newState.tpbScores);
+              console.log('Set final currentTTMStage:', newState.ttmStage);
+            } else {
+              console.log('PRESERVING pre-set scores - NOT overwriting with calculated scores');
+            }
             
-            const interventionMessage = generateInterventionMessage(newState.ttmStage, newState.tpbScores, weakestDeterminant);
+            // Generate personalized intervention message using current scores (pre-set or calculated)
+            const displayScores = hasPresetScores ? currentTPBScores : newState.tpbScores;
+            const displayStage = hasPresetScores ? currentTTMStage : newState.ttmStage;
+            
+            const weakestDeterminant = displayScores ? 
+              (displayScores.attitude <= displayScores.subjectiveNorm && displayScores.attitude <= displayScores.perceivedControl ? 'attitude' :
+               displayScores.subjectiveNorm <= displayScores.perceivedControl ? 'subjectiveNorm' : 'perceivedControl') : 'attitude';
+            
+            const interventionMessage = generateInterventionMessage(displayStage, displayScores, weakestDeterminant);
             
             const completionMessage: Message = {
               id: Date.now().toString(),
-              text: `Thanks for sharing all that with me! 🎉\n\nBased on your responses, here's what I learned about you:\n\n📊 Your Behavioral Profile:\n• Attitude toward healthy eating: ${newState.tpbScores?.attitude}/100\n• Social support: ${newState.tpbScores?.subjectiveNorm}/100\n• Confidence in your ability: ${newState.tpbScores?.perceivedControl}/100\n• Current stage: ${newState.ttmStage ? formatStageName(newState.ttmStage.stage) : 'Unknown'}\n\n${interventionMessage}`,
+              text: `Thanks for sharing all that with me! 🎉\n\nBased on your responses, here's what I learned about you:\n\n📊 Your Behavioral Profile:\n• Attitude toward healthy eating: ${displayScores?.attitude}/100\n• Social support: ${displayScores?.subjectiveNorm}/100\n• Confidence in your ability: ${displayScores?.perceivedControl}/100\n• Current stage: ${displayStage ? formatStageName(displayStage.stage) : 'Unknown'}\n\n${interventionMessage}`,
               sender: 'bot',
               metadata: {
-                tpbScores: newState.tpbScores || undefined,
-                ttmStage: newState.ttmStage || undefined
+                tpbScores: displayScores || undefined,
+                ttmStage: displayStage || undefined
               }
             };
             setMessages(prev => [...prev, completionMessage]);
@@ -1201,6 +1309,9 @@ export function ChatbotShowcase({ onResetSession, initialTPBScores, initialTTMSt
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setTestDialogOpen(false)}>Cancel</Button>
+          <Button onClick={handleSkipToLastQuestion} variant="outlined" color="secondary">
+            Skip to Last Question
+          </Button>
           <Button onClick={handleTestSubmit} variant="contained" color="primary">
             Load Test Scores
           </Button>

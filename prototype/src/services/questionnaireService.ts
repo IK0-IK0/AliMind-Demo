@@ -584,12 +584,19 @@ function calculateTPBScoresFromAnswers(answers: Map<string, { text: string; scor
 }
 
 function calculateTTMStageFromAnswers(answers: Map<string, { text: string; score: number }>): TTMStage {
+  console.log('=== calculateTTMStageFromAnswers CALLED ===');
+  console.log('Total answers:', answers.size);
+  
   const ttmScores = TTM_QUESTIONS.map(q => {
     const score = answers.get(q.id)?.score || 50;
     return Math.round(score / 25);
   });
   
+  console.log('TTM question scores (0-4 scale):', ttmScores);
+  
   const avgStage = ttmScores.reduce((sum, score) => sum + score, 0) / ttmScores.length;
+  console.log('Average stage (raw):', avgStage);
+  
   const variance = ttmScores.reduce((sum, score) => sum + Math.pow(score - avgStage, 2), 0) / ttmScores.length;
   const stdDev = Math.sqrt(variance);
   
@@ -610,7 +617,11 @@ function calculateTTMStageFromAnswers(answers: Map<string, { text: string; score
   ];
 
   const stageIndex = Math.round(avgStage);
+  console.log('Stage index (Math.round):', stageIndex);
+  
   const { stage, description } = stageMap[stageIndex];
+  console.log('Final stage:', stage);
+  console.log('Final description:', description);
 
   return {
     stage,
