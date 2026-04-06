@@ -125,12 +125,8 @@ export function classifyTTMStage(message: string): TTMStage {
     maintenance: countKeywordMatches(lowerMessage, STAGE_KEYWORDS.maintenance)
   };
   
-  // Apply temporal context to adjust scores
-  const temporalContext = detectTemporalContext(lowerMessage);
-  const adjustedCounts = applyTemporalAdjustment(stageCounts, temporalContext);
-  
   // Find stage with highest count
-  const stageEntries = Object.entries(adjustedCounts) as Array<[keyof typeof adjustedCounts, number]>;
+  const stageEntries = Object.entries(stageCounts) as Array<[keyof typeof stageCounts, number]>;
   stageEntries.sort((a, b) => b[1] - a[1]);
   
   const topStage = stageEntries[0][0];
