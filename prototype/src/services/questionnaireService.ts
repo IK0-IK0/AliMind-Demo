@@ -550,20 +550,29 @@ export function getCurrentQuestion(state: QuestionnaireState): Question | null {
 }
 
 function calculateTPBScoresFromAnswers(answers: Map<string, { text: string; score: number }>): TPBScores {
+  console.log('=== calculateTPBScoresFromAnswers CALLED ===');
+  console.log('Total answers:', answers.size);
+  
   const attitudeScores = TPB_ATTITUDE_QUESTIONS.map(q => answers.get(q.id)?.score || 50);
+  console.log('Attitude scores:', attitudeScores);
   const attitude = Math.round(
     attitudeScores.reduce((sum, score) => sum + score, 0) / attitudeScores.length
   );
+  console.log('Attitude average (rounded):', attitude);
 
   const subjectiveNormScores = TPB_SUBJECTIVE_NORM_QUESTIONS.map(q => answers.get(q.id)?.score || 50);
+  console.log('Subjective norm scores:', subjectiveNormScores);
   const subjectiveNorm = Math.round(
     subjectiveNormScores.reduce((sum, score) => sum + score, 0) / subjectiveNormScores.length
   );
+  console.log('Subjective norm average (rounded):', subjectiveNorm);
 
   const perceivedControlScores = TPB_PERCEIVED_CONTROL_QUESTIONS.map(q => answers.get(q.id)?.score || 50);
+  console.log('Perceived control scores:', perceivedControlScores);
   const perceivedControl = Math.round(
     perceivedControlScores.reduce((sum, score) => sum + score, 0) / perceivedControlScores.length
   );
+  console.log('Perceived control average (rounded):', perceivedControl);
 
   // Calculate base confidence
   let confidence = Math.round((attitude + subjectiveNorm + perceivedControl) / 3);

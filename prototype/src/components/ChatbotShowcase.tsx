@@ -513,22 +513,15 @@ export function ChatbotShowcase({ onResetSession, initialTPBScores, initialTTMSt
             console.log('Final TPB scores from newState:', newState.tpbScores);
             console.log('Final TTM stage from newState:', newState.ttmStage);
             console.log('hasPresetScores:', hasPresetScores);
+            console.log('Current scores (interim):', currentTPBScores, currentTTMStage);
             
-            // Only update scores if they weren't pre-set in test mode
-            if (!hasPresetScores) {
-              // Questionnaire complete - Show interventions
-              setCurrentTPBScores(newState.tpbScores);
-              setCurrentTTMStage(newState.ttmStage);
-              
-              console.log('Set final currentTPBScores:', newState.tpbScores);
-              console.log('Set final currentTTMStage:', newState.ttmStage);
-            } else {
-              console.log('PRESERVING pre-set scores - NOT overwriting with calculated scores');
-            }
+            // ALWAYS preserve the interim scores - don't overwrite with final calculation
+            // The interim scores are more accurate as they're calculated in real-time
+            console.log('PRESERVING interim scores - NOT overwriting with final calculation');
             
-            // Generate personalized intervention message using current scores (pre-set or calculated)
-            const displayScores = hasPresetScores ? currentTPBScores : newState.tpbScores;
-            const displayStage = hasPresetScores ? currentTTMStage : newState.ttmStage;
+            // Use current scores (interim) for the completion message
+            const displayScores = currentTPBScores;
+            const displayStage = currentTTMStage;
             
             const weakestDeterminant = displayScores ? 
               (displayScores.attitude <= displayScores.subjectiveNorm && displayScores.attitude <= displayScores.perceivedControl ? 'attitude' :
